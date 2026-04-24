@@ -1,5 +1,23 @@
+"use client"
+
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { GraduationCap, Users, Award, BookOpen } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { GraduationCap, Users, Award, BookOpen, ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
+import { profileData, formacionAcademica, acreditaciones } from "@/lib/data"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const highlights = [
   {
@@ -10,21 +28,24 @@ const highlights = [
   {
     icon: Users,
     title: "Docencia",
-    description: "Facultad de Economía, Empresa y Turismo · Facultad de Geografía e Historia"
+    description: "Facultad de Economía, Empresa y Turismo - Facultad de Geografía e Historia"
   },
   {
     icon: Award,
     title: "Investigación",
-    description: "Grupo DPHA del Instituto IATEXT"
+    description: "Coordinador del Grupo DPHA del Instituto IATEXT"
   },
   {
     icon: BookOpen,
     title: "Especialidad",
-    description: "Historia Económica · Siglo XVIII · Fiscalidad"
+    description: "Historia Económica - Siglo XVIII - Fiscalidad"
   },
 ]
 
 export function AboutSection() {
+  const [showAllAcred, setShowAllAcred] = useState(false)
+  const displayedAcred = showAllAcred ? acreditaciones : acreditaciones.slice(0, 4)
+
   return (
     <section id="sobre-mi" className="py-20 md:py-28 scroll-mt-20">
       <div className="mx-auto max-w-5xl px-6">
@@ -44,9 +65,9 @@ export function AboutSection() {
               con especialización en Historia Económica.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Actualmente formo parte del Grupo de Investigación <strong className="text-foreground">"Documentación, 
-              Patrimonio e Historia Atlántica" (DPHA)</strong> del Instituto Universitario de Análisis y 
-              Aplicaciones Textuales (IATEXT).
+              Actualmente formo parte del Grupo de Investigación <strong className="text-foreground">&quot;Documentación, 
+              Patrimonio e Historia Atlántica&quot; (DPHA)</strong> del Instituto Universitario de Análisis y 
+              Aplicaciones Textuales (IATEXT), del cual soy coordinador.
             </p>
           </div>
           <div className="space-y-6">
@@ -56,15 +77,36 @@ export function AboutSection() {
               coordinador del Área de Historia Económica, coordinador del GIR-DPHA y del Grupo de 
               Innovación Educativa en Economía e Historia (GIZEH).
             </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Imparto docencia tanto en la <strong className="text-foreground">Facultad de Economía, 
-              Empresa y Turismo</strong> como en la <strong className="text-foreground">Facultad de 
-              Geografía e Historia</strong>.
-            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`https://orcid.org/${profileData.orcid}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+              >
+                ORCID <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={profileData.links.researchGate}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+              >
+                ResearchGate <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={profileData.links.iatext}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+              >
+                IATEXT <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {highlights.map((item) => (
             <Card key={item.title} className="border-border/50 bg-card/50">
               <CardContent className="pt-6">
@@ -78,6 +120,96 @@ export function AboutSection() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Formación Académica y Acreditaciones */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Formación Académica */}
+          <Card className="border-border/50">
+            <CardContent className="pt-6">
+              <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+                <GraduationCap className="h-5 w-5 text-accent" />
+                Formación Académica
+              </h3>
+              
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="licenciatura">
+                  <AccordionTrigger className="text-left">
+                    <div>
+                      <p className="font-medium text-foreground">{formacionAcademica.licenciatura.titulo}</p>
+                      <p className="text-sm text-muted-foreground">{formacionAcademica.licenciatura.universidad}, {formacionAcademica.licenciatura.fecha}</p>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-2 text-sm">
+                      <p><span className="text-muted-foreground">División:</span> {formacionAcademica.licenciatura.division}</p>
+                      <p><span className="text-muted-foreground">Sección:</span> {formacionAcademica.licenciatura.seccion}</p>
+                      <p><span className="text-muted-foreground">Ciudad:</span> {formacionAcademica.licenciatura.ciudad}</p>
+                      <p><span className="text-muted-foreground">Calificación:</span> <span className="text-accent font-medium">{formacionAcademica.licenciatura.notaMedia}</span></p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="doctorado">
+                  <AccordionTrigger className="text-left">
+                    <div>
+                      <p className="font-medium text-foreground">Doctor en Historia</p>
+                      <p className="text-sm text-muted-foreground">{formacionAcademica.doctorado.universidad}, {formacionAcademica.doctorado.fecha}</p>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-2 text-sm">
+                      <p><span className="text-muted-foreground">Programa:</span> {formacionAcademica.doctorado.programa}</p>
+                      <p><span className="text-muted-foreground">Tesis:</span> <span className="italic">{formacionAcademica.doctorado.tesis}</span></p>
+                      <p><span className="text-muted-foreground">Director:</span> {formacionAcademica.doctorado.director}</p>
+                      <p><span className="text-muted-foreground">Calificación:</span> <span className="text-accent font-medium">{formacionAcademica.doctorado.calificacion}</span></p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </CardContent>
+          </Card>
+
+          {/* Acreditaciones */}
+          <Card className="border-border/50">
+            <CardContent className="pt-6">
+              <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+                <Award className="h-5 w-5 text-accent" />
+                Acreditaciones y Reconocimientos
+              </h3>
+              
+              <ul className="space-y-4">
+                {displayedAcred.map((acred, index) => (
+                  <li key={index} className="border-l-2 border-accent pl-4">
+                    <p className="font-medium text-foreground text-sm">{acred.titulo}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{acred.entidad}</p>
+                    <p className="text-xs text-accent">{acred.fecha}</p>
+                  </li>
+                ))}
+              </ul>
+              
+              {acreditaciones.length > 4 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowAllAcred(!showAllAcred)}
+                  className="mt-4 w-full"
+                >
+                  {showAllAcred ? (
+                    <>
+                      <ChevronUp className="mr-2 h-4 w-4" />
+                      Ver menos
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="mr-2 h-4 w-4" />
+                      Ver todos ({acreditaciones.length})
+                    </>
+                  )}
+                </Button>
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

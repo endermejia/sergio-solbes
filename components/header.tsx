@@ -2,13 +2,14 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Menu, X, BookOpen, GraduationCap, FileText, Mail } from "lucide-react"
+import { Menu, X, BookOpen, GraduationCap, FileText, Mail, Briefcase } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
   { href: "#sobre-mi", label: "Sobre mí", icon: GraduationCap },
   { href: "#investigacion", label: "Investigación", icon: BookOpen },
   { href: "#publicaciones", label: "Publicaciones", icon: FileText },
+  { href: "#docencia", label: "Docencia", icon: Briefcase },
   { href: "#contacto", label: "Contacto", icon: Mail },
 ]
 

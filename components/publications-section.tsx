@@ -1,61 +1,43 @@
+"use client"
+
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, BookOpen, FileText, Newspaper, Users } from "lucide-react"
+import { ExternalLink, BookOpen, FileText, Newspaper, ChevronDown, ChevronUp, BookMarked, X } from "lucide-react"
+import { publicaciones, stats } from "@/lib/data"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
-const stats = [
-  { icon: FileText, value: "42", label: "Artículos" },
-  { icon: BookOpen, value: "12", label: "Libros" },
-  { icon: Newspaper, value: "35", label: "Capítulos" },
-  { icon: Users, value: "14", label: "Actas de Congresos" },
-]
-
-const featuredPublications = [
-  {
-    year: "2025",
-    title: "Fortificaciones. Un elemento clave para la defensa insular de las Monarquías Ibéricas en el largo siglo XVIII",
-    type: "Libro",
-    coauthors: "con Juan Manuel Santana Pérez (eds.)",
-    badge: "Q1"
-  },
-  {
-    year: "2025",
-    title: "The man and his circumstances: the historical context of writing the Theórica",
-    type: "Capítulo",
-    source: "Gerónimo de Uztáriz and his Economic Work, Palgrave Macmillan",
-    badge: "Q1"
-  },
-  {
-    year: "2025",
-    title: "La recuperación del control financiero de la Corona para la defensa de las Islas Canarias, circa 1720-1770",
-    type: "Artículo",
-    source: "Revista Tempo",
-    badge: "Q2"
-  },
-  {
-    year: "2024",
-    title: "Los almacenes de la corte y la provisión del vestuario del ejército de Felipe V durante la Guerra de Sucesión",
-    type: "Artículo",
-    source: "RiMe - Rivista dell'Istituto di Storia dell'Europa Mediterranea",
-    badge: null
-  },
-  {
-    year: "2022",
-    title: "La diferencia insular. El modelo fiscal de Canarias en perspectiva histórica",
-    type: "Libro",
-    coauthors: "con Daniel Castillo Hidalgo",
-    badge: "Q1"
-  },
-  {
-    year: "2022",
-    title: "Erarios regios: el gobierno de las reales haciendas de la monarquía española y la monarquía francesa en el siglo XVIII",
-    type: "Capítulo",
-    source: "Crédito y deuda de los erarios regios",
-    badge: null
-  },
+const statItems = [
+  { icon: FileText, value: stats.articulos, label: "Artículos" },
+  { icon: BookOpen, value: stats.libros, label: "Libros" },
+  { icon: Newspaper, value: stats.capitulos, label: "Capítulos" },
+  { icon: BookMarked, value: stats.resenas, label: "Reseñas" },
 ]
 
 export function PublicationsSection() {
+  const [showMoreArticles, setShowMoreArticles] = useState(false)
+  const [showMoreBooks, setShowMoreBooks] = useState(false)
+  const [showMoreChapters, setShowMoreChapters] = useState(false)
+  
+  const displayedArticles = showMoreArticles ? publicaciones.articulos : publicaciones.articulos.slice(0, 6)
+  const displayedBooks = showMoreBooks ? publicaciones.libros : publicaciones.libros.slice(0, 5)
+  const displayedChapters = showMoreChapters ? publicaciones.capitulos : publicaciones.capitulos.slice(0, 5)
+
   return (
     <section id="publicaciones" className="py-20 md:py-28 scroll-mt-20">
       <div className="mx-auto max-w-5xl px-6">
@@ -72,7 +54,7 @@ export function PublicationsSection() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {stats.map((stat) => (
+          {statItems.map((stat) => (
             <Card key={stat.label} className="border-border/50 bg-card/50">
               <CardContent className="pt-6">
                 <div className="flex flex-col items-center text-center gap-2">
@@ -85,52 +67,216 @@ export function PublicationsSection() {
           ))}
         </div>
 
-        {/* Featured Publications */}
-        <h3 className="font-serif text-xl font-semibold text-foreground mb-6">
-          Publicaciones destacadas
-        </h3>
-        <div className="space-y-4 mb-8">
-          {featuredPublications.map((pub, index) => (
-            <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
-              <CardContent className="py-4">
-                <div className="flex flex-col sm:flex-row sm:items-start gap-3">
-                  <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
-                    {pub.year}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex items-start gap-2 flex-wrap">
-                      <h4 className="font-medium text-foreground leading-snug">
-                        {pub.title}
-                      </h4>
-                      {pub.badge && (
-                        <Badge variant="secondary" className="shrink-0 text-xs">
-                          {pub.badge}
+        {/* Publications Tabs */}
+        <Tabs defaultValue="articulos" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
+            <TabsTrigger value="articulos">Artículos</TabsTrigger>
+            <TabsTrigger value="libros">Libros</TabsTrigger>
+            <TabsTrigger value="capitulos">Capítulos</TabsTrigger>
+            <TabsTrigger value="resenas">Reseñas</TabsTrigger>
+          </TabsList>
+          
+          {/* Artículos */}
+          <TabsContent value="articulos">
+            <div className="space-y-3">
+              {displayedArticles.map((pub, index) => (
+                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
+                  <CardContent className="py-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                        {pub.año}
+                      </span>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-foreground leading-snug text-sm">
+                          {pub.titulo}
+                        </h4>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {pub.autores}
+                        </p>
+                        <p className="text-xs text-muted-foreground italic">
+                          {pub.revista}{pub.volumen ? `, ${pub.volumen}` : ""}{pub.paginas ? `, pp. ${pub.paginas}` : ""}
+                        </p>
+                        {pub.indices && (
+                          <Badge variant="secondary" className="mt-2 text-xs font-normal">
+                            {pub.indices}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            {publicaciones.articulos.length > 6 && (
+              <div className="mt-6 text-center">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowMoreArticles(!showMoreArticles)}
+                  className="gap-2"
+                >
+                  {showMoreArticles ? (
+                    <>
+                      <ChevronUp className="h-4 w-4" />
+                      Ver menos
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="h-4 w-4" />
+                      Ver todos ({publicaciones.articulos.length} artículos)
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+          </TabsContent>
+          
+          {/* Libros */}
+          <TabsContent value="libros">
+            <div className="space-y-3">
+              {displayedBooks.map((pub, index) => (
+                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
+                  <CardContent className="py-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                        {pub.año}
+                      </span>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-foreground leading-snug text-sm">
+                          {pub.titulo}
+                        </h4>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {pub.autores}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {pub.editorial}{pub.ciudad ? `, ${pub.ciudad}` : ""}
+                        </p>
+                        {pub.isbn && (
+                          <p className="text-xs text-muted-foreground">
+                            ISBN: {pub.isbn}
+                          </p>
+                        )}
+                        <Badge variant="outline" className="mt-2 text-xs font-normal">
+                          {pub.tipo}
                         </Badge>
-                      )}
+                      </div>
                     </div>
-                    <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-                      <Badge variant="outline" className="text-xs font-normal">
-                        {pub.type}
-                      </Badge>
-                      {pub.coauthors && <span>{pub.coauthors}</span>}
-                      {pub.source && <span>{pub.source}</span>}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            {publicaciones.libros.length > 5 && (
+              <div className="mt-6 text-center">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowMoreBooks(!showMoreBooks)}
+                  className="gap-2"
+                >
+                  {showMoreBooks ? (
+                    <>
+                      <ChevronUp className="h-4 w-4" />
+                      Ver menos
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="h-4 w-4" />
+                      Ver todos ({publicaciones.libros.length} libros)
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+          </TabsContent>
+          
+          {/* Capítulos */}
+          <TabsContent value="capitulos">
+            <div className="space-y-3">
+              {displayedChapters.map((pub, index) => (
+                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
+                  <CardContent className="py-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                        {pub.año}
+                      </span>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-foreground leading-snug text-sm">
+                          {pub.titulo}
+                        </h4>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {pub.autores}
+                        </p>
+                        <p className="text-xs text-muted-foreground italic">
+                          En: {pub.libro}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {pub.editorial}{pub.paginas ? `, pp. ${pub.paginas}` : ""}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            {publicaciones.capitulos.length > 5 && (
+              <div className="mt-6 text-center">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowMoreChapters(!showMoreChapters)}
+                  className="gap-2"
+                >
+                  {showMoreChapters ? (
+                    <>
+                      <ChevronUp className="h-4 w-4" />
+                      Ver menos
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="h-4 w-4" />
+                      Ver todos ({publicaciones.capitulos.length} capítulos)
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+          </TabsContent>
+          
+          {/* Reseñas */}
+          <TabsContent value="resenas">
+            <div className="space-y-3">
+              {publicaciones.resenas.map((pub, index) => (
+                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
+                  <CardContent className="py-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                        {pub.año}
+                      </span>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-foreground leading-snug text-sm">
+                          {pub.titulo}
+                        </h4>
+                        <p className="text-xs text-muted-foreground mt-1 italic">
+                          {pub.revista}, {pub.volumen}{pub.paginas ? `, pp. ${pub.paginas}` : ""}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
 
         {/* CTA */}
-        <div className="text-center">
-          <Button asChild variant="outline" className="gap-2">
+        <div className="text-center mt-10">
+          <Button asChild variant="default" className="gap-2">
             <a 
               href="https://accedacris.ulpgc.es/cris/rp/rp01750/publicaciones.html?open=all" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              Ver todas las publicaciones
+              Ver listado completo en accedaCRIS
               <ExternalLink className="h-4 w-4" />
             </a>
           </Button>

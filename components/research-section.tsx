@@ -1,31 +1,40 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Landmark, Coins, ScrollText, Ship, Factory } from "lucide-react"
+import { lineasInvestigacion } from "@/lib/data"
+
+const iconMap: Record<string, React.ElementType> = {
+  Building: Landmark,
+  Map: Coins,
+  Leaf: ScrollText,
+  Shield: Ship,
+  Ship: Factory,
+}
 
 const researchAreas = [
   {
     icon: Coins,
-    title: "Sistema Financiero de las Islas Canarias",
-    description: "Análisis del sistema fiscal y financiero canario durante el siglo XVIII, incluyendo el estudio del reino de Navarra como marco comparativo."
-  },
-  {
-    icon: ScrollText,
-    title: "La Renta del Tabaco",
-    description: "Investigación sobre esta figura fiscal fundamental para entender la hacienda borbónica y su papel en la financiación del Estado."
+    title: "Finanzas Públicas del Siglo XVIII",
+    description: "Estudio de los sistemas fiscales, la formación del Estado moderno y el papel de las instituciones públicas y agentes privados en la gestión de la Hacienda durante el reinado de los Borbones."
   },
   {
     icon: Landmark,
-    title: "Tesorería General",
-    description: "Estudio de las instituciones financieras centrales y su evolución durante las reformas administrativas del siglo XVIII."
+    title: "Historia Fiscal de Canarias",
+    description: "Análisis del régimen fiscal diferenciado de las Islas Canarias, los privilegios territoriales y su evolución durante el Antiguo Régimen y la época contemporánea."
+  },
+  {
+    icon: ScrollText,
+    title: "El Estanco del Tabaco",
+    description: "Investigación sobre el monopolio del tabaco en España, su administración territorial, consumos y valores de la renta en diferentes regiones como Navarra, Valencia y Canarias."
   },
   {
     icon: Ship,
-    title: "Provisión Militar y Vestuario",
-    description: "Análisis de los efectos económicos de la provisión militar, con especial atención al apartado del vestuario del ejército."
+    title: "Provisión Militar y Estado Contratista",
+    description: "Estudio de los mecanismos de provisión del ejército español (vestuario, suministros) y el papel de los asentistas y contratistas privados en la gestión militar del siglo XVIII."
   },
   {
     icon: Factory,
-    title: "Fomento de Economías Nacionales",
-    description: "Investigación sobre la movilización de recursos y las políticas de fomento económico en la España del XVIII."
+    title: "Comercio Atlántico",
+    description: "Análisis de la navegación directa de Canarias a América, el sistema comercial atlántico y las reformas borbónicas en el comercio colonial."
   },
 ]
 

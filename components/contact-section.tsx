@@ -1,10 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Building2, MapPin, ExternalLink } from "lucide-react"
+import { Mail, Building2, MapPin, ExternalLink, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { profileData } from "@/lib/data"
 
 export function ContactSection() {
   return (
-    <section id="contacto" className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
+    <section id="contacto" className="py-20 md:py-28 scroll-mt-20">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -17,7 +18,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-10">
           <Card className="border-border/50 bg-card">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center gap-3">
@@ -26,10 +27,10 @@ export function ContactSection() {
                 </div>
                 <h3 className="font-semibold text-foreground">Email</h3>
                 <a 
-                  href="mailto:sergio.solbes@ulpgc.es" 
+                  href={`mailto:${profileData.email}`} 
                   className="text-sm text-muted-foreground hover:text-accent transition-colors"
                 >
-                  sergio.solbes@ulpgc.es
+                  {profileData.email}
                 </a>
               </div>
             </CardContent>
@@ -43,7 +44,7 @@ export function ContactSection() {
                 </div>
                 <h3 className="font-semibold text-foreground">Departamento</h3>
                 <p className="text-sm text-muted-foreground">
-                  Ciencias Históricas<br />ULPGC
+                  {profileData.department}<br />ULPGC
                 </p>
               </div>
             </CardContent>
@@ -64,17 +65,51 @@ export function ContactSection() {
           </Card>
         </div>
 
-        <div className="mt-10 text-center">
-          <Button asChild className="gap-2">
-            <a 
-              href="https://accedacris.ulpgc.es/cris/rp/rp01750" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              Ver perfil completo en accedaCRIS
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </Button>
+        {/* Enlaces académicos */}
+        <div className="text-center">
+          <h3 className="font-medium text-foreground mb-4">Perfiles académicos</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild variant="outline" className="gap-2">
+              <a 
+                href={profileData.links.accedaCris}
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Globe className="h-4 w-4" />
+                accedaCRIS
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="gap-2">
+              <a 
+                href={`https://orcid.org/${profileData.orcid}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="h-4 w-4" />
+                ORCID
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="gap-2">
+              <a 
+                href={profileData.links.researchGate}
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="h-4 w-4" />
+                ResearchGate
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="gap-2">
+              <a 
+                href={profileData.links.scholar}
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Google Scholar
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
