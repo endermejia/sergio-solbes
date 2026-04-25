@@ -1,9 +1,32 @@
+"use client"
+
 import { MapPin, Building2, BookMarked, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { profileData, stats } from "@/lib/data"
 import Image from "next/image"
 
 export function HeroSection() {
+  const handleTabClick = (tabId: string) => {
+    // Dispatch event for publications section to update state
+    window.dispatchEvent(new CustomEvent('changeTab', { detail: { tab: tabId } }));
+
+    // Scroll to publications section
+    const element = document.getElementById('publicaciones-tabs');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const pubSection = document.getElementById('publicaciones');
+      if (pubSection) pubSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleScrollToDocencia = () => {
+    const element = document.getElementById('docencia');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden border-b border-border/50">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary via-background to-background" />
@@ -75,19 +98,31 @@ export function HeroSection() {
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-card/80 rounded-xl border border-border/50 p-6 text-center">
+          <div
+            onClick={() => handleTabClick('articulos')}
+            className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
+          >
             <p className="font-serif text-3xl font-bold text-foreground">{stats.articulos}</p>
             <p className="mt-1 text-sm text-muted-foreground">Artículos</p>
           </div>
-          <div className="bg-card/80 rounded-xl border border-border/50 p-6 text-center">
+          <div
+            onClick={() => handleTabClick('libros')}
+            className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
+          >
             <p className="font-serif text-3xl font-bold text-foreground">{stats.libros}</p>
             <p className="mt-1 text-sm text-muted-foreground">Libros</p>
           </div>
-          <div className="bg-card/80 rounded-xl border border-border/50 p-6 text-center">
+          <div
+            onClick={() => handleTabClick('capitulos')}
+            className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
+          >
             <p className="font-serif text-3xl font-bold text-foreground">{stats.capitulos}</p>
             <p className="mt-1 text-sm text-muted-foreground">Capítulos</p>
           </div>
-          <div className="bg-card/80 rounded-xl border border-border/50 p-6 text-center">
+          <div
+            onClick={handleScrollToDocencia}
+            className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
+          >
             <p className="font-serif text-3xl font-bold text-foreground">30+</p>
             <p className="mt-1 text-sm text-muted-foreground">Años docencia</p>
           </div>

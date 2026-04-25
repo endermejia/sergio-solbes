@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -33,7 +33,28 @@ export function PublicationsSection() {
   const [showMoreArticles, setShowMoreArticles] = useState(false)
   const [showMoreBooks, setShowMoreBooks] = useState(false)
   const [showMoreChapters, setShowMoreChapters] = useState(false)
+  const [activeTab, setActiveTab] = useState("articulos")
   
+  useEffect(() => {
+    const handleTabChange = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail && customEvent.detail.tab) {
+        setActiveTab(customEvent.detail.tab);
+      }
+    };
+
+    window.addEventListener('changeTab', handleTabChange);
+    return () => window.removeEventListener('changeTab', handleTabChange);
+  }, []);
+
+  const handleStatClick = (tabId: string) => {
+    setActiveTab(tabId);
+    const element = document.getElementById('publicaciones-tabs');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const displayedArticles = showMoreArticles ? publicaciones.articulos : publicaciones.articulos.slice(0, 6)
   const displayedBooks = showMoreBooks ? publicaciones.libros : publicaciones.libros.slice(0, 5)
   const displayedChapters = showMoreChapters ? publicaciones.capitulos : publicaciones.capitulos.slice(0, 5)
@@ -54,21 +75,29 @@ export function PublicationsSection() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {statItems.map((stat) => (
-            <Card key={stat.label} className="border-border/50 bg-card/50">
-              <CardContent className="pt-6">
-                <div className="flex flex-col items-center text-center gap-2">
-                  <stat.icon className="h-6 w-6 text-accent" />
-                  <span className="text-3xl font-bold text-foreground">{stat.value}</span>
-                  <span className="text-sm text-muted-foreground">{stat.label}</span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+          {statItems.map((stat) => {
+            const tabId = stat.label.toLowerCase().replace('í', 'i').replace('ñ', 'n');
+            return (
+              <Card
+                key={stat.label}
+                className="border-border/50 bg-card/50 cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
+                onClick={() => handleStatClick(tabId)}
+              >
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <stat.icon className="h-6 w-6 text-accent" />
+                    <span className="text-3xl font-bold text-foreground">{stat.value}</span>
+                    <span className="text-sm text-muted-foreground">{stat.label}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
 
         {/* Publications Tabs */}
-        <Tabs defaultValue="articulos" className="w-full">
+        <div id="publicaciones-tabs" className="scroll-mt-24">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="articulos">Artículos</TabsTrigger>
             <TabsTrigger value="libros">Libros</TabsTrigger>
@@ -267,6 +296,7 @@ export function PublicationsSection() {
             </div>
           </TabsContent>
         </Tabs>
+        </div>
 
         {/* CTA */}
         <div className="text-center mt-10">
