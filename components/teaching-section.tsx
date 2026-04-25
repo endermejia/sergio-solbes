@@ -223,6 +223,57 @@ export function TeachingSection() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Innovación y Formación */}
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
+          {/* Innovación Docente */}
+          <Card className="border-border/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl">
+                <Calendar className="h-5 w-5 text-accent" />
+                Innovación Docente
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {docencia.innovacionDocente && docencia.innovacionDocente.map((inv, index) => (
+                  <div key={index} className="border-l-2 border-accent pl-4">
+                    <p className="font-medium text-foreground text-sm">{inv.titulo}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Rol: {inv.rol}
+                    </p>
+                    <p className="text-[10px] text-accent mt-1 leading-tight">
+                      {inv.financiacion}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Formación Docente */}
+          <Card className="border-border/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl">
+                <GraduationCap className="h-5 w-5 text-accent" />
+                Formación Docente y Congresos
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {docencia.formacionDocente && docencia.formacionDocente.map((form, index) => (
+                  <div key={index} className="border-l-2 border-border pl-4">
+                    <p className="font-medium text-foreground text-sm">{form.actividad}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {form.entidad}
+                    </p>
+                    <span className="text-xs text-accent">{form.año}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   )

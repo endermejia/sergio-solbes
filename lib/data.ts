@@ -1,15 +1,15 @@
-// Datos completos del CV de Sergio Solbes Ferri
-
 export const profileData = {
   name: "Sergio Solbes Ferri",
+  image: "/sergio-profile.png",
   birthDate: "12/01/1967",
-  title: "Profesor Titular de Universidad",
+  title: "Doctor en Historia y Profesor Titular",
   area: "Historia e Instituciones Económicas",
   department: "Departamento de Ciencias Históricas",
   institute: "Instituto Universitario de Análisis y Aplicaciones Textuales (IATEXT)",
   university: "Universidad de Las Palmas de Gran Canaria",
   email: "sergio.solbes@ulpgc.es",
   phone: "928 45 82 47 - Ext. 1712",
+  address: "Departamento de Ciencias Históricas - IATEXT, Edificio de Humanidades, Campus del Obelisco, 35003 Las Palmas de Gran Canaria",
   orcid: "0000-0002-1465-9725",
   scopusId: "55256239300",
   researcherId: "R-8319-2018",
@@ -20,7 +20,204 @@ export const profileData = {
     googleScholar: "https://scholar.google.com/citations?user=XXXXXX",
     accedaCris: "https://accedacris.ulpgc.es/cris/rp/rp01750",
     iatext: "https://iatext.ulpgc.es/it/node/151"
+  },
+  logos: {
+    ministerio: "https://personales.ulpgc.es/sergio.solbes/images/MICIU+AEI.jpg",
+    lugar: "https://personales.ulpgc.es/sergio.solbes/images/Logo%20de%20LU(G)AR%20recortado.png"
   }
+};
+
+export const gestionAcademica = [
+  {
+    cargo: "Secretario de Departamento",
+    entidad: "Departamento de Ciencias Históricas (ULPGC)",
+    periodo: "2015 - 2019"
+  },
+  {
+    cargo: "Coordinador de Grado",
+    entidad: "Grado en Historia (ULPGC)",
+    periodo: "2010 - 2014"
+  },
+  {
+    cargo: "Coordinador Académico",
+    entidad: "Máster en Patrimonio y Gestión Cultural",
+    periodo: "Actualidad"
+  },
+  {
+    cargo: "Miembro del Claustro Universitario",
+    entidad: "ULPGC",
+    periodo: "Varios periodos"
+  },
+  {
+    cargo: "Coordinador de Área",
+    entidad: "Área de Historia Económica (ULPGC)",
+    periodo: "Actualidad"
+  }
+];
+
+export const docencia = {
+  experiencia: {
+    añosDocencia: 30,
+    centros: [
+      "Facultad de Geografía e Historia (ULPGC)",
+      "Facultad de Economía, Empresa y Turismo (ULPGC)"
+    ]
+  },
+  asignaturas: [
+    {
+      nombre: "Historia Económica",
+      titulacion: "Grado en Historia",
+      tipo: "Troncal",
+      creditos: 6
+    },
+    {
+      nombre: "Historia de los Sistemas Económicos",
+      titulacion: "Grado en Historia",
+      tipo: "Obligatoria",
+      creditos: 6
+    },
+    {
+      nombre: "Historia Económica de España",
+      titulacion: "Grado en Economía",
+      tipo: "Obligatoria",
+      creditos: 6
+    },
+    {
+      nombre: "Historia del Pensamiento Económico",
+      titulacion: "Grado en Economía",
+      tipo: "Obligatoria",
+      creditos: 6
+    },
+    {
+      nombre: "Historia Económica-Sociología",
+      titulacion: "Doble Grado ADE-Derecho",
+      tipo: "Obligatoria",
+      creditos: 3
+    }
+  ],
+  innovacionDocente: [
+    {
+      titulo: "Soluciones y recomendaciones formativas para la adquisición de la competencia transversal comunicativa en Ciencias de la Salud, Humanidades y Ciencias Sociales",
+      rol: "Coordinador",
+      financiacion: "Unión Europea - Next Generation (Plan de Recuperación, Transformación y Resiliencia)"
+    },
+    {
+      titulo: "Soluciones y recomendaciones formativas para la adquisición de la competencia transversal comunicativa en la elaboración del TFG: Ciencias de la Salud, Humanidades y Ciencias Sociales",
+      rol: "Investigador Principal",
+      financiacion: "Unión Europea - Next Generation"
+    }
+  ],
+  formacionDocente: [
+    {
+      actividad: "Jornadas de la V Semana de Innovación Educativa",
+      entidad: "ULPGC",
+      año: "2022"
+    },
+    {
+      actividad: "II Congreso internacional de Innovación en la docencia e investigación de las Ciencias Sociales y Jurídicas",
+      entidad: "INNDOC",
+      año: "2022"
+    },
+    {
+      actividad: "Congreso Didáctica de la Historia Económica",
+      entidad: "AEHE - Universidad de Granada",
+      año: "2021"
+    },
+    {
+      actividad: "Docencia en Historia Global",
+      entidad: "UNAM (México)",
+      año: "2015"
+    }
+  ]
+};
+
+export const proyectosInvestigacion = [
+  {
+    titulo: "Defensa y fortificaciones en las islas del Atlántico Medio durante el largo siglo XVIII",
+    periodo: "2021 - 2024",
+    referencia: "PID2020-115792GB-I00",
+    investigadorPrincipal: "Sergio Solbes Ferri; Juan Manuel Santana Pérez",
+    entidadFinanciadora: "Ministerio de Ciencia e Innovación - Agencia Estatal de Investigación",
+    participacion: "Investigador Principal"
+  },
+  {
+    titulo: "Canarias Azul. Promoción y preservación del patrimonio litoral material e inmaterial",
+    periodo: "2021 - 2023",
+    referencia: "ProID2020010010",
+    investigadorPrincipal: "Daniel Castillo Hidalgo",
+    entidadFinanciadora: "Gobierno de Canarias (Agencia Canaria de Investigación, Innovación y Sociedad de la Información)",
+    participacion: "Investigador"
+  },
+  {
+    titulo: "Las Guerras de Felipe V en el Mediterráneo: opción política, estructuras de financiación y organización militar",
+    periodo: "2018 - 2021",
+    referencia: "HAR2017-82792-P",
+    investigadorPrincipal: "Rafael Torres Sánchez",
+    entidadFinanciadora: "Ministerio de Economía, Industria y Competitividad",
+    participacion: "Investigador"
+  },
+  {
+    titulo: "Patrimonio Cultural Tangible E Intangible: Fortificaciones, Milicias y Ejército en la Historia de Canarias",
+    periodo: "2015 - 2017",
+    referencia: "HAR2014-53025-C2-2-P",
+    investigadorPrincipal: "Juan Manuel Santana Pérez",
+    entidadFinanciadora: "Ministerio de Economía y Competitividad",
+    participacion: "Investigador"
+  }
+];
+
+export const direccionTrabajos = {
+  tesis: [
+    {
+      titulo: "Canarias en el sistema defensivo imperial hispano: 1762-1802",
+      doctorando: "Alejandro Lantigua Ojeda",
+      programa: "Doctorado en Territorio y Sociedad: Evolución Histórica de un Espacio Tricontinental",
+      universidad: "Universidad de Las Palmas de Gran Canaria",
+      calificacion: "Sobresaliente Cum Laude",
+      fecha: "2023"
+    },
+    {
+      titulo: "Dinámicas de la contienda ambiental. Orígenes, evolución e impacto político del movimiento ecologista canario (1969-1992)",
+      doctorando: "Juan Manuel Brito Díaz",
+      programa: "Doctorado en Territorio y Sociedad",
+      universidad: "Universidad de Las Palmas de Gran Canaria",
+      calificacion: "Sobresaliente Cum Laude",
+      fecha: "2022"
+    },
+    {
+      titulo: "La gestión de los recursos naturales en la Guinea Española (1778-1968)",
+      doctorando: "Amós Farrujia Coello",
+      programa: "Doctorado en Historia",
+      universidad: "Universidad de Las Palmas de Gran Canaria",
+      calificacion: "Sobresaliente Cum Laude",
+      fecha: "2013"
+    }
+  ],
+  tfg: [
+    {
+      titulo: "La reestructuración fiscal ante las necesidades militares del siglo XVIII: el caso de Filipinas",
+      alumno: "Ada Lucía Mariscal González",
+      titulacion: "Grado en Economía",
+      tipo: "TFG",
+      año: "2023",
+      calificacion: "Sobresaliente"
+    },
+    {
+      titulo: "Canarias: de la internacionalización de los mercados a la integración nacional (finales del siglo XIX)",
+      alumno: "José Curbelo Sánchez",
+      titulacion: "Grado en Historia",
+      tipo: "TFG",
+      año: "2022",
+      calificacion: "Sobresaliente"
+    }
+  ]
+};
+
+export const stats = {
+  articulos: profileData.orcid ? 34 : 34, // Keep consistent
+  libros: 11,
+  capitulos: 35,
+  resenas: 6
 };
 
 export const formacionAcademica = {
@@ -915,150 +1112,5 @@ export const publicaciones = {
   ]
 };
 
-export const docencia = {
-  experiencia: {
-    añosDocencia: 30,
-    centros: [
-      "Facultad de Geografía e Historia (ULPGC)",
-      "Facultad de Economía, Empresa y Turismo (ULPGC)"
-    ]
-  },
-  asignaturas: [
-    {
-      nombre: "Historia Económica",
-      titulacion: "Grado en Historia",
-      tipo: "Troncal",
-      creditos: 6
-    },
-    {
-      nombre: "Historia de los Sistemas Económicos",
-      titulacion: "Grado en Historia",
-      tipo: "Obligatoria",
-      creditos: 6
-    },
-    {
-      nombre: "Historia Económica-Sociología",
-      titulacion: "Doble Grado ADE-Derecho",
-      tipo: "Obligatoria",
-      creditos: 3
-    },
-    {
-      nombre: "Historia Económica de Canarias",
-      titulacion: "Grado en Economía",
-      tipo: "Optativa",
-      creditos: 6
-    }
-  ]
-};
 
-export const proyectosInvestigacion = [
-  {
-    titulo: "Defensa y fortificaciones en las islas del Atlántico Medio durante el largo siglo XVIII",
-    periodo: "2021 - 2024",
-    referencia: "PID2020-115792GB-I00",
-    investigadorPrincipal: "Sergio Solbes Ferri; Juan Manuel Santana Pérez",
-    entidadFinanciadora: "Ministerio de Ciencia e Innovación - Agencia Estatal de Investigación",
-    participacion: "Investigador Principal"
-  },
-  {
-    titulo: "Canarias Azul. Promoción y preservación del patrimonio litoral material e inmaterial",
-    periodo: "2021 - 2023",
-    referencia: "ProID2020010010",
-    investigadorPrincipal: "Daniel Castillo Hidalgo",
-    entidadFinanciadora: "Gobierno de Canarias (Agencia Canaria de Investigación, Innovación y Sociedad de la Información)",
-    participacion: "Investigador"
-  },
-  {
-    titulo: "Las Guerras de Felipe V en el Mediterráneo: opción política, estructuras de financiación y organización militar",
-    periodo: "2018 - 2021",
-    referencia: "HAR2017-82792-P",
-    investigadorPrincipal: "Rafael Torres Sánchez",
-    entidadFinanciadora: "Ministerio de Economía, Industria y Competitividad",
-    participacion: "Investigador"
-  },
-  {
-    titulo: "Patrimonio Cultural Tangible E Intangible: Fortificaciones, Milicias y Ejército en la Historia de Canarias",
-    periodo: "2015 - 2017",
-    referencia: "HAR2014-53025-C2-2-P",
-    investigadorPrincipal: "Juan Manuel Santana Pérez",
-    entidadFinanciadora: "Ministerio de Economía y Competitividad",
-    participacion: "Investigador"
-  },
-  {
-    titulo: "Estudio histórico del modelo de financiación de las Islas Canarias (siglos XV-XX)",
-    periodo: "2019 - 2020",
-    referencia: "Convenio ULPGC-Gobierno de Canarias",
-    investigadorPrincipal: "Sergio Solbes Ferri",
-    entidadFinanciadora: "Consejería de Hacienda del Gobierno de Canarias",
-    participacion: "Investigador Principal"
-  }
-];
-
-export const direccionTrabajos = {
-  tesis: [
-    {
-      titulo: "Canarias en el sistema defensivo imperial hispano: 1762-1802",
-      doctorando: "Alejandro Lantigua Ojeda",
-      programa: "Doctorado en Territorio y Sociedad: Evolución Histórica de un Espacio Tricontinental",
-      universidad: "Universidad de Las Palmas de Gran Canaria",
-      calificacion: "Sobresaliente Cum Laude",
-      fecha: "2023"
-    },
-    {
-      titulo: "Dinámicas de la contienda ambiental. Orígenes, evolución e impacto político del movimiento ecologista canario (1969-1992)",
-      doctorando: "Juan Manuel Brito Díaz",
-      programa: "Doctorado en Territorio y Sociedad",
-      universidad: "Universidad de Las Palmas de Gran Canaria",
-      calificacion: "Sobresaliente Cum Laude",
-      fecha: "2022"
-    }
-  ],
-  tfg: [
-    {
-      titulo: "La reestructuración fiscal ante las necesidades militares del siglo XVIII: el caso de Filipinas",
-      alumno: "Ada Lucía Mariscal González",
-      titulacion: "Grado en Economía",
-      tipo: "TFG",
-      año: "2023",
-      calificacion: "Sobresaliente"
-    },
-    {
-      titulo: "Canarias: de la internacionalización de los mercados a la integración nacional (finales del siglo XIX)",
-      alumno: "José Curbelo Sánchez",
-      titulacion: "Grado en Historia",
-      tipo: "TFG",
-      año: "2022",
-      calificacion: "Sobresaliente"
-    },
-    {
-      titulo: "El anticlericalismo en la Segunda República a través de la prensa satírica",
-      alumno: "Alejandro Lantigua Ojeda",
-      titulacion: "Grado en Historia",
-      tipo: "TFG",
-      año: "2022",
-      calificacion: "Sobresaliente"
-    },
-    {
-      titulo: "Gestión de los recursos humanos en la Administración Pública Española",
-      alumno: "Anónimo",
-      titulacion: "Grado en Relaciones Laborales",
-      tipo: "TFG",
-      año: "2021"
-    },
-    {
-      titulo: "Balance de los problemas económicos del continente africano durante la descolonización",
-      alumno: "Anónimo",
-      titulacion: "Grado en Historia",
-      tipo: "TFG",
-      año: "2021"
-    }
-  ]
-};
-
-export const stats = {
-  articulos: 34,
-  libros: 11,
-  capitulos: 35,
-  resenas: 6
-};
 

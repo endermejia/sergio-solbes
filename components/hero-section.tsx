@@ -1,6 +1,7 @@
 import { MapPin, Building2, BookMarked, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { profileData, stats } from "@/lib/data"
+import Image from "next/image"
 
 export function HeroSection() {
   return (
@@ -9,10 +10,20 @@ export function HeroSection() {
       
       <div className="relative mx-auto max-w-5xl px-6 py-20 md:py-28">
         <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center md:items-start">
-          {/* Avatar / Initial */}
+          {/* Avatar / Photo */}
           <div className="shrink-0">
-            <div className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-primary/10 border-4 border-card shadow-lg flex items-center justify-center">
-              <span className="font-serif text-5xl md:text-6xl font-bold text-primary">SS</span>
+            <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-card shadow-lg flex items-center justify-center bg-primary/10">
+              {profileData.image ? (
+                <Image
+                  src={profileData.image}
+                  alt={profileData.name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              ) : (
+                <span className="font-serif text-5xl md:text-6xl font-bold text-primary">SS</span>
+              )}
             </div>
           </div>
 
@@ -48,7 +59,7 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
               <Button asChild>
-                <a href={`mailto:${profileData.email}`}>
+                <a href="#contacto">
                   Contactar
                 </a>
               </Button>

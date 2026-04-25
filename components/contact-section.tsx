@@ -18,7 +18,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           <Card className="border-border/50 bg-card">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center gap-3">
@@ -28,7 +28,7 @@ export function ContactSection() {
                 <h3 className="font-semibold text-foreground">Email</h3>
                 <a 
                   href={`mailto:${profileData.email}`} 
-                  className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                  className="text-sm text-muted-foreground hover:text-accent transition-colors break-all"
                 >
                   {profileData.email}
                 </a>
@@ -44,7 +44,7 @@ export function ContactSection() {
                 </div>
                 <h3 className="font-semibold text-foreground">Departamento</h3>
                 <p className="text-sm text-muted-foreground">
-                  {profileData.department}<br />ULPGC
+                  {profileData.department}<br />IATEXT - ULPGC
                 </p>
               </div>
             </CardContent>
@@ -57,8 +57,22 @@ export function ContactSection() {
                   <MapPin className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className="font-semibold text-foreground">Ubicación</h3>
+                <p className="text-sm text-muted-foreground px-2">
+                  {profileData.address}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/50 bg-card">
+            <CardContent className="pt-6">
+              <div className="flex flex-col items-center text-center gap-3">
+                <div className="p-3 rounded-full bg-accent/10">
+                  <Globe className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="font-semibold text-foreground">Teléfono</h3>
                 <p className="text-sm text-muted-foreground">
-                  Las Palmas de<br />Gran Canaria
+                  {profileData.phone}
                 </p>
               </div>
             </CardContent>
@@ -101,7 +115,7 @@ export function ContactSection() {
             </Button>
             <Button asChild variant="outline" className="gap-2">
               <a 
-                href={profileData.links.scholar}
+                href={profileData.links.googleScholar}
                 target="_blank" 
                 rel="noopener noreferrer"
               >

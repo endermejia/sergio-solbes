@@ -42,8 +42,29 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="mt-6 pt-6 border-t border-border/50 text-center text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} {profileData.name}. Todos los derechos reservados.</p>
+        <div className="mt-8 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left text-xs text-muted-foreground">
+            <p>© {new Date().getFullYear()} {profileData.name}. Todos los derechos reservados.</p>
+          </div>
+          
+          <div className="flex items-center gap-8 bg-white/50 p-2 rounded-lg">
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Desarrolla:</span>
+              <img 
+                src={profileData.logos.lugar} 
+                alt="Logo LU(G)AR" 
+                className="h-10 object-contain grayscale hover:grayscale-0 transition-all"
+              />
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Financia:</span>
+              <img 
+                src={profileData.logos.ministerio} 
+                alt="Logo Ministerio y AEI" 
+                className="h-10 object-contain grayscale hover:grayscale-0 transition-all"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </footer>

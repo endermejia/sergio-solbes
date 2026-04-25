@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { GraduationCap, Users, Award, BookOpen, ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
-import { profileData, formacionAcademica, acreditaciones } from "@/lib/data"
+import { profileData, formacionAcademica, acreditaciones, gestionAcademica } from "@/lib/data"
 import {
   Dialog,
   DialogContent,
@@ -208,6 +208,28 @@ export function AboutSection() {
                   )}
                 </Button>
               )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Gestión Académica - New Section */}
+        <div className="mt-8">
+          <Card className="border-border/50">
+            <CardContent className="pt-6">
+              <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+                <Users className="h-5 w-5 text-accent" />
+                Gestión Académica y Responsabilidades
+              </h3>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {gestionAcademica.map((item, index) => (
+                  <div key={index} className="space-y-1 border-l-2 border-border pl-4">
+                    <p className="font-medium text-foreground text-sm">{item.cargo}</p>
+                    <p className="text-xs text-muted-foreground">{item.entidad}</p>
+                    <p className="text-xs text-accent">{item.periodo}</p>
+                  </div>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
