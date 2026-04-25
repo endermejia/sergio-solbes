@@ -97,7 +97,7 @@ export function PublicationsSection() {
                           {pub.revista}{pub.volumen ? `, ${pub.volumen}` : ""}{pub.paginas ? `, pp. ${pub.paginas}` : ""}
                         </p>
                         {pub.indices && (
-                          <Badge variant="secondary" className="mt-2 text-xs font-normal">
+                          <Badge variant="secondary" className="mt-2 text-xs font-normal whitespace-normal text-left">
                             {pub.indices}
                           </Badge>
                         )}
