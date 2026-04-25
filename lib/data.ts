@@ -915,90 +915,145 @@ export const publicaciones = {
   ]
 };
 
-export const docencia = [
+export const docencia = {
+  experiencia: {
+    añosDocencia: 30,
+    centros: [
+      "Facultad de Geografía e Historia (ULPGC)",
+      "Facultad de Economía, Empresa y Turismo (ULPGC)"
+    ]
+  },
+  asignaturas: [
+    {
+      nombre: "Historia Económica",
+      titulacion: "Grado en Historia",
+      tipo: "Troncal",
+      creditos: 6
+    },
+    {
+      nombre: "Historia de los Sistemas Económicos",
+      titulacion: "Grado en Historia",
+      tipo: "Obligatoria",
+      creditos: 6
+    },
+    {
+      nombre: "Historia Económica-Sociología",
+      titulacion: "Doble Grado ADE-Derecho",
+      tipo: "Obligatoria",
+      creditos: 3
+    },
+    {
+      nombre: "Historia Económica de Canarias",
+      titulacion: "Grado en Economía",
+      tipo: "Optativa",
+      creditos: 6
+    }
+  ]
+};
+
+export const proyectosInvestigacion = [
   {
-    asignatura: "Historia Económica",
-    titulacion: "Grado de Historia",
-    tipo: "Troncal",
-    curso: "1º",
-    centro: "Facultad de Geografía e Historia",
-    periodo: "2010-2014",
-    competencias: "Coordinador curso 2010-2011, Responsable de prácticas curso 2012-2013"
+    titulo: "Defensa y fortificaciones en las islas del Atlántico Medio durante el largo siglo XVIII",
+    periodo: "2021 - 2024",
+    referencia: "PID2020-115792GB-I00",
+    investigadorPrincipal: "Sergio Solbes Ferri; Juan Manuel Santana Pérez",
+    entidadFinanciadora: "Ministerio de Ciencia e Innovación - Agencia Estatal de Investigación",
+    participacion: "Investigador Principal"
   },
   {
-    asignatura: "Historia Económica de Canarias",
-    titulacion: "LADE-DCE",
-    tipo: "Libre configuración",
-    centro: "Facultad de Economía, Empresa y Turismo",
-    periodo: "1998-2010",
-    competencias: "Coordinador desde curso 1998-1999 hasta curso 2004-2005"
+    titulo: "Canarias Azul. Promoción y preservación del patrimonio litoral material e inmaterial",
+    periodo: "2021 - 2023",
+    referencia: "ProID2020010010",
+    investigadorPrincipal: "Daniel Castillo Hidalgo",
+    entidadFinanciadora: "Gobierno de Canarias (Agencia Canaria de Investigación, Innovación y Sociedad de la Información)",
+    participacion: "Investigador"
   },
   {
-    asignatura: "Historia Económica",
-    titulacion: "Licenciado en Administración y Dirección de Empresas",
-    tipo: "Obligatoria",
-    curso: "1º",
-    centro: "Facultad de Economía, Empresa y Turismo",
-    periodo: "1993-2010"
+    titulo: "Las Guerras de Felipe V en el Mediterráneo: opción política, estructuras de financiación y organización militar",
+    periodo: "2018 - 2021",
+    referencia: "HAR2017-82792-P",
+    investigadorPrincipal: "Rafael Torres Sánchez",
+    entidadFinanciadora: "Ministerio de Economía, Industria y Competitividad",
+    participacion: "Investigador"
   },
   {
-    asignatura: "Historia Económica Mundial",
-    titulacion: "Licenciado en Economía",
-    tipo: "Troncal",
-    curso: "1º",
-    centro: "Facultad de Economía, Empresa y Turismo",
-    periodo: "Hasta 2000",
-    competencias: "Coordinador curso 2004-2005"
+    titulo: "Patrimonio Cultural Tangible E Intangible: Fortificaciones, Milicias y Ejército en la Historia de Canarias",
+    periodo: "2015 - 2017",
+    referencia: "HAR2014-53025-C2-2-P",
+    investigadorPrincipal: "Juan Manuel Santana Pérez",
+    entidadFinanciadora: "Ministerio de Economía y Competitividad",
+    participacion: "Investigador"
   },
   {
-    asignatura: "Historia Económica Mundial y de España (Moderna y Contemporánea)",
-    titulacion: "LADE-DCE",
-    tipo: "Troncal",
-    curso: "1º de Empresariales",
-    centro: "Facultad de Economía, Empresa y Turismo",
-    periodo: "Hasta 2000",
-    horas: "60 horas"
-  },
-  {
-    asignatura: "Historia Económica de la Empresa",
-    titulacion: "LADE-DCE",
-    tipo: "Libre configuración",
-    centro: "Facultad de Economía, Empresa y Turismo",
-    periodo: "Hasta 2000"
-  },
-  {
-    asignatura: "Historia Económica española",
-    titulacion: "Licenciado en Economía",
-    tipo: "Troncal",
-    curso: "1º",
-    centro: "Facultad de Economía, Empresa y Turismo",
-    periodo: "Hasta 2000"
-  },
-  {
-    asignatura: "Historia de los Sistemas Económicos",
-    titulacion: "Grado en Historia",
-    centro: "Facultad de Geografía e Historia",
-    periodo: "Desde 2010"
-  },
-  {
-    asignatura: "Historia Económica-Sociología",
-    titulacion: "Doble Grado ADE-Derecho",
-    tipo: "Obligatoria",
-    curso: "1º",
-    centro: "Facultad de Economía, Empresa y Turismo",
-    creditos: "3 ECTS"
-  },
-  {
-    asignatura: "Historia Económica de África",
-    titulacion: "Máster de África",
-    centro: "Facultad de Geografía e Historia"
-  },
-  {
-    asignatura: "Historia y Pensamiento Económico",
-    titulacion: "Grado en Economía",
-    centro: "Facultad de Economía, Empresa y Turismo"
+    titulo: "Estudio histórico del modelo de financiación de las Islas Canarias (siglos XV-XX)",
+    periodo: "2019 - 2020",
+    referencia: "Convenio ULPGC-Gobierno de Canarias",
+    investigadorPrincipal: "Sergio Solbes Ferri",
+    entidadFinanciadora: "Consejería de Hacienda del Gobierno de Canarias",
+    participacion: "Investigador Principal"
   }
 ];
+
+export const direccionTrabajos = {
+  tesis: [
+    {
+      titulo: "Canarias en el sistema defensivo imperial hispano: 1762-1802",
+      doctorando: "Alejandro Lantigua Ojeda",
+      programa: "Doctorado en Territorio y Sociedad: Evolución Histórica de un Espacio Tricontinental",
+      universidad: "Universidad de Las Palmas de Gran Canaria",
+      calificacion: "Sobresaliente Cum Laude",
+      fecha: "2023"
+    },
+    {
+      titulo: "Dinámicas de la contienda ambiental. Orígenes, evolución e impacto político del movimiento ecologista canario (1969-1992)",
+      doctorando: "Juan Manuel Brito Díaz",
+      programa: "Doctorado en Territorio y Sociedad",
+      universidad: "Universidad de Las Palmas de Gran Canaria",
+      calificacion: "Sobresaliente Cum Laude",
+      fecha: "2022"
+    }
+  ],
+  tfg: [
+    {
+      titulo: "La reestructuración fiscal ante las necesidades militares del siglo XVIII: el caso de Filipinas",
+      alumno: "Ada Lucía Mariscal González",
+      titulacion: "Grado en Economía",
+      tipo: "TFG",
+      año: "2023",
+      calificacion: "Sobresaliente"
+    },
+    {
+      titulo: "Canarias: de la internacionalización de los mercados a la integración nacional (finales del siglo XIX)",
+      alumno: "José Curbelo Sánchez",
+      titulacion: "Grado en Historia",
+      tipo: "TFG",
+      año: "2022",
+      calificacion: "Sobresaliente"
+    },
+    {
+      titulo: "El anticlericalismo en la Segunda República a través de la prensa satírica",
+      alumno: "Alejandro Lantigua Ojeda",
+      titulacion: "Grado en Historia",
+      tipo: "TFG",
+      año: "2022",
+      calificacion: "Sobresaliente"
+    },
+    {
+      titulo: "Gestión de los recursos humanos en la Administración Pública Española",
+      alumno: "Anónimo",
+      titulacion: "Grado en Relaciones Laborales",
+      tipo: "TFG",
+      año: "2021"
+    },
+    {
+      titulo: "Balance de los problemas económicos del continente africano durante la descolonización",
+      alumno: "Anónimo",
+      titulacion: "Grado en Historia",
+      tipo: "TFG",
+      año: "2021"
+    }
+  ]
+};
 
 export const stats = {
   articulos: 34,
@@ -1006,3 +1061,4 @@ export const stats = {
   capitulos: 35,
   resenas: 6
 };
+
