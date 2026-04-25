@@ -16,11 +16,34 @@ const navItems = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const handleHeaderClick = (e: React.MouseEvent) => {
+    // Prevent scrolling if clicking on a link or button
+    if (
+      (e.target as HTMLElement).closest('a') ||
+      (e.target as HTMLElement).closest('button')
+    ) {
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      onClick={handleHeaderClick}
+      className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 cursor-pointer"
+    >
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            onClick={(e) => {
+              if (window.location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
             <span className="font-serif text-xl font-semibold text-foreground">
               Sergio Solbes Ferri
             </span>
