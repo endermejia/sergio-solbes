@@ -29,29 +29,34 @@ export const profileData = {
 
 export const gestionAcademica = [
   {
-    cargo: "Secretario de Departamento",
-    entidad: "Departamento de Ciencias Históricas (ULPGC)",
-    periodo: "2015 - 2019"
+    "cargo": "Secretario de Departamento",
+    "entidad": "Departamento de Ciencias Históricas (ULPGC)",
+    "periodo": "2015 - 2019",
+    "prioridad": true
   },
   {
-    cargo: "Coordinador de Grado",
-    entidad: "Grado en Historia (ULPGC)",
-    periodo: "2010 - 2014"
+    "cargo": "Coordinador de Grado",
+    "entidad": "Grado en Historia (ULPGC)",
+    "periodo": "2010 - 2014",
+    "prioridad": true
   },
   {
-    cargo: "Coordinador Académico",
-    entidad: "Máster en Patrimonio y Gestión Cultural",
-    periodo: "Actualidad"
+    "cargo": "Coordinador Académico",
+    "entidad": "Máster en Patrimonio y Gestión Cultural",
+    "periodo": "Actualidad",
+    "prioridad": true
   },
   {
-    cargo: "Miembro del Claustro Universitario",
-    entidad: "ULPGC",
-    periodo: "Varios periodos"
+    "cargo": "Miembro del Claustro Universitario",
+    "entidad": "ULPGC",
+    "periodo": "Varios periodos",
+    "prioridad": true
   },
   {
-    cargo: "Coordinador de Área",
-    entidad: "Área de Historia Económica (ULPGC)",
-    periodo: "Actualidad"
+    "cargo": "Coordinador de Área",
+    "entidad": "Área de Historia Económica (ULPGC)",
+    "periodo": "Actualidad",
+    "prioridad": true
   }
 ];
 
@@ -64,37 +69,91 @@ export const docencia = {
     ]
   },
   asignaturas: [
-    {
-      nombre: "Historia Económica",
-      titulacion: "Grado en Historia",
-      tipo: "Troncal",
-      creditos: 6
-    },
-    {
-      nombre: "Historia de los Sistemas Económicos",
-      titulacion: "Grado en Historia",
-      tipo: "Obligatoria",
-      creditos: 6
-    },
-    {
-      nombre: "Historia Económica de España",
-      titulacion: "Grado en Economía",
-      tipo: "Obligatoria",
-      creditos: 6
-    },
-    {
-      nombre: "Historia del Pensamiento Económico",
-      titulacion: "Grado en Economía",
-      tipo: "Obligatoria",
-      creditos: 6
-    },
-    {
-      nombre: "Historia Económica-Sociología",
-      titulacion: "Doble Grado ADE-Derecho",
-      tipo: "Obligatoria",
-      creditos: 3
-    }
-  ],
+        {
+            "nombre": "Historia Económica",
+            "titulacion": "Grado de Historia",
+            "tipo": "Troncal",
+            "creditos": "",
+            "prioridad": true
+        },
+        {
+            "nombre": "Historia Económica de Canarias",
+            "titulacion": "LADE-DCE",
+            "tipo": "Libre configuración",
+            "creditos": "",
+            "prioridad": true
+        },
+        {
+            "nombre": "Historia Económica",
+            "titulacion": "Licenciado en Administración y Dirección de Empresas",
+            "tipo": "Obligatoria",
+            "creditos": "",
+            "prioridad": true
+        },
+        {
+            "nombre": "Historia Económica de Canarias",
+            "titulacion": "LADE-DCE",
+            "tipo": "Libre configuración",
+            "creditos": "",
+            "prioridad": true
+        },
+        {
+            "nombre": "Historia Económica Mundial",
+            "titulacion": "Licenciado en Economía",
+            "tipo": "Troncal",
+            "creditos": "",
+            "prioridad": true
+        },
+        {
+            "nombre": "Historia Económica Mundial y de España (Moderna y Contemporánea)",
+            "titulacion": "LADE-DCE",
+            "tipo": "Troncal",
+            "creditos": "60",
+            "prioridad": false
+        },
+        {
+            "nombre": "Historia Económica de la Empresa",
+            "titulacion": "LADE-DCE",
+            "tipo": "Libre configuración",
+            "creditos": "",
+            "prioridad": false
+        },
+        {
+            "nombre": "Historia Económica española",
+            "titulacion": "Licenciado en Economía",
+            "tipo": "Troncal",
+            "creditos": "",
+            "prioridad": false
+        },
+        {
+            "nombre": "Historia de los Sistemas Económicos",
+            "titulacion": "Grado en Historia",
+            "tipo": "",
+            "creditos": "",
+            "prioridad": false
+        },
+        {
+            "nombre": "Historia Económica-Sociología",
+            "titulacion": "Doble Grado ADE-Derecho",
+            "tipo": "Obligatoria",
+            "creditos": "3",
+            "prioridad": false
+        },
+        {
+            "nombre": "Historia Económica de África",
+            "titulacion": "Máster de África",
+            "tipo": "",
+            "creditos": "",
+            "prioridad": false
+        },
+        {
+            "nombre": "Historia y Pensamiento Económico",
+            "titulacion": "Grado en Economía",
+            "tipo": "",
+            "creditos": "",
+            "prioridad": false
+        }
+    ],
   innovacionDocente: [
     {
       titulo: "Soluciones y recomendaciones formativas para la adquisición de la competencia transversal comunicativa en Ciencias de la Salud, Humanidades y Ciencias Sociales",
@@ -133,84 +192,372 @@ export const docencia = {
 
 export const proyectosInvestigacion = [
   {
-    titulo: "Defensa y fortificaciones en las islas del Atlántico Medio durante el largo siglo XVIII",
-    periodo: "2021 - 2024",
-    referencia: "PID2020-115792GB-I00",
-    investigadorPrincipal: "Sergio Solbes Ferri; Juan Manuel Santana Pérez",
-    entidadFinanciadora: "Ministerio de Ciencia e Innovación - Agencia Estatal de Investigación",
-    participacion: "Investigador Principal"
+    "titulo": "Defensa y fortificaciones en las Islas del Atlántico Medio durante el largo siglo XVIII",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Sergio Solbes Ferri y Juan Manuel Santana Pérez",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Ciencia e Innovación",
+    "participacion": "Investigador principal",
+    "prioridad": true
   },
   {
-    titulo: "Canarias Azul. Promoción y preservación del patrimonio litoral material e inmaterial",
-    periodo: "2021 - 2023",
-    referencia: "ProID2020010010",
-    investigadorPrincipal: "Daniel Castillo Hidalgo",
-    entidadFinanciadora: "Gobierno de Canarias (Agencia Canaria de Investigación, Innovación y Sociedad de la Información)",
-    participacion: "Investigador"
+    "titulo": "Red Sucesión 3.0: Relaciones internacionales, cultura política y dinámicas imperiales entre Europa y América (1648-1748)",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Bernardo José García García - Coordinador de la Red",
+    "entidadFinanciadora": "Ministerio de Ciencia e Innovación - AYUDAS 2022 A REDES DE INVESTIGACIÓN",
+    "participacion": "Investigador principal",
+    "prioridad": true
   },
   {
-    titulo: "Las Guerras de Felipe V en el Mediterráneo: opción política, estructuras de financiación y organización militar",
-    periodo: "2018 - 2021",
-    referencia: "HAR2017-82792-P",
-    investigadorPrincipal: "Rafael Torres Sánchez",
-    entidadFinanciadora: "Ministerio de Economía, Industria y Competitividad",
-    participacion: "Investigador"
+    "titulo": "Canarias Azul. Promoción y preservación del patrimonio litoral, material e inmaterial",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Sergio Solbes Ferri",
+    "entidadFinanciadora": "Agencia Canaria de Investigación, Innovación y Sociedad de la Información (ACIISI)",
+    "participacion": "Investigador principal",
+    "prioridad": true
   },
   {
-    titulo: "Patrimonio Cultural Tangible E Intangible: Fortificaciones, Milicias y Ejército en la Historia de Canarias",
-    periodo: "2015 - 2017",
-    referencia: "HAR2014-53025-C2-2-P",
-    investigadorPrincipal: "Juan Manuel Santana Pérez",
-    entidadFinanciadora: "Ministerio de Economía y Competitividad",
-    participacion: "Investigador"
+    "titulo": "Redes empresariales y administración estatal: movilización de recursos y producción de materiales estratégicos en el mundo hispánico como escenario de la globalización temprana (siglos XVI-XIX)",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Ivan Valdez-Bubnov",
+    "entidadFinanciadora": "Instituto de Investigaciones Históricas - Universidad Nacional Autónoma de México",
+    "participacion": "",
+    "prioridad": true
+  },
+  {
+    "titulo": "Las guerras de Felipe V en el Mediterráneo: opción política, estructuras de financiación y organización militar",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Sergio Solbes Ferri",
+    "entidadFinanciadora": "Secretaría de Estado de Universidades, Investigación, Desarrollo e Innovación y la Universidad de Las Palmas de Gran Canaria",
+    "participacion": "Investigador principal",
+    "prioridad": false
+  },
+  {
+    "titulo": "Patrimonio Cultural Tangible e Intangible: Fortificaciones, Milicias y Ejército en la Historia de Canarias",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Sergio Solbes Ferri",
+    "entidadFinanciadora": "Agencia Canaria de Investigación, Innovación y Sociedad de la Información (ACIISI) - Gobierno de Canarias",
+    "participacion": "Investigador principal",
+    "prioridad": false
+  },
+  {
+    "titulo": "Los nervios de la guerra. Movilización de recursos militares y la construcción de la Monarquía Imperial Hispánica en los siglos XVII y XVIII",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Rafael Torres Sánchez",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Economía y Competitividad",
+    "participacion": "Investigador",
+    "prioridad": false
+  },
+  {
+    "titulo": "La construcción de la Hacienda hispánica (siglos XVIII-XIX)",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Anne Dubet, Michel Bertrand, Rafael Torres Sánchez, Sergio Solbes Ferri",
+    "entidadFinanciadora": "École des Hautes Études Hispaniques et Ibériques (Casa de Velázquez), Instituto Universitario de Francia",
+    "participacion": "Investigador y coordinador de coloquios",
+    "prioridad": false
+  },
+  {
+    "titulo": "Movilización de recursos para la guerra y la construcción del Estado en el siglo XVIII: España y su contexto europeo",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Agustín González Enciso",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Ciencia e Innovación",
+    "participacion": "Investigador",
+    "prioridad": false
+  },
+  {
+    "titulo": "The Contractor State and Its Implications, 1650-1815",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Sergio Solbes Ferri",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Ciencia e Innovación",
+    "participacion": "Investigador principal",
+    "prioridad": false
+  },
+  {
+    "titulo": "Guerra, Hacienda y Economía en España, 1680–1830. El Estado Fiscal-Militar en su contexto europeo",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Agustín González Enciso",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Ciencia e Innovación",
+    "participacion": "",
+    "prioridad": false
+  },
+  {
+    "titulo": "The Spending of the States: Resources for War and the Fiscal-Military State, 1650–1815",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Sergio Solbes Ferri",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Educación y Ciencia",
+    "participacion": "Investigador principal",
+    "prioridad": false
+  },
+  {
+    "titulo": "Finanzas, grupos económicos y guerra en la España durante el siglo XVIII",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Agustín González Enciso",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Educación y Ciencia",
+    "participacion": "",
+    "prioridad": false
+  },
+  {
+    "titulo": "Finanzas y grupos económicos en la España del siglo XVIII",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Agustín González Enciso",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Ciencia y Tecnología",
+    "participacion": "",
+    "prioridad": false
+  },
+  {
+    "titulo": "Las finanzas y los financieros de la Monarquía Hispánica durante el siglo XVIII",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Agustín González Enciso",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Educación y Cultura - DGICYT",
+    "participacion": "",
+    "prioridad": false
+  },
+  {
+    "titulo": "Finanzas y fiscalidad en el siglo XVIII",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Valentín Vázquez de Prada Vallejo",
+    "entidadFinanciadora": "Gobierno de Navarra - Departamento de Educación y Cultura",
+    "participacion": "",
+    "prioridad": false
+  },
+  {
+    "titulo": "Fiscalidad, sociedad y poder en Navarra durante el Antiguo Régimen (1680-1808)",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Valentín Vázquez de Prada Vallejo",
+    "entidadFinanciadora": "Gobierno de España - Ministerio de Educación y Ciencia - DGICYT",
+    "participacion": "",
+    "prioridad": false
+  },
+  {
+    "titulo": "Las Cortes de Navarra en la Edad Moderna",
+    "periodo": "",
+    "referencia": "",
+    "investigadorPrincipal": "Valentín Vázquez de Prada Vallejo",
+    "entidadFinanciadora": "Gobierno de Navarra - Departamento de Educación y Cultura",
+    "participacion": "",
+    "prioridad": false
   }
 ];
 
 export const direccionTrabajos = {
   tesis: [
-    {
-      titulo: "Canarias en el sistema defensivo imperial hispano: 1762-1802",
-      doctorando: "Alejandro Lantigua Ojeda",
-      programa: "Doctorado en Territorio y Sociedad: Evolución Histórica de un Espacio Tricontinental",
-      universidad: "Universidad de Las Palmas de Gran Canaria",
-      calificacion: "Sobresaliente Cum Laude",
-      fecha: "2023"
-    },
-    {
-      titulo: "Dinámicas de la contienda ambiental. Orígenes, evolución e impacto político del movimiento ecologista canario (1969-1992)",
-      doctorando: "Juan Manuel Brito Díaz",
-      programa: "Doctorado en Territorio y Sociedad",
-      universidad: "Universidad de Las Palmas de Gran Canaria",
-      calificacion: "Sobresaliente Cum Laude",
-      fecha: "2022"
-    },
-    {
-      titulo: "La gestión de los recursos naturales en la Guinea Española (1778-1968)",
-      doctorando: "Amós Farrujia Coello",
-      programa: "Doctorado en Historia",
-      universidad: "Universidad de Las Palmas de Gran Canaria",
-      calificacion: "Sobresaliente Cum Laude",
-      fecha: "2013"
-    }
-  ],
+        {
+            "titulo": "GARCÍA GARCÍA, MARCOS. La participación española en la Guerra de Sucesión de Polonia (1733-1738). Una historia militar, logística y social",
+            "doctorando": "MARCOS GARCÍA GARCÍA",
+            "programa": "Doctorado",
+            "universidad": "Universitat Pompeu Fabra",
+            "calificacion": "Sobresaliente Cum Laude",
+            "fecha": "2023",
+            "prioridad": true
+        },
+        {
+            "titulo": "BRITO DÍAZ, JUAN MANUEL. Dinámicas de la contienda ambiental. Orígenes, evolución e impacto político del movimiento ecologista canario (1969-1992)",
+            "doctorando": "JUAN MANUEL BRITO DÍAZ",
+            "programa": "Doctorado",
+            "universidad": "Universidad de las Palmas de Gran Canaria",
+            "calificacion": "Sobresaliente Cum Laude",
+            "fecha": "2023",
+            "prioridad": true
+        },
+        {
+            "titulo": "FARRUJIA COELLO, AMÓS. Canarias en el sistema defensivo imperial hispánico, 1762-1802",
+            "doctorando": "AMÓS FARRUJIA COELLO",
+            "programa": "Doctorado",
+            "universidad": "Universidad de La Laguna",
+            "calificacion": "Sobresaliente cum laude",
+            "fecha": "2019",
+            "prioridad": true
+        }
+    ],
   tfg: [
-    {
-      titulo: "La reestructuración fiscal ante las necesidades militares del siglo XVIII: el caso de Filipinas",
-      alumno: "Ada Lucía Mariscal González",
-      titulacion: "Grado en Economía",
-      tipo: "TFG",
-      año: "2023",
-      calificacion: "Sobresaliente"
-    },
-    {
-      titulo: "Canarias: de la internacionalización de los mercados a la integración nacional (finales del siglo XIX)",
-      alumno: "José Curbelo Sánchez",
-      titulacion: "Grado en Historia",
-      tipo: "TFG",
-      año: "2022",
-      calificacion: "Sobresaliente"
-    }
-  ]
+        {
+            "titulo": "Analysis of the macroeconomic impact of the Canary Islands Economic and Fiscal Regime (REF). An evaluation of its effectiveness and sustainability.",
+            "alumno": "María Solbes Alegría",
+            "titulacion": "Universitat Pompeu Fabra de Barcelona",
+            "tipo": "TFG",
+            "año": "2025",
+            "calificacion": "",
+            "prioridad": true
+        },
+        {
+            "titulo": "La reestructuración fiscal ante las necesidades militares del siglo XVIII: el caso de Filipinas",
+            "alumno": "Jaime Acosta Pozuelo",
+            "titulacion": "ULPGC FGH",
+            "tipo": "TFG",
+            "año": "2025",
+            "calificacion": "",
+            "prioridad": true
+        },
+        {
+            "titulo": "Canarias, de la internacionalización de los mercados a la integración nacional",
+            "alumno": "Pedro Acevedo Farías",
+            "titulacion": "ULPGC FGH",
+            "tipo": "TFG",
+            "año": "2024",
+            "calificacion": "",
+            "prioridad": true
+        },
+        {
+            "titulo": "¿Llegó la ayuda a Canarias? Seguimiento histórico sobre los Fondos Estructurales aportadas por la Comisión Europea a Canarias.",
+            "alumno": "Daniel Jorge Antón",
+            "titulacion": "ULPGC FGH",
+            "tipo": "TFG",
+            "año": "2024",
+            "calificacion": "",
+            "prioridad": true
+        },
+        {
+            "titulo": "Gestión de los Recursos Humanos en la Administración Pública Española: Análisis de los problemas actuales y tendencias futuras",
+            "alumno": "Cristina Estupiñán Ramírez",
+            "titulacion": "ULPGC FEET",
+            "tipo": "TFG",
+            "año": "2023",
+            "calificacion": "",
+            "prioridad": false
+        },
+        {
+            "titulo": "Previsión de la demanda de toma de combustible de Gas Natural Licuado en mercados de bunkering de Europa, África y varios puertos clave.",
+            "alumno": "DÍAZ AFONSO, ALBERTO",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2022",
+            "calificacion": "Sobresaliente",
+            "prioridad": false
+        },
+        {
+            "titulo": "La Guerra de Secesión (1861-1865): una reflexión sobre los aspectos políticos, económicos y militares",
+            "alumno": "REYES RODRÍGUEZ, ANTONIO JESÚS",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2022",
+            "calificacion": "Aprobado",
+            "prioridad": false
+        },
+        {
+            "titulo": "Balance de los problemas económicos del continente africano durante la descolonización",
+            "alumno": "HERNÁNDEZ GARCÍA, RAÚL JESÚS",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFM",
+            "año": "2022",
+            "calificacion": "Notable",
+            "prioridad": false
+        },
+        {
+            "titulo": "El Plebiscito de las Islas Menores: la figura de Manuel Velázquez Cabrera y su respuesta cabildicia como solución a unos tiempos de modernización limitada",
+            "alumno": "CURBELO SÁNCHEZ, JOSÉ",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2021",
+            "calificacion": "Matrícula de Honor",
+            "prioridad": false
+        },
+        {
+            "titulo": "Estados Unidos. Del aislacionismo a la intervención total en Europa Occidental. Luces y sombras de una relación económica durante el siglo XX",
+            "alumno": "HERNÁNDEZ GARCÍA, RAÚL JESÚS",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2021",
+            "calificacion": "Notable",
+            "prioridad": false
+        },
+        {
+            "titulo": "El Concilio Vaticano II: un cambio de actitud en la trayectoria contemporánea de la Iglesia católica",
+            "alumno": "LANTIGUA OJEDA, ALEJANDRO",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2021",
+            "calificacion": "Sobresaliente",
+            "prioridad": false
+        },
+        {
+            "titulo": "La burbuja inmobiliaria en España: creación, ruptura y consecuencias",
+            "alumno": "SUÁREZ AZORÍN, JOSÉ ALBERTO",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2021",
+            "calificacion": "Notable",
+            "prioridad": false
+        },
+        {
+            "titulo": "La emigración como parte estructural de la sociedad canaria",
+            "alumno": "DÍAZ HERNÁNDEZ, PEDRO ANTONIO",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2020",
+            "calificacion": "Sobresaliente",
+            "prioridad": false
+        },
+        {
+            "titulo": "Las dos caras del franco CFA: ¿reducto del colonialismo o fuente de estabilidad?",
+            "alumno": "MARISCAL GONZÁLEZ, ADA LUCÍA",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFM",
+            "año": "2020",
+            "calificacion": "Matrícula de Honor",
+            "prioridad": false
+        },
+        {
+            "titulo": "Las dos caras de la moneda. El euro como patrón monetario.",
+            "alumno": "MARISCAL GONZÁLEZ, ADA LUCÍA",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2019",
+            "calificacion": "Matrícula de Honor",
+            "prioridad": false
+        },
+        {
+            "titulo": "Evolución del comercio (…)",
+            "alumno": "MENA TORRENTE, DAVID",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2019",
+            "calificacion": "Notable",
+            "prioridad": false
+        },
+        {
+            "titulo": "La Revolución Industrial en Gran Bretaña. Génesis de las sociedades actuales",
+            "alumno": "GRANADOS MESA, ÁLVARO JAIME",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2017",
+            "calificacion": "Sobresaliente",
+            "prioridad": false
+        },
+        {
+            "titulo": "Las compañías privilegiadas en el comercio de esclavos en África: siglos XVII y XVIII",
+            "alumno": "CARVAJAL GRAZIANI, ANTONIO LUIS",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFG",
+            "año": "2016",
+            "calificacion": "Sobresaliente",
+            "prioridad": false
+        },
+        {
+            "titulo": "El Neocolonialismo en el África Occidental durante la Guerra Fría",
+            "alumno": "TRUJILLO LORENZO, SEBASTIÁN",
+            "titulacion": "Universidad de las Palmas de Gran Canaria",
+            "tipo": "TFM",
+            "año": "2015",
+            "calificacion": "Sobresaliente",
+            "prioridad": false
+        }
+    ]
 };
 
 export const stats = {
@@ -246,37 +593,51 @@ export const acreditaciones = [
     titulo: "Reconocimiento docente por productividad investigadora destacada",
     entidad: "Vicerrectorado de Investigación (ULPGC)",
     fecha: "17/09/2025"
-  },
+  ,
+      prioridad: true
+    },
   {
     titulo: "Reconocimiento de la Excelencia en la Convocatoria Docentia-ULPGC 2023-2024",
     entidad: "ULPGC",
     fecha: "04/07/2025"
-  },
+  ,
+      prioridad: true
+    },
   {
     titulo: "Reconocimiento a la productividad científica de GIR 061 IATEXT",
     entidad: "Vicerrectorado de Investigación y Transferencia (ULPGC)",
     fecha: "07/04/2025"
-  },
+  ,
+      prioridad: true
+    },
   {
     titulo: "Reconocimiento Docente por Productividad Investigadora destacada",
     entidad: "Vicerrectorado de Investigación (ULPGC)",
     fecha: "17/09/2024"
-  },
+  ,
+      prioridad: true
+    },
   {
     titulo: "Acreditación Catedrático Universidad",
     entidad: "ANECA",
     fecha: "21/03/2024"
-  },
+  ,
+      prioridad: false
+    },
   {
     titulo: "Mención de Excelencia a Grupo de Innovación Educativa",
     entidad: "Vicerrectorado de Profesorado, Ordenación Académica e Innovación Educativa",
     fecha: "16/11/2021"
-  },
+  ,
+      prioridad: false
+    },
   {
     titulo: "Certificado de Aptitud Pedagógica (CAP)",
     entidad: "Universidad de Navarra. Instituto de Ciencias de la Educación",
     fecha: "1991"
-  }
+  ,
+      prioridad: false
+    }
 ];
 
 export const lineasInvestigacion = [
@@ -315,6 +676,8 @@ export const publicaciones = {
       revista: "Tempo - Revista do Departamento de História da UFF",
       año: 2026,
       tipo: "Artículo científico"
+    ,
+      prioridad: true
     },
     {
       autores: "Torres Sánchez, Rafael; Solbes Ferri, Sergio; Castella Pujols, Maria Betlem; Albareda Salvadó, Joaquim",
@@ -325,6 +688,8 @@ export const publicaciones = {
       año: 2024,
       doi: "10.7410/1729",
       tipo: "Artículo científico"
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -335,6 +700,8 @@ export const publicaciones = {
       año: 2024,
       doi: "10.7410/1729",
       tipo: "Artículo científico"
+    ,
+      prioridad: true
     },
     {
       autores: "Lantigua Ojeda, Alejandro; Solbes Ferri, Sergio",
@@ -346,6 +713,8 @@ export const publicaciones = {
       doi: "10.36980/10825/aea",
       tipo: "Artículo científico",
       indices: "Indizada en Index Islamicus y evaluada en el catálogo v1.0 de Latindex"
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel; Quintana Navarro, Francisco",
@@ -354,6 +723,8 @@ export const publicaciones = {
       volumen: "70",
       año: 2023,
       tipo: "Artículo científico"
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -363,6 +734,8 @@ export const publicaciones = {
       paginas: "54-61",
       año: 2023,
       tipo: "Artículo divulgativo"
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -372,6 +745,8 @@ export const publicaciones = {
       paginas: "34-42",
       año: 2022,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio; Martí Fraga, Eduard",
@@ -383,6 +758,8 @@ export const publicaciones = {
       doi: "10.1080/07292473.2021.1860319",
       tipo: "Artículo científico",
       indices: "Scopus SJR Q3 History"
+    ,
+      prioridad: false
     },
     {
       autores: "Brandon, Pepijn; Solbes Ferri, Sergio; Valdez-Bubnov, Ivan",
@@ -394,6 +771,8 @@ export const publicaciones = {
       doi: "10.1080/07292473.2021.1860318",
       tipo: "Artículo científico",
       indices: "Web of Science, Scopus SJR Q3 History"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio; Farrujia Coello, Amós",
@@ -404,6 +783,8 @@ export const publicaciones = {
       año: 2018,
       tipo: "Artículo científico",
       indices: "Sello FECYT, Emerging Sources Citation Index"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -415,6 +796,8 @@ export const publicaciones = {
       doi: "10.18232/alhe.v25i1.875",
       tipo: "Artículo científico",
       indices: "Web of Science, Scopus, EconLit, Historical Abstracts"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -426,6 +809,8 @@ export const publicaciones = {
       doi: "10.1080/00076791.2017.1349107",
       tipo: "Artículo científico",
       indices: "Web of Science, Scopus SJR Q1 History, CiteScore 2.4"
+    ,
+      prioridad: false
     },
     {
       autores: "Torres Sánchez, Rafael; Bertrand, Michel; Dubet, Anne; Solbes Ferri, Sergio",
@@ -436,6 +821,8 @@ export const publicaciones = {
       año: 2017,
       tipo: "Artículo científico",
       indices: "Sello FECYT"
+    ,
+      prioridad: false
     },
     {
       autores: "Dubet, Anne; Solbes Ferri, Sergio",
@@ -447,6 +834,8 @@ export const publicaciones = {
       doi: "http://journals.openedition.org/mcv/6731",
       tipo: "Artículo científico",
       indices: "Scopus SJR Q4 History"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -456,6 +845,8 @@ export const publicaciones = {
       año: 2016,
       tipo: "Artículo científico",
       indices: "Sello FECYT, Web of Science"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio; Fé Cantó, Luis",
@@ -466,6 +857,8 @@ export const publicaciones = {
       año: 2016,
       tipo: "Artículo científico",
       indices: "Sello FECYT, Emerging Sources Citation Index"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -477,6 +870,8 @@ export const publicaciones = {
       doi: "10.4000/mcv.6906",
       tipo: "Artículo científico",
       indices: "Web of Science, Scopus"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -487,6 +882,8 @@ export const publicaciones = {
       año: 2016,
       tipo: "Artículo científico",
       indices: "Sello FECYT, ESCI"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -497,6 +894,8 @@ export const publicaciones = {
       año: 2015,
       tipo: "Artículo científico",
       indices: "Sello FECYT, citado 29 veces"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio; Dubet, Anne; Bertrand, Michel; Torres Sánchez, Rafael",
@@ -507,6 +906,8 @@ export const publicaciones = {
       año: 2015,
       tipo: "Artículo científico",
       indices: "Sello FECYT"
+    ,
+      prioridad: false
     },
     {
       autores: "Bertrand, Michel; Dubet, Anne; Solbes Ferri, Sergio; Torres Sánchez, Rafael",
@@ -518,6 +919,8 @@ export const publicaciones = {
       doi: "10.5944/etfiv.27.2014",
       tipo: "Artículo científico",
       indices: "Sello FECYT, citado 16 veces"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -529,6 +932,8 @@ export const publicaciones = {
       doi: "10.5944/etfiv.27.2014.13704",
       tipo: "Artículo científico",
       indices: "Sello FECYT, citado 10 veces"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -538,6 +943,8 @@ export const publicaciones = {
       paginas: "305-234",
       año: 2013,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "González Enciso, Agustín; Solbes Ferri, Sergio; Torres Sánchez, Rafael",
@@ -547,6 +954,8 @@ export const publicaciones = {
       paginas: "253-257",
       año: 2013,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -556,6 +965,8 @@ export const publicaciones = {
       paginas: "5-37",
       año: 2010,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -565,6 +976,8 @@ export const publicaciones = {
       paginas: "187-211",
       año: 2007,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -574,6 +987,8 @@ export const publicaciones = {
       paginas: "291-319",
       año: 2006,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -583,6 +998,8 @@ export const publicaciones = {
       paginas: "73-100",
       año: 2005,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Grupo GRETA",
@@ -592,6 +1009,8 @@ export const publicaciones = {
       paginas: "313-345",
       año: 2002,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -601,6 +1020,8 @@ export const publicaciones = {
       paginas: "193-206",
       año: 2000,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Luxán Meléndez, S. de; Solbes Ferri, S.",
@@ -610,6 +1031,8 @@ export const publicaciones = {
       paginas: "25-42",
       año: 1999,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Luxán Meléndez, S. de; Solbes Ferri, S.",
@@ -619,6 +1042,8 @@ export const publicaciones = {
       paginas: "187-220",
       año: 1998,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Luxán Meléndez, S. de; Solbes Ferri, S.",
@@ -628,6 +1053,8 @@ export const publicaciones = {
       paginas: "35-50",
       año: 1998,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     },
     {
       autores: "Suárez Bosa, Miguel; Martínez Milán, J.; Luxán Meléndez, S. de; Solbes Ferri, S.",
@@ -636,6 +1063,8 @@ export const publicaciones = {
       volumen: "14",
       año: 1995,
       tipo: "Artículo científico"
+    ,
+      prioridad: false
     }
   ],
   libros: [
@@ -647,6 +1076,8 @@ export const publicaciones = {
       año: 2025,
       isbn: "979-13-87694-52-4",
       tipo: "Edición científica"
+    ,
+      prioridad: true
     },
     {
       autores: "Castillo Hidalgo, Daniel; Quintana Navarro, Francisco; Solbes Ferri, Sergio",
@@ -656,6 +1087,8 @@ export const publicaciones = {
       año: 2023,
       isbn: "978-84-1147-220-3",
       tipo: "Monografía científica"
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel",
@@ -665,6 +1098,8 @@ export const publicaciones = {
       año: 2022,
       isbn: "978-84-1397-979-3",
       tipo: "Monografía científica"
+    ,
+      prioridad: true
     },
     {
       autores: "Valdez-Bubnov, Ivan; Solbes Ferri, Sergio; Brandon, Pepijn (coords.)",
@@ -674,6 +1109,8 @@ export const publicaciones = {
       año: 2020,
       isbn: "978-607-30-3585-9",
       tipo: "Edición científica"
+    ,
+      prioridad: true
     },
     {
       autores: "Dubet, Anne; Solbes Ferri, Sergio",
@@ -683,6 +1120,8 @@ export const publicaciones = {
       año: 2019,
       isbn: "9788416662678",
       tipo: "Monografía científica"
+    ,
+      prioridad: true
     },
     {
       autores: "Harding, Richard; Solbes Ferri, Sergio (coords.)",
@@ -692,6 +1131,8 @@ export const publicaciones = {
       año: 2012,
       isbn: "978-84-15424-44-4",
       tipo: "Edición científica"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -699,6 +1140,8 @@ export const publicaciones = {
       editorial: "Universidad de Las Palmas de G.C. - Servicio de Publicaciones",
       año: 2009,
       tipo: "Monografía científica"
+    ,
+      prioridad: false
     },
     {
       autores: "Luxán Meléndez, Santiago de; Solbes Ferri, Sergio; Laforet, Juan José (eds.)",
@@ -706,6 +1149,8 @@ export const publicaciones = {
       editorial: "Fundación Altadis - Real Sociedad de Amigos del País de Gran Canaria - ULPGC",
       año: 2000,
       tipo: "Edición científica"
+    ,
+      prioridad: false
     },
     {
       autores: "Luxán Meléndez, Santiago de; Martínez Milán, Jesús; Solbes Ferri, Sergio; Suárez Bosa, Miguel (eds.)",
@@ -713,6 +1158,8 @@ export const publicaciones = {
       editorial: "Fundación Mapfre-Guanarteme",
       año: 2000,
       tipo: "Edición científica"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -722,6 +1169,8 @@ export const publicaciones = {
       año: 1999,
       isbn: "84-235-1845-0",
       tipo: "Monografía científica"
+    ,
+      prioridad: false
     },
     {
       autores: "Vázquez de Prada, Valentín (dir.); Usunáriz Garayoa, Jesús Mª (coord.); et al.",
@@ -731,6 +1180,8 @@ export const publicaciones = {
       año: 1993,
       isbn: "9788431312640",
       tipo: "Monografía científica"
+    ,
+      prioridad: false
     }
   ],
   capitulos: [
@@ -742,6 +1193,8 @@ export const publicaciones = {
       editorial: "Universidad Nacional Autónoma de México",
       paginas: "250-280",
       año: 2026
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -749,6 +1202,8 @@ export const publicaciones = {
       libro: "Cebreiro Ares",
       editorial: "Marcial Pons",
       año: 2026
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio; Santana Pérez, Juan Manuel",
@@ -758,6 +1213,8 @@ export const publicaciones = {
       paginas: "9-20",
       año: 2025,
       isbn: "979-13-87694-52-4"
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -767,6 +1224,8 @@ export const publicaciones = {
       paginas: "163-192",
       año: 2025,
       isbn: "979-13-87694-52-4"
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -777,6 +1236,8 @@ export const publicaciones = {
       ciudad: "London",
       paginas: "33-54",
       año: 2025
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -787,6 +1248,8 @@ export const publicaciones = {
       ciudad: "Sevilla",
       paginas: "311-333",
       año: 2023
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio; Félix, Jöel; González Enciso, Agustín",
@@ -798,6 +1261,8 @@ export const publicaciones = {
       paginas: "181-238",
       año: 2022,
       isbn: "978-607-8793-67-9"
+    ,
+      prioridad: false
     },
     {
       autores: "Sánchez Santiró, Ernest; Solbes Ferri, Sergio; Legay, Maire-Laure",
@@ -809,6 +1274,8 @@ export const publicaciones = {
       paginas: "123-180",
       año: 2022,
       isbn: "978-607-8793-67-9"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -820,6 +1287,8 @@ export const publicaciones = {
       paginas: "309-317",
       año: 2021,
       isbn: "9788490963487"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio; Martí Fraga, Eduard",
@@ -831,6 +1300,8 @@ export const publicaciones = {
       paginas: "163-192",
       año: 2020,
       isbn: "978-607-30-3585-9"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -842,6 +1313,8 @@ export const publicaciones = {
       paginas: "495-508",
       año: 2018,
       isbn: "978-84-7768-350-6"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -853,6 +1326,8 @@ export const publicaciones = {
       paginas: "159-194",
       año: 2017,
       isbn: "978-84-944657-7-2"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -863,6 +1338,8 @@ export const publicaciones = {
       paginas: "139-158",
       año: 2014,
       isbn: "978-84-15654-37-7"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -873,6 +1350,8 @@ export const publicaciones = {
       paginas: "147-194",
       año: 2014,
       isbn: "978-84-96813-95-3"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -883,6 +1362,8 @@ export const publicaciones = {
       paginas: "71-102",
       año: 2013,
       isbn: "9788434405837"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -893,6 +1374,8 @@ export const publicaciones = {
       paginas: "273-293",
       año: 2012,
       isbn: "978-84-15424-44-4"
+    ,
+      prioridad: false
     },
     {
       autores: "Harding, Richard; Solbes Ferri, Sergio",
@@ -903,6 +1386,8 @@ export const publicaciones = {
       paginas: "9-19",
       año: 2012,
       isbn: "978-84-15424-44-4"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -913,6 +1398,8 @@ export const publicaciones = {
       paginas: "141-180",
       año: 2012,
       isbn: "978-84-15654-06-3"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -923,6 +1410,8 @@ export const publicaciones = {
       paginas: "90-123",
       año: 2012,
       isbn: "978-84-9739-125-2"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -933,6 +1422,8 @@ export const publicaciones = {
       paginas: "1465-1476",
       año: 2012,
       isbn: "978-84-938044-1-1"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -943,6 +1434,8 @@ export const publicaciones = {
       paginas: "129-154",
       año: 2011,
       isbn: "978-2-7535-1337-2"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -954,6 +1447,8 @@ export const publicaciones = {
       paginas: "129-154",
       año: 2011,
       isbn: "978-3-639-36623-5"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -963,6 +1458,8 @@ export const publicaciones = {
       editorial: "Fundación Altadis",
       paginas: "121-174",
       año: 2008
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -974,6 +1471,8 @@ export const publicaciones = {
       paginas: "121-148",
       año: 2007,
       isbn: "84-932935-6-3"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -984,6 +1483,8 @@ export const publicaciones = {
       ciudad: "Madrid",
       paginas: "437-460",
       año: 2007
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -993,6 +1494,8 @@ export const publicaciones = {
       editorial: "EUNSA",
       paginas: "357-384",
       año: 2007
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1002,6 +1505,8 @@ export const publicaciones = {
       editorial: "Fundación Altadis",
       paginas: "269-292",
       año: 2007
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1011,6 +1516,8 @@ export const publicaciones = {
       editorial: "Servicio de Publicaciones de la Universidad de Las Palmas de Gran Canaria",
       paginas: "188-205",
       año: 2006
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1020,6 +1527,8 @@ export const publicaciones = {
       editorial: "Cabildo de Gran Canaria",
       paginas: "211-252",
       año: 2004
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1029,6 +1538,8 @@ export const publicaciones = {
       editorial: "Real Sociedad de Amigos del País de G.C.",
       paginas: "189-222",
       año: 2003
+    ,
+      prioridad: false
     },
     {
       autores: "Luxán Meléndez, Santiago de; Solbes Ferri, Sergio",
@@ -1040,6 +1551,8 @@ export const publicaciones = {
       paginas: "117-155",
       año: 2000,
       isbn: "84-88779-17-8"
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1049,6 +1562,8 @@ export const publicaciones = {
       editorial: "Fundación Altadis - Real Sociedad de Amigos del País de Gran Canaria - ULPGC",
       paginas: "245-285",
       año: 2000
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1058,6 +1573,8 @@ export const publicaciones = {
       editorial: "EUNSA",
       paginas: "319-352",
       año: 1999
+    ,
+      prioridad: false
     }
   ],
   resenas: [
@@ -1068,6 +1585,8 @@ export const publicaciones = {
       volumen: "47(1)",
       paginas: "301-304",
       año: 2022
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1076,6 +1595,8 @@ export const publicaciones = {
       volumen: "44",
       paginas: "422-424",
       año: 2022
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1084,6 +1605,8 @@ export const publicaciones = {
       volumen: "43(2)",
       paginas: "425-429",
       año: 2021
+    ,
+      prioridad: true
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1092,6 +1615,8 @@ export const publicaciones = {
       volumen: "17(1)",
       paginas: "64-65",
       año: 2021
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1100,6 +1625,8 @@ export const publicaciones = {
       volumen: "21(1)",
       paginas: "694-698",
       año: 2021
+    ,
+      prioridad: false
     },
     {
       autores: "Solbes Ferri, Sergio",
@@ -1108,6 +1635,8 @@ export const publicaciones = {
       volumen: "20(2)",
       paginas: "201-212",
       año: 2017
+    ,
+      prioridad: false
     }
   ]
 };

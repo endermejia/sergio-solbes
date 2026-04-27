@@ -44,7 +44,10 @@ const highlights = [
 
 export function AboutSection() {
   const [showAllAcred, setShowAllAcred] = useState(false)
-  const displayedAcred = showAllAcred ? acreditaciones : acreditaciones.slice(0, 4)
+  const [showAllGestion, setShowAllGestion] = useState(false)
+
+  const displayedAcred = showAllAcred ? acreditaciones : acreditaciones.filter(a => (a as any).prioridad)
+  const displayedGestion = showAllGestion ? gestionAcademica : gestionAcademica.filter(g => (g as any).prioridad)
 
   return (
     <section id="sobre-mi" className="py-20 md:py-28 scroll-mt-20">
@@ -188,7 +191,7 @@ export function AboutSection() {
                 ))}
               </ul>
               
-              {acreditaciones.length > 4 && (
+              {acreditaciones.length > acreditaciones.filter((a: any) => a.prioridad).length && (
                 <Button
                   variant="ghost"
                   size="sm"
@@ -222,7 +225,7 @@ export function AboutSection() {
               </h3>
               
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {gestionAcademica.map((item, index) => (
+                {displayedGestion.map((item, index) => (
                   <div key={index} className="space-y-1 border-l-2 border-border pl-4">
                     <p className="font-medium text-foreground text-sm">{item.cargo}</p>
                     <p className="text-xs text-muted-foreground">{item.entidad}</p>
@@ -230,6 +233,24 @@ export function AboutSection() {
                   </div>
                 ))}
               </div>
+
+              {gestionAcademica.length > displayedGestion.length && !showAllGestion && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowAllGestion(true)}
+                  className="mt-6 w-full"
+                >
+                  <ChevronDown className="mr-2 h-4 w-4" />
+                  Ver todos ({gestionAcademica.length})
+                </Button>
+              )}
+              {showAllGestion && (
+                <Button variant="ghost" size="sm" onClick={() => setShowAllGestion(false)} className="mt-6 w-full">
+                  <ChevronUp className="mr-2 h-4 w-4" />
+                  Ver menos
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>

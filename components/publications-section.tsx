@@ -33,6 +33,7 @@ export function PublicationsSection() {
   const [showMoreArticles, setShowMoreArticles] = useState(false)
   const [showMoreBooks, setShowMoreBooks] = useState(false)
   const [showMoreChapters, setShowMoreChapters] = useState(false)
+  const [showMoreReviews, setShowMoreReviews] = useState(false)
   const [activeTab, setActiveTab] = useState("articulos")
   
   useEffect(() => {
@@ -55,9 +56,10 @@ export function PublicationsSection() {
     }
   };
 
-  const displayedArticles = showMoreArticles ? publicaciones.articulos : publicaciones.articulos.slice(0, 6)
-  const displayedBooks = showMoreBooks ? publicaciones.libros : publicaciones.libros.slice(0, 5)
-  const displayedChapters = showMoreChapters ? publicaciones.capitulos : publicaciones.capitulos.slice(0, 5)
+  const displayedArticles = showMoreArticles ? publicaciones.articulos : publicaciones.articulos.filter(x => (x as any).prioridad)
+  const displayedBooks = showMoreBooks ? publicaciones.libros : publicaciones.libros.filter(x => (x as any).prioridad)
+  const displayedChapters = showMoreChapters ? publicaciones.capitulos : publicaciones.capitulos.filter(x => (x as any).prioridad)
+  const displayedReviews = showMoreReviews ? publicaciones.resenas : publicaciones.resenas.filter(x => (x as any).prioridad)
 
   return (
     <section id="publicaciones" className="py-20 md:py-28 scroll-mt-20">
@@ -137,7 +139,7 @@ export function PublicationsSection() {
               ))}
             </div>
             
-            {publicaciones.articulos.length > 6 && (
+            {publicaciones.articulos.length > publicaciones.articulos.filter((a: any) => a.prioridad).length && (
               <div className="mt-6 text-center">
                 <Button
                   variant="outline"
@@ -195,7 +197,7 @@ export function PublicationsSection() {
               ))}
             </div>
             
-            {publicaciones.libros.length > 5 && (
+            {publicaciones.libros.length > publicaciones.libros.filter((a: any) => a.prioridad).length && (
               <div className="mt-6 text-center">
                 <Button
                   variant="outline"
@@ -248,7 +250,7 @@ export function PublicationsSection() {
               ))}
             </div>
             
-            {publicaciones.capitulos.length > 5 && (
+            {publicaciones.capitulos.length > publicaciones.capitulos.filter((a: any) => a.prioridad).length && (
               <div className="mt-6 text-center">
                 <Button
                   variant="outline"
@@ -274,7 +276,7 @@ export function PublicationsSection() {
           {/* Reseñas */}
           <TabsContent value="resenas">
             <div className="space-y-3">
-              {publicaciones.resenas.map((pub, index) => (
+              {displayedReviews.map((pub, index) => (
                 <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
                   <CardContent className="py-4">
                     <div className="flex flex-col sm:flex-row sm:items-start gap-3">
@@ -294,6 +296,24 @@ export function PublicationsSection() {
                 </Card>
               ))}
             </div>
+
+            {publicaciones.resenas.length > displayedReviews.length && !showMoreReviews && (
+              <div className="mt-6 text-center">
+                <Button variant="outline" onClick={() => setShowMoreReviews(true)} className="gap-2">
+                  <ChevronDown className="h-4 w-4" />
+                  Ver todos ({publicaciones.resenas.length} reseñas)
+                </Button>
+              </div>
+            )}
+
+            {showMoreReviews && (
+              <div className="mt-6 text-center">
+                <Button variant="outline" onClick={() => setShowMoreReviews(false)} className="gap-2">
+                  <ChevronUp className="h-4 w-4" />
+                  Ver menos
+                </Button>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
         </div>

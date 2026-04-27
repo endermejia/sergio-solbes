@@ -12,19 +12,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose,
-} from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export function TeachingSection() {
   const [showMoreTFG, setShowMoreTFG] = useState(false)
-  const displayedTFG = showMoreTFG ? direccionTrabajos.tfg : direccionTrabajos.tfg.slice(0, 4)
+  const [showMoreAsignaturas, setShowMoreAsignaturas] = useState(false)
+  const [showMoreProyectos, setShowMoreProyectos] = useState(false)
+  const displayedTFG = showMoreTFG ? direccionTrabajos.tfg : direccionTrabajos.tfg.filter(tfg => (tfg as any).prioridad)
+  const displayedAsignaturas = showMoreAsignaturas ? docencia.asignaturas : docencia.asignaturas.filter(a => (a as any).prioridad)
 
   return (
     <section id="docencia" className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
@@ -51,7 +46,7 @@ export function TeachingSection() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {docencia.asignaturas.map((asig, index) => (
+                {displayedAsignaturas.map((asig, index) => (
                   <div key={index} className="border-l-2 border-accent pl-4">
                     <p className="font-medium text-foreground text-sm">{asig.nombre}</p>
                     <p className="text-xs text-muted-foreground">
@@ -64,6 +59,24 @@ export function TeachingSection() {
                 ))}
               </div>
               
+              {docencia.asignaturas.length > displayedAsignaturas.length && !showMoreAsignaturas && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowMoreAsignaturas(true)}
+                  className="mt-4 w-full"
+                >
+                  <ChevronDown className="mr-2 h-4 w-4" />
+                  Ver todas ({docencia.asignaturas.length} asignaturas)
+                </Button>
+              )}
+              {showMoreAsignaturas && (
+                <Button variant="ghost" size="sm" onClick={() => setShowMoreAsignaturas(false)} className="mt-4 w-full">
+                  <ChevronUp className="mr-2 h-4 w-4" />
+                  Ver menos
+                </Button>
+              )}
+
               <div className="mt-6 pt-4 border-t border-border/50">
                 <p className="text-sm text-muted-foreground">
                   <strong className="text-foreground">Experiencia total:</strong> {docencia.experiencia.añosDocencia}+ años de docencia universitaria
@@ -82,7 +95,7 @@ export function TeachingSection() {
             </CardHeader>
             <CardContent>
               <Accordion type="single" collapsible className="w-full">
-                {proyectosInvestigacion.slice(0, 4).map((proyecto, index) => (
+                {(showMoreProyectos ? proyectosInvestigacion : proyectosInvestigacion.filter(p => (p as any).prioridad)).map((proyecto, index) => (
                   <AccordionItem key={index} value={`proyecto-${index}`}>
                     <AccordionTrigger className="text-left">
                       <div className="pr-4">
@@ -106,36 +119,23 @@ export function TeachingSection() {
                 ))}
               </Accordion>
               
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="ghost" size="sm" className="mt-4 w-full gap-2">
-                    Ver todos los proyectos ({proyectosInvestigacion.length})
-                    <ExternalLink className="h-3 w-3" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[80vh]">
-                  <DialogHeader>
-                    <DialogTitle>Proyectos de Investigación</DialogTitle>
-                  </DialogHeader>
-                  <ScrollArea className="h-[60vh] pr-4">
-                    <div className="space-y-4">
-                      {proyectosInvestigacion.map((proyecto, index) => (
-                        <Card key={index} className="border-border/50">
-                          <CardContent className="pt-4">
-                            <h4 className="font-medium text-foreground text-sm">{proyecto.titulo}</h4>
-                            <div className="mt-2 space-y-1 text-xs">
-                              <p className="text-accent">{proyecto.periodo}</p>
-                              <p className="text-muted-foreground">Ref: {proyecto.referencia}</p>
-                              <p className="text-muted-foreground">IP: {proyecto.investigadorPrincipal}</p>
-                              <p className="text-muted-foreground">{proyecto.entidadFinanciadora}</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </ScrollArea>
-                </DialogContent>
-              </Dialog>
+              {proyectosInvestigacion.length > proyectosInvestigacion.filter(p => (p as any).prioridad).length && !showMoreProyectos && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowMoreProyectos(true)}
+                  className="mt-4 w-full gap-2"
+                >
+                  <ChevronDown className="h-4 w-4" />
+                  Ver todos los proyectos ({proyectosInvestigacion.length})
+                </Button>
+              )}
+              {showMoreProyectos && (
+                <Button variant="ghost" size="sm" onClick={() => setShowMoreProyectos(false)} className="mt-4 w-full gap-2">
+                  <ChevronUp className="h-4 w-4" />
+                  Ver menos proyectos
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -200,7 +200,7 @@ export function TeachingSection() {
                 ))}
               </div>
               
-              {direccionTrabajos.tfg.length > 4 && (
+              {direccionTrabajos.tfg.length > direccionTrabajos.tfg.filter((t: any) => t.prioridad).length && (
                 <Button
                   variant="ghost"
                   size="sm"
