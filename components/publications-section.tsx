@@ -385,7 +385,7 @@ export function PublicationsSection() {
                   <CardContent className="py-4">
                     <div className="flex justify-between items-start gap-4">
                       <div>
-                        <Badge variant="secondary" className="mb-2 text-[10px] uppercase tracking-wider">
+                        <Badge variant="secondary" className="mb-2 text-[10px] uppercase tracking-wider whitespace-normal text-left">
                           {m.categoria}
                         </Badge>
                         <h4 className="font-medium text-foreground text-sm leading-snug">{m.titulo}</h4>
