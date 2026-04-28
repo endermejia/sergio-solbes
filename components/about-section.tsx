@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { GraduationCap, Users, Award, BookOpen, ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
-import { profileData, formacionAcademica, acreditaciones, gestionAcademica } from "@/lib/data"
+import { profileData, formacionAcademica, acreditaciones, gestionAcademica, cursosRecibidos } from "@/lib/data"
 import {
   Dialog,
   DialogContent,
@@ -18,27 +18,32 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 const highlights = [
   {
     icon: GraduationCap,
     title: "Formación",
-    description: "Licenciado y Doctor en Historia por la Universidad de Navarra"
+    description: "Licenciado y Doctor en Historia por la Universidad de Navarra",
+    href: "#formacion"
   },
   {
     icon: Users,
     title: "Docencia",
-    description: "Facultad de Economía, Empresa y Turismo - Facultad de Geografía e Historia"
+    description: "Facultad de Economía, Empresa y Turismo - Facultad de Geografía e Historia",
+    href: "#docencia"
   },
   {
     icon: Award,
     title: "Investigación",
-    description: "Coordinador del Grupo DPHA del Instituto IATEXT"
+    description: "Coordinador del Grupo DPHA del Instituto IATEXT",
+    href: "#investigacion"
   },
   {
     icon: BookOpen,
     title: "Especialidad",
-    description: "Historia Económica - Siglo XVIII - Fiscalidad"
+    description: "Historia Económica - Siglo XVIII - Fiscalidad",
+    href: "#publicaciones"
   },
 ]
 
@@ -108,24 +113,26 @@ export function AboutSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {highlights.map((item) => (
-            <Card key={item.title} className="border-border/50 bg-card/50">
-              <CardContent className="pt-6">
-                <div className="flex flex-col items-center text-center gap-3">
-                  <div className="p-3 rounded-full bg-accent/10">
-                    <item.icon className="h-6 w-6 text-accent" />
+            <a key={item.title} href={item.href} className="group block h-full">
+              <Card className="border-border/50 bg-card/50 h-full transition-all hover:bg-accent/5 hover:border-accent/50 hover:shadow-sm">
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <div className="p-3 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                      <item.icon className="h-6 w-6 text-accent" />
+                    </div>
+                    <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
                   </div>
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </a>
           ))}
         </div>
 
         {/* Formación Académica y Acreditaciones */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 scroll-mt-24">
           {/* Formación Académica */}
-          <Card className="border-border/50">
+          <Card id="formacion" className="border-border/50 scroll-mt-24">
             <CardContent className="pt-6">
               <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
                 <GraduationCap className="h-5 w-5 text-accent" />
@@ -166,6 +173,29 @@ export function AboutSection() {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
+
+                {cursosRecibidos && cursosRecibidos.length > 0 && (
+                  <AccordionItem value="cursos">
+                    <AccordionTrigger className="text-left">
+                      <div>
+                        <p className="font-medium text-foreground">Cursos y Seminarios</p>
+                        <p className="text-sm text-muted-foreground">Formación complementaria ({cursosRecibidos.length} cursos)</p>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ScrollArea className="h-48 pr-4">
+                        <div className="space-y-3">
+                          {cursosRecibidos.map((curso, i) => (
+                            <div key={i} className="text-xs border-l-2 border-border pl-2">
+                              <p className="font-medium">{curso.nombre}</p>
+                              <p className="text-muted-foreground">{curso.entidad} ({curso.año})</p>
+                            </div>
+                          ))}
+                        </div>
+                      </ScrollArea>
+                    </AccordionContent>
+                  </AccordionItem>
+                )}
               </Accordion>
             </CardContent>
           </Card>

@@ -1,0 +1,73 @@
+[
+  {
+    "nombre": "Historia Económica",
+    "tipo": "Troncal",
+    "titulacion": "Grado de Historia",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica de Canarias",
+    "tipo": "Libre configuración",
+    "titulacion": "LADE-DCE",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica",
+    "tipo": "Obligatoria",
+    "titulacion": "Licenciado en Administración y Dirección de Empresas",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica de Canarias",
+    "tipo": "Libre configuración",
+    "titulacion": "LADE-DCE",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica Mundial",
+    "tipo": "Troncal",
+    "titulacion": "Licenciado en Economía",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica Mundial y de España (Moderna y Contemporánea)",
+    "tipo": "Troncal",
+    "titulacion": "LADE-DCE",
+    "creditos": 60,
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica de la Empresa",
+    "tipo": "Libre configuración",
+    "titulacion": "LADE-DCE",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica española",
+    "tipo": "Troncal",
+    "titulacion": "Licenciado en Economía",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia de los Sistemas Económicos",
+    "titulacion": "Grado en Historia",
+    "universidad": "ULPGC"
+  },
+  {
+    "nombre": "Historia Económica-Sociología",
+    "tipo": "Obligatoria",
+    "titulacion": "Doble Grado ADE-Derecho",
+    "creditos": 3,
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia Económica de África",
+    "titulacion": "Máster de África",
+    "universidad": "Universidad de las Palmas de Gran Canaria"
+  },
+  {
+    "nombre": "Historia y Pensamiento Económico",
+    "titulacion": "Grado en Economía",
+    "universidad": "ULPGC"
+  }
+]

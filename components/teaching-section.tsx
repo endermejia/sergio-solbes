@@ -24,7 +24,16 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 export function TeachingSection() {
   const [showMoreTFG, setShowMoreTFG] = useState(false)
-  const displayedTFG = showMoreTFG ? direccionTrabajos.tfg : direccionTrabajos.tfg.slice(0, 4)
+  const [showMoreTesis, setShowMoreTesis] = useState(false)
+  const [showMoreAsig, setShowMoreAsig] = useState(false)
+  const [showMoreInn, setShowMoreInn] = useState(false)
+  const [showMoreForm, setShowMoreForm] = useState(false)
+
+  const displayedTFG = showMoreTFG ? direccionTrabajos.tfg : direccionTrabajos.tfg.filter(t => t.relevante !== false).slice(0, 4)
+  const displayedTesis = showMoreTesis ? direccionTrabajos.tesis : direccionTrabajos.tesis.filter(t => t.relevante !== false).slice(0, 4)
+  const displayedAsig = showMoreAsig ? docencia.asignaturas : docencia.asignaturas.filter(a => a.relevante !== false).slice(0, 5)
+  const displayedInn = showMoreInn ? docencia.innovacionDocente : docencia.innovacionDocente.filter(i => i.relevante !== false).slice(0, 3)
+  const displayedForm = showMoreForm ? docencia.formacionDocente : docencia.formacionDocente.filter(f => f.relevante !== false).slice(0, 4)
 
   return (
     <section id="docencia" className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
@@ -51,7 +60,7 @@ export function TeachingSection() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {docencia.asignaturas.map((asig, index) => (
+                {displayedAsig.map((asig, index) => (
                   <div key={index} className="border-l-2 border-accent pl-4">
                     <p className="font-medium text-foreground text-sm">{asig.nombre}</p>
                     <p className="text-xs text-muted-foreground">
@@ -63,6 +72,21 @@ export function TeachingSection() {
                   </div>
                 ))}
               </div>
+
+              {docencia.asignaturas.length > 5 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowMoreAsig(!showMoreAsig)}
+                  className="mt-4 w-full"
+                >
+                  {showMoreAsig ? (
+                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
+                  ) : (
+                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todas ({docencia.asignaturas.length})</>
+                  )}
+                </Button>
+              )}
               
               <div className="mt-6 pt-4 border-t border-border/50">
                 <p className="text-sm text-muted-foreground">
@@ -152,7 +176,7 @@ export function TeachingSection() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {direccionTrabajos.tesis.map((tesis, index) => (
+                {displayedTesis.map((tesis, index) => (
                   <div key={index} className="border-l-2 border-accent pl-4">
                     <p className="font-medium text-foreground text-sm">{tesis.titulo}</p>
                     <p className="text-xs text-muted-foreground mt-1">
@@ -162,14 +186,40 @@ export function TeachingSection() {
                       {tesis.programa} - {tesis.universidad}
                     </p>
                     <div className="flex items-center gap-2 mt-2">
-                      <Badge variant={tesis.calificacion.includes("Cum Laude") ? "default" : "secondary"} className="text-xs">
-                        {tesis.calificacion}
-                      </Badge>
+                      {tesis.calificacion && (
+                        <Badge 
+                          variant={tesis.calificacion.toLowerCase().includes("cum laude") ? "default" : "secondary"} 
+                          className="text-xs"
+                        >
+                          {tesis.calificacion}
+                        </Badge>
+                      )}
                       <span className="text-xs text-accent">{tesis.fecha}</span>
                     </div>
                   </div>
                 ))}
               </div>
+
+              {direccionTrabajos.tesis.length > 3 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowMoreTesis(!showMoreTesis)}
+                  className="mt-4 w-full"
+                >
+                  {showMoreTesis ? (
+                    <>
+                      <ChevronUp className="mr-2 h-4 w-4" />
+                      Ver menos
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="mr-2 h-4 w-4" />
+                      Ver todas ({direccionTrabajos.tesis.length} tesis)
+                    </>
+                  )}
+                </Button>
+              )}
             </CardContent>
           </Card>
 
@@ -193,7 +243,9 @@ export function TeachingSection() {
                       <Badge variant="outline" className="text-xs">{trabajo.tipo}</Badge>
                       <span className="text-xs text-accent">{trabajo.año}</span>
                       {trabajo.calificacion && (
-                        <span className="text-xs text-muted-foreground">({trabajo.calificacion})</span>
+                        <Badge variant="secondary" className="text-xs">
+                          {trabajo.calificacion}
+                        </Badge>
                       )}
                     </div>
                   </div>
@@ -236,7 +288,7 @@ export function TeachingSection() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {docencia.innovacionDocente && docencia.innovacionDocente.map((inv, index) => (
+                {displayedInn.map((inv, index) => (
                   <div key={index} className="border-l-2 border-accent pl-4">
                     <p className="font-medium text-foreground text-sm">{inv.titulo}</p>
                     <p className="text-xs text-muted-foreground mt-1">
@@ -248,6 +300,21 @@ export function TeachingSection() {
                   </div>
                 ))}
               </div>
+
+              {docencia.innovacionDocente.length > 3 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowMoreInn(!showMoreInn)}
+                  className="mt-4 w-full"
+                >
+                  {showMoreInn ? (
+                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
+                  ) : (
+                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todos ({docencia.innovacionDocente.length})</>
+                  )}
+                </Button>
+              )}
             </CardContent>
           </Card>
 
@@ -261,7 +328,7 @@ export function TeachingSection() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {docencia.formacionDocente && docencia.formacionDocente.map((form, index) => (
+                {displayedForm.map((form, index) => (
                   <div key={index} className="border-l-2 border-border pl-4">
                     <p className="font-medium text-foreground text-sm">{form.actividad}</p>
                     <p className="text-xs text-muted-foreground">
@@ -271,6 +338,21 @@ export function TeachingSection() {
                   </div>
                 ))}
               </div>
+
+              {docencia.formacionDocente.length > 4 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowMoreForm(!showMoreForm)}
+                  className="mt-4 w-full"
+                >
+                  {showMoreForm ? (
+                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
+                  ) : (
+                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todos ({docencia.formacionDocente.length})</>
+                  )}
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>
