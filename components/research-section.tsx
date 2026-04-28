@@ -1,4 +1,6 @@
+"use client"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion"
 import { Landmark, Coins, ScrollText, Ship, Factory } from "lucide-react"
 import { lineasInvestigacion } from "@/lib/data"
 
@@ -41,7 +43,13 @@ const researchAreas = [
 export function ResearchSection() {
   return (
     <section id="investigacion" className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
-      <div className="mx-auto max-w-5xl px-6">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="mx-auto max-w-5xl px-6"
+      >
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
             Líneas de Investigación
@@ -72,7 +80,7 @@ export function ResearchSection() {
             </Card>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

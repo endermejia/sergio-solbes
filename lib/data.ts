@@ -22,7 +22,7 @@ export const profileData = {
     iatext: "https://iatext.ulpgc.es/it/node/151"
   },
   logos: {
-    ministerio: "https://personales.ulpgc.es/sergio.solbes/images/MICIU+AEI.jpg",
+    ministerio: "https://www.igme.es/wp-content/uploads/2022/05/7-1_MCIU_color_300ppp.webp",
     lugar: "https://personales.ulpgc.es/sergio.solbes/images/Logo%20de%20LU(G)AR%20recortado.png"
   }
 };

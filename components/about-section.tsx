@@ -19,6 +19,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { motion } from "framer-motion"
 
 const highlights = [
   {
@@ -53,7 +54,13 @@ export function AboutSection() {
 
   return (
     <section id="sobre-mi" className="py-20 md:py-28 scroll-mt-20">
-      <div className="mx-auto max-w-5xl px-6">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="mx-auto max-w-5xl px-6"
+      >
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
             Sobre mí
@@ -263,7 +270,7 @@ export function AboutSection() {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

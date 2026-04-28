@@ -14,10 +14,32 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: 'Sergio Solbes Ferri | Historiador',
-  description: 'Profesor e investigador en Historia Económica. Universidad de Las Palmas de Gran Canaria. Especialista en finanzas del siglo XVIII, fiscalidad y formación del Estado moderno.',
-  keywords: ['Historia Económica', 'Siglo XVIII', 'ULPGC', 'Fiscalidad', 'Islas Canarias', 'Investigación'],
+  title: 'Sergio Solbes Ferri | Catedrático de Historia Económica',
+  description: 'Perfil académico de Sergio Solbes Ferri, profesor e investigador en Historia Económica en la ULPGC. Especialista en finanzas del siglo XVIII, fiscalidad y formación del Estado moderno.',
+  keywords: ['Historia Económica', 'Siglo XVIII', 'ULPGC', 'Fiscalidad', 'Islas Canarias', 'Investigación', 'IATEXT', 'Finanzas Públicas'],
   authors: [{ name: 'Sergio Solbes Ferri' }],
+  openGraph: {
+    title: 'Sergio Solbes Ferri | Historia Económica ULPGC',
+    description: 'Especialista en finanzas del siglo XVIII, fiscalidad y formación del Estado moderno.',
+    url: 'https://personales.ulpgc.es/sergio.solbes/',
+    siteName: 'Sergio Solbes Ferri',
+    images: [
+      {
+        url: '/sergio-profile.png',
+        width: 1200,
+        height: 630,
+        alt: 'Sergio Solbes Ferri',
+      },
+    ],
+    locale: 'es_ES',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sergio Solbes Ferri | Historia Económica',
+    description: 'Investigador en finanzas del siglo XVIII y formación del Estado moderno.',
+    images: ['/sergio-profile.png'],
+  },
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',

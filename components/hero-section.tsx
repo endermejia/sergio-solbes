@@ -4,6 +4,7 @@ import { MapPin, Building2, BookMarked, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { profileData, stats } from "@/lib/data"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 export function HeroSection() {
   const handleTabClick = (tabId: string) => {
@@ -29,10 +30,20 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden border-b border-border/50">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary via-background to-background" />
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary via-background to-background" 
+      />
       
       <div className="relative mx-auto max-w-5xl px-6 py-20 md:py-28">
-        <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center md:items-start">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-col md:flex-row gap-10 md:gap-16 items-center md:items-start"
+        >
           {/* Avatar / Photo */}
           <div className="shrink-0">
             <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-card shadow-lg flex items-center justify-center bg-primary/10">
@@ -94,10 +105,15 @@ export function HeroSection() {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
           <div
             onClick={() => handleTabClick('articulos')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
@@ -126,7 +142,7 @@ export function HeroSection() {
             <p className="font-serif text-3xl font-bold text-foreground">30+</p>
             <p className="mt-1 text-sm text-muted-foreground">Años docencia</p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
