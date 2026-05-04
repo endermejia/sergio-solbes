@@ -14,6 +14,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://personales.ulpgc.es/sergio.solbes/'),
   title: 'Sergio Solbes Ferri | Catedrático de Historia Económica',
   description: 'Perfil académico de Sergio Solbes Ferri, profesor e investigador en Historia Económica en la ULPGC. Especialista en finanzas del siglo XVIII, fiscalidad y formación del Estado moderno.',
   keywords: ['Historia Económica', 'Siglo XVIII', 'ULPGC', 'Fiscalidad', 'Islas Canarias', 'Investigación', 'IATEXT', 'Finanzas Públicas'],
