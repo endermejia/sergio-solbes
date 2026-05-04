@@ -29,7 +29,12 @@ export function Header() {
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
+          const id = entry.target.id
+          setActiveSection(id)
+          // Update URL hash without adding to history
+          if (window.location.hash !== `#${id}`) {
+            window.history.replaceState(null, "", `#${id}`)
+          }
         }
       })
     }
@@ -43,6 +48,9 @@ export function Header() {
     const handleScroll = () => {
       if (window.scrollY < 100) {
         setActiveSection("")
+        if (window.location.hash) {
+          window.history.replaceState(null, "", window.location.pathname)
+        }
       }
     }
     window.addEventListener("scroll", handleScroll)
