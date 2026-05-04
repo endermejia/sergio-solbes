@@ -46,16 +46,16 @@ export function TeachingSection() {
       >
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Docencia e Investigación
+            Docencia
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Actividad docente universitaria desde 1993 y participación en proyectos de investigación
-            de ámbito nacional e internacional.
+            Actividad docente universitaria ininterrumpida desde 1993, impartiendo asignaturas 
+            de historia económica en diversos niveles académicos.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
           {/* Asignaturas actuales */}
           <Card className="border-border/50">
             <CardHeader>
@@ -102,70 +102,43 @@ export function TeachingSection() {
             </CardContent>
           </Card>
 
-          {/* Proyectos de Investigación */}
+          {/* Innovación Docente */}
           <Card className="border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Award className="h-5 w-5 text-accent" />
-                Proyectos de Investigación
+                <Calendar className="h-5 w-5 text-accent" />
+                Innovación Docente
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <Accordion type="single" collapsible className="w-full">
-                {proyectosInvestigacion.slice(0, 4).map((proyecto, index) => (
-                  <AccordionItem key={index} value={`proyecto-${index}`}>
-                    <AccordionTrigger className="text-left">
-                      <div className="pr-4">
-                        <p className="font-medium text-foreground text-sm">{proyecto.titulo}</p>
-                        <p className="text-xs text-muted-foreground">{proyecto.periodo}</p>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="space-y-2 text-sm">
-                        <p><span className="text-muted-foreground">Referencia:</span> {proyecto.referencia}</p>
-                        <p><span className="text-muted-foreground">Investigador Principal:</span> {proyecto.investigadorPrincipal}</p>
-                        <p><span className="text-muted-foreground">Entidad financiadora:</span> {proyecto.entidadFinanciadora}</p>
-                        {proyecto.participacion && (
-                          <Badge variant="secondary" className="text-xs">
-                            {proyecto.participacion}
-                          </Badge>
-                        )}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
+              <div className="space-y-4">
+                {displayedInn.map((inv, index) => (
+                  <div key={index} className="border-l-2 border-accent pl-4">
+                    <p className="font-medium text-foreground text-sm">{inv.titulo}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Rol: {inv.rol}
+                    </p>
+                    <p className="text-[10px] text-accent mt-1 leading-tight">
+                      {inv.financiacion}
+                    </p>
+                  </div>
                 ))}
-              </Accordion>
-              
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="ghost" size="sm" className="mt-4 w-full gap-2">
-                    Ver todos los proyectos ({proyectosInvestigacion.length})
-                    <ExternalLink className="h-3 w-3" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[80vh]">
-                  <DialogHeader>
-                    <DialogTitle>Proyectos de Investigación</DialogTitle>
-                  </DialogHeader>
-                  <ScrollArea className="h-[60vh] pr-4">
-                    <div className="space-y-4">
-                      {proyectosInvestigacion.map((proyecto, index) => (
-                        <Card key={index} className="border-border/50">
-                          <CardContent className="pt-4">
-                            <h4 className="font-medium text-foreground text-sm">{proyecto.titulo}</h4>
-                            <div className="mt-2 space-y-1 text-xs">
-                              <p className="text-accent">{proyecto.periodo}</p>
-                              <p className="text-muted-foreground">Ref: {proyecto.referencia}</p>
-                              <p className="text-muted-foreground">IP: {proyecto.investigadorPrincipal}</p>
-                              <p className="text-muted-foreground">{proyecto.entidadFinanciadora}</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </ScrollArea>
-                </DialogContent>
-              </Dialog>
+              </div>
+
+              {docencia.innovacionDocente.length > 3 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowMoreInn(!showMoreInn)}
+                  className="mt-4 w-full"
+                >
+                  {showMoreInn ? (
+                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
+                  ) : (
+                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todos ({docencia.innovacionDocente.length})</>
+                  )}
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -282,49 +255,8 @@ export function TeachingSection() {
           </Card>
         </div>
 
-        {/* Innovación y Formación */}
-        <div className="grid md:grid-cols-2 gap-8 mt-8">
-          {/* Innovación Docente */}
-          <Card className="border-border/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Calendar className="h-5 w-5 text-accent" />
-                Innovación Docente
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {displayedInn.map((inv, index) => (
-                  <div key={index} className="border-l-2 border-accent pl-4">
-                    <p className="font-medium text-foreground text-sm">{inv.titulo}</p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Rol: {inv.rol}
-                    </p>
-                    <p className="text-[10px] text-accent mt-1 leading-tight">
-                      {inv.financiacion}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {docencia.innovacionDocente.length > 3 && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowMoreInn(!showMoreInn)}
-                  className="mt-4 w-full"
-                >
-                  {showMoreInn ? (
-                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
-                  ) : (
-                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todos ({docencia.innovacionDocente.length})</>
-                  )}
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Formación Docente */}
+        {/* Formación Docente */}
+        <div className="mt-8">
           <Card className="border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -333,9 +265,9 @@ export function TeachingSection() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 {displayedForm.map((form, index) => (
-                  <div key={index} className="border-l-2 border-border pl-4">
+                  <div key={index} className="border-l-2 border-border pl-4 py-1">
                     <p className="font-medium text-foreground text-sm">{form.actividad}</p>
                     <p className="text-xs text-muted-foreground">
                       {form.entidad}

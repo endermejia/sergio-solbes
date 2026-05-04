@@ -1,13 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, BookOpen, GraduationCap, FileText, Mail, Briefcase } from "lucide-react"
+import { Menu, X, BookOpen, GraduationCap, FileText, Mail, Briefcase, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 const navItems = [
   { href: "#sobre-mi", label: "Sobre mí", icon: GraduationCap },
   { href: "#investigacion", label: "Investigación", icon: BookOpen },
+  { href: "#proyectos", label: "Proyectos", icon: Award },
   { href: "#publicaciones", label: "Publicaciones", icon: FileText },
   { href: "#docencia", label: "Docencia", icon: Briefcase },
   { href: "#contacto", label: "Contacto", icon: Mail },
@@ -15,9 +17,43 @@ const navItems = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    }
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+    
+    const sections = document.querySelectorAll("section[id]")
+    sections.forEach((section) => observer.observe(section))
+
+    // Special case for hero/top of page
+    const handleScroll = () => {
+      if (window.scrollY < 100) {
+        setActiveSection("")
+      }
+    }
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section))
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const handleHeaderClick = (e: React.MouseEvent) => {
-    // Prevent scrolling if clicking on a link or button
     if (
       (e.target as HTMLElement).closest('a') ||
       (e.target as HTMLElement).closest('button')
@@ -51,15 +87,23 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1)
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full",
+                    isActive 
+                      ? "text-accent bg-accent/10" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -78,17 +122,25 @@ export function Header() {
         {isOpen && (
           <nav className="md:hidden py-4 border-t border-border/50">
             <div className="flex flex-col gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary rounded-md"
-                >
-                  <item.icon className="h-4 w-4" />
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.slice(1)
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors rounded-md",
+                      isActive
+                        ? "text-accent bg-accent/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    )}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                )
+              })}
             </div>
           </nav>
         )}

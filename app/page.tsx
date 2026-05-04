@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { ResearchSection } from "@/components/research-section"
+import { ProjectsSection } from "@/components/projects-section"
 import { PublicationsSection } from "@/components/publications-section"
 import { TeachingSection } from "@/components/teaching-section"
 import { ContactSection } from "@/components/contact-section"
@@ -24,6 +25,7 @@ export default function HomePage() {
       profileData.links.accedaCris,
       profileData.links.researchGate,
       `https://orcid.org/${profileData.orcid}`
+      // Add other social links if available in profileData
     ],
     "description": profileData.bio
   }
@@ -39,6 +41,7 @@ export default function HomePage() {
         <HeroSection />
         <AboutSection />
         <ResearchSection />
+        <ProjectsSection />
         <PublicationsSection />
         <TeachingSection />
         <ContactSection />
