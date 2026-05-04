@@ -1,8 +1,8 @@
-export const profileData = {
+export const profileData: ProfileData = {
   name: "Sergio Solbes Ferri",
   image: "/sergio-profile.png",
   birthDate: "12/01/1967",
-  title: "Doctor en Historia y Profesor Titular",
+  title: "Doctor en Historia y Catedrático",
   area: "Historia e Instituciones Económicas",
   department: "Departamento de Ciencias Históricas",
   institute: "Instituto Universitario de Análisis y Aplicaciones Textuales (IATEXT)",
@@ -27,7 +27,7 @@ export const profileData = {
   }
 };
 
-export const gestionAcademica = [
+export const gestionAcademica: GestionAcademica[] = [
   {
     cargo: "Secretario de Departamento",
     entidad: "Departamento de Ciencias Históricas (ULPGC)",
@@ -59,7 +59,32 @@ export const gestionAcademica = [
     periodo: "2010 - 2014"
   }];
 
-export const docencia = {
+import { 
+  ProfileData, 
+  Asignatura, 
+  InnovacionDocente, 
+  FormacionDocente, 
+  ProyectoInvestigacion, 
+  Tesis, 
+  TFG,
+  GestionAcademica,
+  Acreditacion,
+  FormacionAcademica,
+  CursoRecibido,
+  LineaInvestigacion,
+  Publicaciones,
+  Stats,
+  ParticipacionCongreso,
+  EstanciaInvestigacion,
+  MeritoInvestigacion
+} from "./types";
+
+export const docencia: {
+  experiencia: { añosDocencia: number; instituciones: string[]; niveles: string[] };
+  asignaturas: Asignatura[];
+  innovacionDocente: InnovacionDocente[];
+  formacionDocente: FormacionDocente[];
+} = {
   "experiencia": {
     "añosDocencia": 30,
     "instituciones": [
@@ -208,7 +233,7 @@ export const docencia = {
   ]
 };
 
-export const proyectosInvestigacion = [
+export const proyectosInvestigacion: ProyectoInvestigacion[] = [
   {
     "titulo": "Defensa y fortificaciones en las Islas del Atlántico Medio durante el largo siglo XVIII",
     "investigadorPrincipal": "Sergio Solbes Ferri y Juan Manuel Santana Pérez",
@@ -320,7 +345,10 @@ export const proyectosInvestigacion = [
   }
 ];
 
-export const direccionTrabajos = {
+export const direccionTrabajos: {
+  tesis: Tesis[];
+  tfg: TFG[];
+} = {
   "tesis": [
     {
       "titulo": "GARCÍA GARCÍA, MARCOS. La participación española en la Guerra de Sucesión de Polonia (1733-1738). Una historia militar, logística y social",
@@ -489,7 +517,7 @@ export const direccionTrabajos = {
   ]
 };
 
-export const stats = {
+export const stats: Stats = {
   articulos: profileData.orcid ? 34 : 34, // Keep consistent
   libros: 11,
   capitulos: 35,
@@ -498,7 +526,7 @@ export const stats = {
   estancias: 14
 };
 
-export const formacionAcademica = {
+export const formacionAcademica: FormacionAcademica = {
   licenciatura: {
     titulo: "Licenciado en Filosofía y Letras",
     division: "Geografía e Historia",
@@ -519,7 +547,7 @@ export const formacionAcademica = {
   }
 };
 
-export const acreditaciones = [
+export const acreditaciones: Acreditacion[] = [
   {
     titulo: "Reconocimiento docente por productividad investigadora destacada",
     entidad: "Vicerrectorado de Investigación (ULPGC)",
@@ -557,7 +585,7 @@ export const acreditaciones = [
   }
 ];
 
-export const lineasInvestigacion = [
+export const lineasInvestigacion: LineaInvestigacion[] = [
   {
     titulo: "Finanzas Públicas del Siglo XVIII",
     descripcion: "Estudio de los sistemas fiscales, la formación del Estado moderno y el papel de las instituciones públicas y agentes privados en la gestión de la Hacienda durante el reinado de los Borbones.",
@@ -585,7 +613,7 @@ export const lineasInvestigacion = [
   }
 ];
 
-export const publicaciones = {
+export const publicaciones: Publicaciones = {
   "articulos": [
     {
       "autores": "Solbes Ferri, Sergio",
@@ -1393,7 +1421,7 @@ export const publicaciones = {
 
 
 
-export const participacionCongresos = [
+export const participacionCongresos: ParticipacionCongreso[] = [
   {
     "trabajo": "Sesión nº 24. Evolución y desarrollo de las fortificaciones defensivas portuarias durante la Edad Moderna (siglos XVI a XVIII)",
     "congreso": "XIV Congreso Internacional de la Asociación Española de Historia Económica",
@@ -1953,7 +1981,7 @@ export const participacionCongresos = [
   }
 ];
 
-export const estanciasInvestigacion = [
+export const estanciasInvestigacion: EstanciaInvestigacion[] = [
   {
     "entidad": "Université de Strasbourg",
     "centro": "Faculté de Langue - Echanges Erasmus du départment LEA",
@@ -2027,7 +2055,7 @@ export const estanciasInvestigacion = [
   }
 ];
 
-export const cursosRecibidos = [
+export const cursosRecibidos: CursoRecibido[] = [
   {
     "nombre": "Formación Económica para Historiadores",
     "entidad": "Universidad Complutense de Madrid",
@@ -2040,7 +2068,7 @@ export const cursosRecibidos = [
   }
 ];
 
-export const meritosInvestigacion = [
+export const meritosInvestigacion: MeritoInvestigacion[] = [
   {
     "categoria": "Períodos de actividad investigadora, docente y de transferencia del conocimiento ",
     "titulo": "Sexenio CNEAI",

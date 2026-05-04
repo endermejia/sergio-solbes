@@ -79,7 +79,7 @@ export function AboutSection() {
             <p className="text-muted-foreground leading-relaxed">
               Actualmente formo parte del Grupo de Investigación <strong className="text-foreground">&quot;Documentación, 
               Patrimonio e Historia Atlántica&quot; (DPHA)</strong> del Instituto Universitario de Análisis y 
-              Aplicaciones Textuales (IATEXT), del cual soy coordinador.
+              Aplicaciones Textuales (IATEXT), del cual fui coordinador entre 2015 y 2025.
             </p>
           </div>
           <div className="space-y-6">

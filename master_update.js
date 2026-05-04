@@ -101,12 +101,14 @@ if (Object.keys(currC).length > 0) congress.push(currC);
 let dataTS = fs.readFileSync('lib/data.ts', 'utf8');
 
 function updateArray(name, newData, idField = 'titulo') {
-    const startIdx = dataTS.indexOf('export const ' + name + ' = [');
-    if (startIdx === -1) {
-        // If not found, maybe it's inside an object or doesn't exist
+    const regex = new RegExp(`export const ${name}(:\\s*[^=]+)?\\s*=\\s*\\[`);
+    const match = dataTS.match(regex);
+    if (!match) {
         console.log('Array ' + name + ' not found as top-level export');
         return;
     }
+    const startIdx = match.index;
+    const typeAnnotation = match[1] || '';
     const endIdx = dataTS.indexOf('];', startIdx) + 2;
     const oldBlock = dataTS.substring(startIdx, endIdx);
     
@@ -117,12 +119,16 @@ function updateArray(name, newData, idField = 'titulo') {
         return { ...item, relevante: match };
     });
 
-    dataTS = dataTS.replace(oldBlock, 'export const ' + name + ' = ' + JSON.stringify(finalData, null, 2) + ';');
+    dataTS = dataTS.replace(oldBlock, 'export const ' + name + typeAnnotation + ' = ' + JSON.stringify(finalData, null, 2) + ';');
 }
 
 // Special case for docencia object
 function updateDocencia() {
-    const docStart = dataTS.indexOf('export const docencia = {');
+    const regex = /export const docencia(:\s*[^=]+)?\s*=\s*\{/;
+    const match = dataTS.match(regex);
+    if (!match) return;
+    const docStart = match.index;
+    const typeAnnotation = match[1] || '';
     const docEnd = dataTS.indexOf('};', docStart) + 2;
     let docStr = dataTS.substring(docStart, docEnd);
 
@@ -149,7 +155,11 @@ function updateDocencia() {
 
 // Special case for direccionTrabajos
 function updateDireccion() {
-    const dStart = dataTS.indexOf('export const direccionTrabajos = {');
+    const regex = /export const direccionTrabajos(:\s*[^=]+)?\s*=\s*\{/;
+    const match = dataTS.match(regex);
+    if (!match) return;
+    const dStart = match.index;
+    const typeAnnotation = match[1] || '';
     const dEnd = dataTS.indexOf('};', dStart) + 2;
     let dStr = dataTS.substring(dStart, dEnd);
 

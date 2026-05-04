@@ -70,7 +70,7 @@ export function HeroSection() {
               {profileData.name}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              {profileData.title} en {profileData.area}. 
+              {profileData.title} de {profileData.area}. 
               Especializado en el estudio de las finanzas públicas y la formación del Estado moderno en el siglo XVIII.
             </p>
 

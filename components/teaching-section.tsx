@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { motion } from "framer-motion"
-
 export function TeachingSection() {
   const [showMoreTFG, setShowMoreTFG] = useState(false)
   const [showMoreTesis, setShowMoreTesis] = useState(false)
