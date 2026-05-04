@@ -66,7 +66,7 @@ export function Header() {
   return (
     <header
       onClick={handleHeaderClick}
-      className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 cursor-pointer"
+      className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 cursor-pointer"
     >
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex h-16 items-center justify-between">

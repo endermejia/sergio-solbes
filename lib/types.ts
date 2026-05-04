@@ -58,7 +58,7 @@ export interface TFG extends BaseItem {
   titulo: string;
   tipo: string;
   titulacion: string;
-  alumno: string;
+  alumno?: string;
   año: string;
   calificacion: string;
 }
@@ -80,7 +80,7 @@ export interface ProyectoInvestigacion extends BaseItem {
   investigadorPrincipal?: string;
   entidadFinanciadora: string;
   participacion?: string;
-  periodo: string;
+  periodo?: string;
   referencia?: string;
 }
 
@@ -128,7 +128,7 @@ export interface PublicacionArticulo {
   titulo: string;
   revista: string;
   año: number;
-  tipo: string;
+  tipo?: string;
   volumen?: string;
   paginas?: string;
   doi?: string;
@@ -155,22 +155,22 @@ export interface PublicacionCapitulo {
   ciudad?: string;
   año: number;
   isbn?: string;
-  tipo: string;
+  tipo?: string;
 }
 
 export interface ParticipacionCongreso {
   trabajo: string;
-  congreso: string;
-  ciudad: string;
-  organizador: string;
+  congreso?: string;
+  ciudad?: string;
+  organizador?: string;
   fecha?: string;
 }
 
 export interface EstanciaInvestigacion {
   entidad: string;
-  centro: string;
+  centro?: string;
   duracion: string;
-  programa: string;
+  programa?: string;
   año?: string;
 }
 
