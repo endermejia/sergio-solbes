@@ -49,27 +49,30 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
 
   const sectionRef = useRef<HTMLElement>(null!)
 
-  // --- Phase 1: Fetch the list immediately on mount ---
+  // --- Phase 1: Fetch the list after a delay to prioritize Hero animations ---
   const listFetchedRef = useRef(false)
   useEffect(() => {
     if (initialData || listFetchedRef.current) return;
-    listFetchedRef.current = true;
+    
+    const timer = setTimeout(() => {
+      listFetchedRef.current = true;
+      const fetchList = async () => {
+        const list = await getPublicationList();
+        setData(list);
+        setLoadingList(false);
+        // Broadcast live counts to the shared context → HeroSection will update
+        setCounts({
+          articulos: list.articulos.length,
+          libros: list.libros.length,
+          capitulos: list.capitulos.length,
+          resenas: list.resenas.length,
+          loading: false,
+        });
+      };
+      fetchList();
+    }, 1500); // 1.5s delay
 
-    const fetchList = async () => {
-      const list = await getPublicationList();
-      setData(list);
-      setLoadingList(false);
-      // Broadcast live counts to the shared context → HeroSection will update
-      setCounts({
-        articulos: list.articulos.length,
-        libros: list.libros.length,
-        capitulos: list.capitulos.length,
-        resenas: list.resenas.length,
-        loading: false,
-      });
-    };
-
-    fetchList();
+    return () => clearTimeout(timer);
   }, [initialData, setCounts]);
 
   // --- Phase 2 trigger: observe section entering viewport ---

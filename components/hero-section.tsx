@@ -7,7 +7,6 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/lib/i18n/context"
 import { usePublicationCounts } from "@/lib/publications-context"
-
 export function HeroSection() {
   const { t } = useLanguage();
   const { counts } = usePublicationCounts();
@@ -46,7 +45,7 @@ export function HeroSection() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="flex flex-col md:flex-row gap-10 md:gap-16 items-center md:items-start"
         >
           {/* Avatar / Photo */}
@@ -116,7 +115,7 @@ export function HeroSection() {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-16 grid grid-cols-2 md:grid-cols-5 gap-4"
         >
           <div

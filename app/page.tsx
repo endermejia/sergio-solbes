@@ -3,13 +3,13 @@ import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { ResearchSection } from "@/components/research-section"
 import { ProjectsSection } from "@/components/projects-section"
-import { PublicationsSection } from "@/components/publications-section"
 import { TeachingSection } from "@/components/teaching-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { profileData } from "@/lib/data"
 import esMessages from "@/lib/i18n/messages/es.json"
 import { PublicationsProvider } from "@/lib/publications-context"
+import { PublicationsWrapper } from "@/components/publications-wrapper"
 
 export default async function HomePage() {
   const jsonLd = {
@@ -44,7 +44,7 @@ export default async function HomePage() {
           <AboutSection />
           <ResearchSection />
           <ProjectsSection />
-          <PublicationsSection />
+          <PublicationsWrapper />
           <TeachingSection />
           <ContactSection />
         </main>
