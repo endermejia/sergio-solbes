@@ -1,6 +1,7 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from "react"
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from "react"
+
 import es from "./messages/es.json"
 import en from "./messages/en.json"
 import fr from "./messages/fr.json"
@@ -37,30 +38,37 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // Only run once on mount to read stored preference
 
-  const handleSetLanguage = (lang: Language) => {
+  const handleSetLanguage = useCallback((lang: Language) => {
     setLanguage(lang)
     if (typeof window !== "undefined") {
       localStorage.setItem("language", lang)
       document.documentElement.lang = lang
     }
-  }
+  }, [])
 
-  const t = (path: string): string => {
+  const t = useCallback((path: string): string => {
     const keys = path.split(".")
     let current: any = messages[language]
     for (const key of keys) {
-      if (current[key] === undefined) return path
+      if (current?.[key] === undefined) return path
       current = current[key]
     }
-    return current
-  }
+    return typeof current === 'string' ? current : path
+  }, [language])
+
+  const contextValue = useMemo(() => ({
+    language,
+    setLanguage: handleSetLanguage,
+    t
+  }), [language, handleSetLanguage, t])
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   )
 }
+
 
 export function useLanguage() {
   const context = useContext(LanguageContext)

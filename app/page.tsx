@@ -1,15 +1,9 @@
-import { Header } from "@/components/header"
-import { HeroSection } from "@/components/hero-section"
-import { AboutSection } from "@/components/about-section"
-import { ResearchSection } from "@/components/research-section"
-import { ProjectsSection } from "@/components/projects-section"
-import { TeachingSection } from "@/components/teaching-section"
-import { ContactSection } from "@/components/contact-section"
-import { Footer } from "@/components/footer"
 import { profileData } from "@/lib/data"
 import esMessages from "@/lib/i18n/messages/es.json"
-import { PublicationsProvider } from "@/lib/publications-context"
-import { PublicationsWrapper } from "@/components/publications-wrapper"
+import { HomeClient } from "@/components/home-client"
+import { Header } from "@/components/header"
+import { HeroSection } from "@/components/hero-section"
+
 
 export default async function HomePage() {
   const jsonLd = {
@@ -22,7 +16,7 @@ export default async function HomePage() {
       "name": esMessages.profile.university
     },
     "url": "https://personales.ulpgc.es/sergio.solbes/",
-    "image": "https://personales.ulpgc.es/sergio.solbes/sergio-profile.png",
+    "image": "https://personales.ulpgc.es/sergio.solbes/sergio-solbes-ferri.webp",
     "sameAs": [
       profileData.links.accedaCris,
       profileData.links.researchGate,
@@ -37,19 +31,11 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PublicationsProvider>
-        <Header />
-        <main className="flex-1">
-          <HeroSection />
-          <AboutSection />
-          <ResearchSection />
-          <ProjectsSection />
-          <PublicationsWrapper />
-          <TeachingSection />
-          <ContactSection />
-        </main>
-        <Footer />
-      </PublicationsProvider>
+      <Header />
+      <HeroSection />
+      <HomeClient />
     </div>
   )
 }
+
+

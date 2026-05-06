@@ -70,7 +70,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
         });
       };
       fetchList();
-    }, 1500); // 1.5s delay
+    }, 500); // 500ms delay
 
     return () => clearTimeout(timer);
   }, [initialData, setCounts]);

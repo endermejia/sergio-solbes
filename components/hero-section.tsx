@@ -46,7 +46,7 @@ export function HeroSection() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.4 }}
           className="flex flex-col md:flex-row gap-10 md:gap-16 items-center md:items-start"
         >
           {/* Avatar / Photo */}
@@ -57,9 +57,11 @@ export function HeroSection() {
                   src={profileData.image}
                   alt={profileData.name}
                   fill
+                  sizes="(max-width: 768px) 144px, 176px"
                   className="object-cover"
                   priority
                 />
+
               ) : (
                 <span className="font-serif text-5xl md:text-6xl font-bold text-primary">SS</span>
               )}
@@ -116,7 +118,7 @@ export function HeroSection() {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
           className="mt-16 grid grid-cols-2 md:grid-cols-5 gap-4"
         >
           <div

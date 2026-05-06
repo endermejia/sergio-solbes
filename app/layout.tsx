@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Playfair_Display, Source_Sans_3 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { LanguageProvider } from '@/lib/i18n/context'
+import { PublicationsProvider } from '@/lib/publications-context'
 import './globals.css'
 
 const playfair = Playfair_Display({ 
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Sergio Solbes Ferri',
     images: [
       {
-        url: '/sergio-profile.png',
+        url: '/sergio-solbes-ferri.webp',
         width: 1200,
         height: 630,
         alt: 'Sergio Solbes Ferri',
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Sergio Solbes Ferri | Historia Económica',
     description: 'Investigador en finanzas del siglo XVIII y formación del Estado moderno.',
-    images: ['/sergio-profile.png'],
+    images: ['/sergio-solbes-ferri.webp'],
   },
   icons: {
     icon: '/favicon.png',
@@ -57,8 +58,10 @@ export default function RootLayout({
     <html lang="es" className="bg-background">
       <body className={`${playfair.variable} ${sourceSans.variable} font-sans antialiased`}>
         <LanguageProvider>
-          {children}
-          {process.env.NODE_ENV === 'production' && <Analytics />}
+          <PublicationsProvider>
+            {children}
+            {process.env.NODE_ENV === 'production' && <Analytics />}
+          </PublicationsProvider>
         </LanguageProvider>
       </body>
     </html>

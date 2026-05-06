@@ -1,6 +1,7 @@
 "use client"
 
-import { createContext, useContext, useState, ReactNode } from "react"
+import { createContext, useContext, useState, ReactNode, useMemo, useCallback } from "react"
+
 import { stats as localStats } from "@/lib/data"
 
 interface LiveCounts {
@@ -28,15 +29,18 @@ export function PublicationsProvider({ children }: { children: ReactNode }) {
     loading: true,
   })
 
-  const setCounts = (partial: Partial<LiveCounts>) =>
-    setCountsState(prev => ({ ...prev, ...partial }))
+  const setCounts = useCallback((partial: Partial<LiveCounts>) =>
+    setCountsState(prev => ({ ...prev, ...partial })), [])
+
+  const contextValue = useMemo(() => ({ counts, setCounts }), [counts, setCounts])
 
   return (
-    <PublicationsContext.Provider value={{ counts, setCounts }}>
+    <PublicationsContext.Provider value={contextValue}>
       {children}
     </PublicationsContext.Provider>
   )
 }
+
 
 export function usePublicationCounts() {
   const ctx = useContext(PublicationsContext)
