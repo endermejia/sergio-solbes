@@ -119,7 +119,15 @@ export function AboutSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {highlights.map((item) => (
-            <a key={item.title} href={item.href} className="group block h-full">
+            <div 
+              key={item.title} 
+              onClick={(e) => {
+                e.preventDefault();
+                const id = item.href.slice(1);
+                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+              }} 
+              className="group block h-full cursor-pointer"
+            >
               <Card className="border-border/50 bg-card/50 h-full transition-all hover:bg-accent/5 hover:border-accent/50 hover:shadow-sm">
                 <CardContent className="pt-6">
                   <div className="flex flex-col items-center text-center gap-3">
@@ -131,7 +139,7 @@ export function AboutSection() {
                   </div>
                 </CardContent>
               </Card>
-            </a>
+            </div>
           ))}
         </div>
 
@@ -157,7 +165,7 @@ export function AboutSection() {
                     <div className="space-y-2 text-sm">
                       <p><span className="text-muted-foreground">{t('about.division')}:</span> {formacionAcademica.licenciatura.division}</p>
                       <p><span className="text-muted-foreground">{t('about.section_label')}:</span> {formacionAcademica.licenciatura.seccion}</p>
-                      <p><span className="text-muted-foreground">{t('about.city')}:</span> {formacionAcademica.licenciatura.city || formacionAcademica.licenciatura.ciudad}</p>
+                      <p><span className="text-muted-foreground">{t('about.city')}:</span> {formacionAcademica.licenciatura.ciudad}</p>
                       <p><span className="text-muted-foreground">{t('about.grade')}:</span> <span className="text-accent font-medium">{formacionAcademica.licenciatura.notaMedia}</span></p>
                     </div>
                   </AccordionContent>

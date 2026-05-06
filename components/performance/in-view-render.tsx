@@ -26,6 +26,12 @@ export function InViewRender({
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // If the URL hash matches this section's ID, hydrate immediately
+    if (id && window.location.hash === `#${id}`) {
+      setHasEntered(true)
+      return
+    }
+
     if (hasEntered) return
 
     const observer = new IntersectionObserver(
@@ -42,7 +48,7 @@ export function InViewRender({
     }
 
     return () => observer.disconnect()
-  }, [hasEntered, rootMargin])
+  }, [hasEntered, rootMargin, id])
 
   return (
     <div 

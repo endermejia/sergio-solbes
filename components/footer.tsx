@@ -1,15 +1,11 @@
-"use client"
-import { useState, useEffect } from "react"
+import Image from "next/image"
 import { profileData } from "@/lib/data"
 import { useLanguage } from "@/lib/i18n/context"
 
 export function Footer() {
   const { t } = useLanguage();
-  const [year, setYear] = useState(new Date().getFullYear())
+  const year = new Date().getFullYear();
 
-  useEffect(() => {
-    setYear(new Date().getFullYear())
-  }, [])
   return (
     <footer className="border-t border-border/50 bg-secondary/30">
       <div className="mx-auto max-w-5xl px-6 py-8">
@@ -76,10 +72,13 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="block hover:opacity-80 transition-opacity"
               >
-                <img 
+                <Image 
                   src={profileData.logos.ministerio} 
                   alt="Logo Ministerio y AEI" 
-                  className="h-16 object-contain"
+                  width={240}
+                  height={64}
+                  style={{ width: 'auto', height: 'auto' }}
+                  className="h-16 w-auto object-contain"
                 />
               </a>
             </div>

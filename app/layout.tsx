@@ -44,8 +44,8 @@ export const metadata: Metadata = {
     images: ['/sergio-solbes-ferri.webp'],
   },
   icons: {
-    icon: '/favicon.png',
-    apple: '/favicon.png',
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
   },
 }
 

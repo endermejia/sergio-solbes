@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import { Menu, X, BookOpen, GraduationCap, FileText, Mail, Briefcase, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -13,56 +13,86 @@ export function Header() {
   const [activeSection, setActiveSection] = useState("")
   const { t } = useLanguage()
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { href: "#sobre-mi", label: t("nav.about"), icon: GraduationCap },
     { href: "#investigacion", label: t("nav.research"), icon: BookOpen },
     { href: "#proyectos", label: t("nav.projects"), icon: Award },
     { href: "#publicaciones", label: t("nav.publications"), icon: FileText },
     { href: "#docencia", label: t("nav.teaching"), icon: Briefcase },
     { href: "#contacto", label: t("nav.contact"), icon: Mail },
-  ]
+  ], [t]);
 
   useEffect(() => {
+    // 1. Initial scroll handling for deep-links
+    const handleInitialScroll = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
+      }
+    };
+
+    handleInitialScroll();
+
+    // 2. Scroll-spy logic (UI highlight only, no URL changes)
     const observerOptions = {
       root: null,
       rootMargin: '-20% 0px -70% 0px',
       threshold: 0
-    }
+    };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const id = entry.target.id
-          setActiveSection(id)
-          // Update URL hash without adding to history
-          if (window.location.hash !== `#${id}`) {
-            window.history.replaceState(null, "", `#${id}`)
+          const id = entry.target.id;
+          if (navItems.some(item => item.href === `#${id}`)) {
+            setActiveSection(id);
           }
         }
-      })
-    }
+      });
+    };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions)
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    const sections = document.querySelectorAll("section[id]")
-    sections.forEach((section) => observer.observe(section))
+    const updateObservers = () => {
+      const elements = document.querySelectorAll('[id]');
+      elements.forEach((el) => {
+        if (navItems.some(item => item.href === `#${el.id}`)) {
+          observer.observe(el);
+        }
+      });
+    };
 
-    // Special case for hero/top of page
+    updateObservers();
+    const scanInterval = setInterval(updateObservers, 1000);
+
     const handleScroll = () => {
       if (window.scrollY < 100) {
-        setActiveSection("")
-        if (window.location.hash) {
-          window.history.replaceState(null, "", window.location.pathname)
-        }
+        setActiveSection("");
       }
-    }
-    window.addEventListener("scroll", handleScroll)
+    };
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      sections.forEach((section) => observer.unobserve(section))
-      window.removeEventListener("scroll", handleScroll)
+      observer.disconnect();
+      clearInterval(scanInterval);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [navItems]);
+
+  const scrollToSection = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    const id = href.slice(1);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [])
+    setIsOpen(false);
+  };
 
   const handleHeaderClick = (e: React.MouseEvent) => {
     if (
@@ -105,6 +135,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={(e) => scrollToSection(e, item.href)}
                     className={cn(
                       "px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full",
                       isActive 
@@ -145,7 +176,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => scrollToSection(e, item.href)}
                     className={cn(
                       "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors rounded-md",
                       isActive

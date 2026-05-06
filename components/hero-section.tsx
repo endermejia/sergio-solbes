@@ -43,11 +43,8 @@ export function HeroSection() {
       />
       
       <div className="relative mx-auto max-w-5xl px-6 py-20 md:py-28">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="flex flex-col md:flex-row gap-10 md:gap-16 items-center md:items-start"
+        <div 
+          className="flex flex-col md:flex-row gap-10 md:gap-16 items-center md:items-start animate-in fade-in slide-in-from-bottom-5 duration-700 ease-out fill-mode-both"
         >
           {/* Avatar / Photo */}
           <div className="shrink-0">
@@ -99,10 +96,8 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
-              <Button asChild>
-                <a href="#contacto">
-                  {t('hero.contact_button')}
-                </a>
+              <Button onClick={(e) => handleScrollToSection('contacto')}>
+                {t('hero.contact_button')}
               </Button>
               <Button asChild variant="outline" className="gap-2">
                 <a href={profileData.links.accedaCris} target="_blank" rel="noopener noreferrer">
@@ -112,7 +107,7 @@ export function HeroSection() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Stats */}
         <motion.div 

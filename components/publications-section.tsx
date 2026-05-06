@@ -182,7 +182,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
   const displayedMeritos = showMoreMeritos ? meritosInvestigacion : meritosInvestigacion.slice(0, 6)
 
   return (
-    <section id="publicaciones" className="py-20 md:py-28 scroll-mt-20" ref={sectionRef}>
+    <section className="py-20 md:py-28 scroll-mt-20" ref={sectionRef}>
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

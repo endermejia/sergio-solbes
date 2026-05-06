@@ -18,7 +18,7 @@ export function ProjectsSection() {
     : proyectosInvestigacion.slice(0, 6)
 
   return (
-    <section id="proyectos" className="py-20 md:py-28 bg-background scroll-mt-20">
+    <section className="py-20 md:py-28 bg-background scroll-mt-20">
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
