@@ -23,7 +23,9 @@ import { motion } from "framer-motion"
 import { useLanguage } from "@/lib/i18n/context"
 import { cn } from "@/lib/utils"
 
-export function PublicationsSection() {
+import { Publicaciones } from "@/lib/types"
+
+export function PublicationsSection({ initialData }: { initialData?: Publicaciones }) {
   const { t } = useLanguage();
   const [showMoreArticles, setShowMoreArticles] = useState(false)
   const [showMoreBooks, setShowMoreBooks] = useState(false)
@@ -31,11 +33,13 @@ export function PublicationsSection() {
   const [showMoreMeritos, setShowMoreMeritos] = useState(false)
   const [activeTab, setActiveTab] = useState("articulos")
 
+  const data = initialData || publicaciones;
+
   const statItems = [
-    { icon: FileText, value: stats.articulos, label: t('publications.articles'), id: 'articulos' },
-    { icon: BookOpen, value: stats.libros, label: t('publications.books'), id: 'libros' },
-    { icon: Newspaper, value: stats.capitulos, label: t('publications.chapters'), id: 'capitulos' },
-    { icon: BookMarked, value: stats.resenas, label: t('publications.reviews'), id: 'resenas' },
+    { icon: FileText, value: data.articulos.length, label: t('publications.articles'), id: 'articulos' },
+    { icon: BookOpen, value: data.libros.length, label: t('publications.books'), id: 'libros' },
+    { icon: Newspaper, value: data.capitulos.length, label: t('publications.chapters'), id: 'capitulos' },
+    { icon: BookMarked, value: data.resenas.length, label: t('publications.reviews'), id: 'resenas' },
     { icon: Users, value: stats.congresos, label: t('research.stats.congresses'), id: 'congresos' },
     { icon: Award, value: stats.estancias, label: t('research.stats.stays'), id: 'estancias' },
     { icon: BookMarked, value: meritosInvestigacion.length, label: t('research.merits'), id: 'meritos' },
@@ -61,9 +65,9 @@ export function PublicationsSection() {
     return () => window.removeEventListener('changeTab', handleTabChange);
   }, []);
 
-  const displayedArticles = showMoreArticles ? publicaciones.articulos : publicaciones.articulos.slice(0, 6)
-  const displayedBooks = showMoreBooks ? publicaciones.libros : publicaciones.libros.slice(0, 5)
-  const displayedChapters = showMoreChapters ? publicaciones.capitulos : publicaciones.capitulos.slice(0, 5)
+  const displayedArticles = showMoreArticles ? data.articulos : data.articulos.slice(0, 6)
+  const displayedBooks = showMoreBooks ? data.libros : data.libros.slice(0, 5)
+  const displayedChapters = showMoreChapters ? data.capitulos : data.capitulos.slice(0, 5)
   const displayedMeritos = showMoreMeritos ? meritosInvestigacion : meritosInvestigacion.slice(0, 6)
 
   return (
@@ -152,7 +156,7 @@ export function PublicationsSection() {
               ))}
             </div>
             
-            {publicaciones.articulos.length > 6 && (
+            {data.articulos.length > 6 && (
               <div className="mt-6 text-center">
                 <Button
                   variant="outline"
@@ -167,7 +171,7 @@ export function PublicationsSection() {
                   ) : (
                     <>
                       <ChevronDown className="h-4 w-4" />
-                      {t('publications.view_more')} ({publicaciones.articulos.length} {t('publications.articles').toLowerCase()})
+                      {t('publications.view_more')} ({data.articulos.length} {t('publications.articles').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -210,7 +214,7 @@ export function PublicationsSection() {
               ))}
             </div>
             
-            {publicaciones.libros.length > 5 && (
+            {data.libros.length > 5 && (
               <div className="mt-6 text-center">
                 <Button
                   variant="outline"
@@ -225,7 +229,7 @@ export function PublicationsSection() {
                   ) : (
                     <>
                       <ChevronDown className="h-4 w-4" />
-                      {t('publications.view_more')} ({publicaciones.libros.length} {t('publications.books').toLowerCase()})
+                      {t('publications.view_more')} ({data.libros.length} {t('publications.books').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -263,7 +267,7 @@ export function PublicationsSection() {
               ))}
             </div>
             
-            {publicaciones.capitulos.length > 5 && (
+            {data.capitulos.length > 5 && (
               <div className="mt-6 text-center">
                 <Button
                   variant="outline"
@@ -278,7 +282,7 @@ export function PublicationsSection() {
                   ) : (
                     <>
                       <ChevronDown className="h-4 w-4" />
-                      {t('publications.view_more')} ({publicaciones.capitulos.length} {t('publications.chapters').toLowerCase()})
+                      {t('publications.view_more')} ({data.capitulos.length} {t('publications.chapters').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -289,7 +293,7 @@ export function PublicationsSection() {
           {/* Reseñas */}
           <TabsContent value="resenas">
             <div className="space-y-3">
-              {publicaciones.resenas.map((pub, index) => (
+              {data.resenas.map((pub, index) => (
                 <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
                   <CardContent className="py-4">
                     <div className="flex flex-col sm:flex-row sm:items-start gap-3">

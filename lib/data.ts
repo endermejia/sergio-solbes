@@ -20,7 +20,6 @@ import {
 
 import academicData from "./data/academic.json";
 import projectsData from "./data/projects.json";
-import publicationsData from "./data/publications.json";
 
 export const profileData: ProfileData = {
   name: "Sergio Solbes Ferri",
@@ -52,7 +51,12 @@ export const docencia: {
 } = academicData.docencia as any;
 
 export const proyectosInvestigacion: ProyectoInvestigacion[] = projectsData as ProyectoInvestigacion[];
-export const publicaciones: Publicaciones = publicationsData as Publicaciones;
+export const publicaciones: Publicaciones = {
+  articulos: [],
+  libros: [],
+  capitulos: [],
+  resenas: []
+};
 
 export const direccionTrabajos: {
   tesis: Tesis[];

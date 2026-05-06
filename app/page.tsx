@@ -10,7 +10,11 @@ import { Footer } from "@/components/footer"
 import { profileData } from "@/lib/data"
 import esMessages from "@/lib/i18n/messages/es.json"
 
-export default function HomePage() {
+import { fetchPublicaciones } from "@/lib/scrapers/accedacris"
+
+export default async function HomePage() {
+  const publicaciones = await fetchPublicaciones();
+  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -42,7 +46,7 @@ export default function HomePage() {
         <AboutSection />
         <ResearchSection />
         <ProjectsSection />
-        <PublicationsSection />
+        <PublicationsSection initialData={publicaciones} />
         <TeachingSection />
         <ContactSection />
       </main>
