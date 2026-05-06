@@ -6,19 +6,11 @@ export interface ProfileData {
   name: string;
   image: string;
   birthDate: string;
-  title: string;
-  area: string;
-  department: string;
-  institute: string;
-  university: string;
   email: string;
-  phone: string;
-  address: string;
   orcid: string;
   scopusId: string;
   researcherId: string;
   dialnetId: string;
-  bio: string;
   links: {
     researchGate: string;
     googleScholar: string;
@@ -27,7 +19,6 @@ export interface ProfileData {
   };
   logos: {
     ministerio: string;
-    lugar: string;
   };
 }
 
@@ -164,6 +155,9 @@ export interface ParticipacionCongreso {
   ciudad?: string;
   organizador?: string;
   fecha?: string;
+  tipo?: string;
+  modo?: string;
+  ambito?: string;
 }
 
 export interface EstanciaInvestigacion {
@@ -172,6 +166,8 @@ export interface EstanciaInvestigacion {
   duracion: string;
   programa?: string;
   año?: string;
+  objetivos?: string;
+  tareas?: string;
 }
 
 export interface MeritoInvestigacion {
@@ -195,4 +191,5 @@ export interface Stats {
   resenas: number;
   congresos: number;
   estancias: number;
+  proyectos: number;
 }

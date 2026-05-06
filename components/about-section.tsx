@@ -20,37 +20,39 @@ import {
 } from "@/components/ui/accordion"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { motion } from "framer-motion"
-
-const highlights = [
-  {
-    icon: GraduationCap,
-    title: "Formación",
-    description: "Licenciado y Doctor en Historia por la Universidad de Navarra",
-    href: "#formacion"
-  },
-  {
-    icon: Users,
-    title: "Docencia",
-    description: "Facultad de Economía, Empresa y Turismo - Facultad de Geografía e Historia",
-    href: "#docencia"
-  },
-  {
-    icon: Award,
-    title: "Investigación",
-    description: "Coordinador del Grupo DPHA del Instituto IATEXT",
-    href: "#investigacion"
-  },
-  {
-    icon: BookOpen,
-    title: "Especialidad",
-    description: "Historia Económica - Siglo XVIII - Fiscalidad",
-    href: "#publicaciones"
-  },
-]
+import { useLanguage } from "@/lib/i18n/context"
 
 export function AboutSection() {
+  const { t } = useLanguage();
   const [showAllAcred, setShowAllAcred] = useState(false)
   const displayedAcred = showAllAcred ? acreditaciones : acreditaciones.slice(0, 4)
+
+  const highlights = [
+    {
+      icon: GraduationCap,
+      title: t('about.highlights.formation_title') || t('about.academic_background'),
+      description: t('about.highlights.formation'),
+      href: "#formacion"
+    },
+    {
+      icon: Users,
+      title: t('teaching.title'),
+      description: t('about.highlights.teaching'),
+      href: "#docencia"
+    },
+    {
+      icon: Award,
+      title: t('research.title'),
+      description: t('about.highlights.research'),
+      href: "#investigacion"
+    },
+    {
+      icon: BookOpen,
+      title: t('about.highlights.specialization_title') || t('about.subtitle'),
+      description: t('about.highlights.specialization'),
+      href: "#publicaciones"
+    },
+  ]
 
   return (
     <section id="sobre-mi" className="py-20 md:py-28 scroll-mt-20">
@@ -63,38 +65,35 @@ export function AboutSection() {
       >
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Sobre mí
+            {t('about.title')}
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto rounded-full" />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="space-y-6">
-            <p className="text-muted-foreground leading-relaxed">
-              Desde 1993 desarrollo mi labor docente e investigadora en el <strong className="text-foreground">Departamento 
-              de Ciencias Históricas</strong> de la Universidad de Las Palmas de Gran Canaria. Mi formación 
-              académica incluye la licenciatura y el doctorado en Historia por la Universidad de Navarra, 
-              con especialización en Historia Económica.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Actualmente formo parte del Grupo de Investigación <strong className="text-foreground">&quot;Documentación, 
-              Patrimonio e Historia Atlántica&quot; (DPHA)</strong> del Instituto Universitario de Análisis y 
-              Aplicaciones Textuales (IATEXT), del cual fui coordinador entre 2015 y 2025.
-            </p>
+        <div className="grid md:grid-cols-2 gap-12 mb-12">
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <p 
+                className="text-muted-foreground leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: t('about.p1') }}
+              />
+              <p 
+                className="text-muted-foreground leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: t('about.p2') }}
+              />
+            </div>
           </div>
-          <div className="space-y-6">
-            <p className="text-muted-foreground leading-relaxed">
-              A lo largo de mi trayectoria he asumido diversas responsabilidades académicas y de gestión: 
-              Secretario del Departamento de Ciencias Históricas, miembro del Claustro Universitario, 
-              coordinador del Área de Historia Económica, coordinador del GIR-DPHA y del Grupo de 
-              Innovación Educativa en Economía e Historia (GIZEH).
-            </p>
-            <div className="flex flex-wrap gap-3">
+          <div className="space-y-8">
+            <p 
+              className="text-muted-foreground leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: t('about.p3') }}
+            />
+            <div className="flex flex-wrap gap-4 pt-4 border-t border-border/50">
               <a
                 href={`https://orcid.org/${profileData.orcid}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline transition-colors"
               >
                 ORCID <ExternalLink className="h-3 w-3" />
               </a>
@@ -102,7 +101,7 @@ export function AboutSection() {
                 href={profileData.links.researchGate}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline transition-colors"
               >
                 ResearchGate <ExternalLink className="h-3 w-3" />
               </a>
@@ -110,7 +109,7 @@ export function AboutSection() {
                 href={profileData.links.iatext}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline transition-colors"
               >
                 IATEXT <ExternalLink className="h-3 w-3" />
               </a>
@@ -143,23 +142,23 @@ export function AboutSection() {
             <CardContent className="pt-6">
               <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
                 <GraduationCap className="h-5 w-5 text-accent" />
-                Formación Académica
+                {t('about.academic_background')}
               </h3>
               
               <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="licenciatura">
+                 <AccordionItem value="licenciatura">
                   <AccordionTrigger className="text-left">
                     <div>
-                      <p className="font-medium text-foreground">{formacionAcademica.licenciatura.titulo}</p>
+                      <p className="font-medium text-foreground">{t('about.bachelors')}</p>
                       <p className="text-sm text-muted-foreground">{formacionAcademica.licenciatura.universidad}, {formacionAcademica.licenciatura.fecha}</p>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-muted-foreground">División:</span> {formacionAcademica.licenciatura.division}</p>
-                      <p><span className="text-muted-foreground">Sección:</span> {formacionAcademica.licenciatura.seccion}</p>
-                      <p><span className="text-muted-foreground">Ciudad:</span> {formacionAcademica.licenciatura.ciudad}</p>
-                      <p><span className="text-muted-foreground">Calificación:</span> <span className="text-accent font-medium">{formacionAcademica.licenciatura.notaMedia}</span></p>
+                      <p><span className="text-muted-foreground">{t('about.division')}:</span> {formacionAcademica.licenciatura.division}</p>
+                      <p><span className="text-muted-foreground">{t('about.section_label')}:</span> {formacionAcademica.licenciatura.seccion}</p>
+                      <p><span className="text-muted-foreground">{t('about.city')}:</span> {formacionAcademica.licenciatura.city || formacionAcademica.licenciatura.ciudad}</p>
+                      <p><span className="text-muted-foreground">{t('about.grade')}:</span> <span className="text-accent font-medium">{formacionAcademica.licenciatura.notaMedia}</span></p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -167,16 +166,16 @@ export function AboutSection() {
                 <AccordionItem value="doctorado">
                   <AccordionTrigger className="text-left">
                     <div>
-                      <p className="font-medium text-foreground">Doctor en Historia</p>
+                      <p className="font-medium text-foreground">{t('about.doctorate')}</p>
                       <p className="text-sm text-muted-foreground">{formacionAcademica.doctorado.universidad}, {formacionAcademica.doctorado.fecha}</p>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="space-y-2 text-sm">
-                      <p><span className="text-muted-foreground">Programa:</span> {formacionAcademica.doctorado.programa}</p>
-                      <p><span className="text-muted-foreground">Tesis:</span> <span className="italic">{formacionAcademica.doctorado.tesis}</span></p>
-                      <p><span className="text-muted-foreground">Director:</span> {formacionAcademica.doctorado.director}</p>
-                      <p><span className="text-muted-foreground">Calificación:</span> <span className="text-accent font-medium">{formacionAcademica.doctorado.calificacion}</span></p>
+                      <p><span className="text-muted-foreground">{t('about.program')}:</span> {formacionAcademica.doctorado.programa}</p>
+                      <p><span className="text-muted-foreground">{t('about.thesis')}:</span> <span className="italic">{formacionAcademica.doctorado.tesis}</span></p>
+                      <p><span className="text-muted-foreground">{t('about.director')}:</span> {formacionAcademica.doctorado.director}</p>
+                      <p><span className="text-muted-foreground">{t('about.grade')}:</span> <span className="text-accent font-medium">{formacionAcademica.doctorado.calificacion}</span></p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -185,8 +184,8 @@ export function AboutSection() {
                   <AccordionItem value="cursos">
                     <AccordionTrigger className="text-left">
                       <div>
-                        <p className="font-medium text-foreground">Cursos y Seminarios</p>
-                        <p className="text-sm text-muted-foreground">Formación complementaria ({cursosRecibidos.length} cursos)</p>
+                        <p className="font-medium text-foreground">{t('about.courses')}</p>
+                        <p className="text-sm text-muted-foreground">{t('about.complementary_formation')} ({cursosRecibidos.length} {t('teaching.subjects').toLowerCase()})</p>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
@@ -212,7 +211,7 @@ export function AboutSection() {
             <CardContent className="pt-6">
               <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Award className="h-5 w-5 text-accent" />
-                Acreditaciones y Reconocimientos
+                {t('about.accreditations')}
               </h3>
               
               <ul className="space-y-4">
@@ -235,12 +234,12 @@ export function AboutSection() {
                   {showAllAcred ? (
                     <>
                       <ChevronUp className="mr-2 h-4 w-4" />
-                      Ver menos
+                      {t('publications.view_less')}
                     </>
                   ) : (
                     <>
                       <ChevronDown className="mr-2 h-4 w-4" />
-                      Ver todos ({acreditaciones.length})
+                      {t('publications.view_more')} ({acreditaciones.length})
                     </>
                   )}
                 </Button>
@@ -255,7 +254,7 @@ export function AboutSection() {
             <CardContent className="pt-6">
               <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Users className="h-5 w-5 text-accent" />
-                Gestión Académica y Responsabilidades
+                {t('about.management')}
               </h3>
               
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -22,7 +22,10 @@ import {
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { motion } from "framer-motion"
+import { useLanguage } from "@/lib/i18n/context"
+
 export function TeachingSection() {
+  const { t } = useLanguage();
   const [showMoreTFG, setShowMoreTFG] = useState(false)
   const [showMoreTesis, setShowMoreTesis] = useState(false)
   const [showMoreAsig, setShowMoreAsig] = useState(false)
@@ -46,12 +49,11 @@ export function TeachingSection() {
       >
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Docencia
+            {t('teaching.title')}
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Actividad docente universitaria ininterrumpida desde 1993, impartiendo asignaturas 
-            de historia económica en diversos niveles académicos.
+            {t('teaching.experience')}
           </p>
         </div>
 
@@ -61,7 +63,7 @@ export function TeachingSection() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <BookOpen className="h-5 w-5 text-accent" />
-                Asignaturas Actuales
+                {t('teaching.subjects')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -73,7 +75,7 @@ export function TeachingSection() {
                       {asig.titulacion} - {asig.tipo}
                     </p>
                     <Badge variant="outline" className="mt-1 text-xs">
-                      {asig.creditos} créditos
+                      {asig.creditos} {t('teaching.credits')}
                     </Badge>
                   </div>
                 ))}
@@ -87,16 +89,16 @@ export function TeachingSection() {
                   className="mt-4 w-full"
                 >
                   {showMoreAsig ? (
-                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
+                    <><ChevronUp className="mr-2 h-4 w-4" /> {t('publications.view_less')}</>
                   ) : (
-                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todas ({docencia.asignaturas.length})</>
+                    <><ChevronDown className="mr-2 h-4 w-4" /> {t('publications.view_more')} ({docencia.asignaturas.length})</>
                   )}
                 </Button>
               )}
               
               <div className="mt-6 pt-4 border-t border-border/50">
                 <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Experiencia total:</strong> {docencia.experiencia.añosDocencia}+ años de docencia universitaria
+                  <strong className="text-foreground">{t('teaching.experience')}:</strong> {docencia.experiencia.añosDocencia}+ {t('teaching.years')}
                 </p>
               </div>
             </CardContent>
@@ -107,7 +109,7 @@ export function TeachingSection() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <Calendar className="h-5 w-5 text-accent" />
-                Innovación Docente
+                {t('teaching.innovation')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -116,7 +118,7 @@ export function TeachingSection() {
                   <div key={index} className="border-l-2 border-accent pl-4">
                     <p className="font-medium text-foreground text-sm">{inv.titulo}</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      Rol: {inv.rol}
+                      {t('projects.pi')}: {inv.rol}
                     </p>
                     <p className="text-[10px] text-accent mt-1 leading-tight">
                       {inv.financiacion}
@@ -133,9 +135,9 @@ export function TeachingSection() {
                   className="mt-4 w-full"
                 >
                   {showMoreInn ? (
-                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
+                    <><ChevronUp className="mr-2 h-4 w-4" /> {t('publications.view_less')}</>
                   ) : (
-                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todos ({docencia.innovacionDocente.length})</>
+                    <><ChevronDown className="mr-2 h-4 w-4" /> {t('publications.view_more')} ({docencia.innovacionDocente.length})</>
                   )}
                 </Button>
               )}
@@ -150,7 +152,7 @@ export function TeachingSection() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <GraduationCap className="h-5 w-5 text-accent" />
-                Tesis Doctorales Dirigidas
+                {t('teaching.theses')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -159,7 +161,7 @@ export function TeachingSection() {
                   <div key={index} className="border-l-2 border-accent pl-4">
                     <p className="font-medium text-foreground text-sm">{tesis.titulo}</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      Doctorando: {tesis.doctorando}
+                      {t('teaching.student')}: {tesis.doctorando}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       {tesis.programa} - {tesis.universidad}
@@ -189,12 +191,12 @@ export function TeachingSection() {
                   {showMoreTesis ? (
                     <>
                       <ChevronUp className="mr-2 h-4 w-4" />
-                      Ver menos
+                      {t('publications.view_less')}
                     </>
                   ) : (
                     <>
                       <ChevronDown className="mr-2 h-4 w-4" />
-                      Ver todas ({direccionTrabajos.tesis.length} tesis)
+                      {t('publications.view_more')} ({direccionTrabajos.tesis.length} {t('teaching.theses').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -207,7 +209,7 @@ export function TeachingSection() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <Users className="h-5 w-5 text-accent" />
-                TFG y TFM Dirigidos
+                {t('teaching.tfgs')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -241,12 +243,12 @@ export function TeachingSection() {
                   {showMoreTFG ? (
                     <>
                       <ChevronUp className="mr-2 h-4 w-4" />
-                      Ver menos
+                      {t('publications.view_less')}
                     </>
                   ) : (
                     <>
                       <ChevronDown className="mr-2 h-4 w-4" />
-                      Ver todos ({direccionTrabajos.tfg.length} trabajos)
+                      {t('publications.view_more')} ({direccionTrabajos.tfg.length} {t('teaching.tfgs').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -261,7 +263,7 @@ export function TeachingSection() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <GraduationCap className="h-5 w-5 text-accent" />
-                Formación Docente y Congresos
+                {t('research.stats.congresses')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -285,9 +287,9 @@ export function TeachingSection() {
                   className="mt-4 w-full"
                 >
                   {showMoreForm ? (
-                    <><ChevronUp className="mr-2 h-4 w-4" /> Ver menos</>
+                    <><ChevronUp className="mr-2 h-4 w-4" /> {t('publications.view_less')}</>
                   ) : (
-                    <><ChevronDown className="mr-2 h-4 w-4" /> Ver todos ({docencia.formacionDocente.length})</>
+                    <><ChevronDown className="mr-2 h-4 w-4" /> {t('publications.view_more')} ({docencia.formacionDocente.length})</>
                   )}
                 </Button>
               )}

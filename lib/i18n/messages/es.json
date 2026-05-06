@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "research": "Investigación",
+    "projects": "Proyectos",
+    "publications": "Publicaciones",
+    "teaching": "Docencia",
+    "contact": "Contacto",
+    "change_language": "Cambiar idioma"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "roles": "Historiador - Investigador - Docente",
+    "title": "Catedrático de Historia Económica",
+    "description": "Especializado en el estudio de las finanzas públicas y la formación del Estado moderno en el siglo XVIII.",
+    "cv_button": "Ver CV completo",
+    "contact_button": "Contactar",
+    "location": "Las Palmas de Gran Canaria",
+    "degree": "Doctor en Historia",
+    "teaching_years": "Años docencia"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "subtitle": "Perfil Académico",
+    "p1": "Desde 1993 desarrollo mi labor docente e investigadora en el <strong>Departamento de Ciencias Históricas</strong> de la Universidad de Las Palmas de Gran Canaria. Mi formación académica incluye la licenciatura y el doctorado en Historia por la Universidad de Navarra, con especialización en Historia Económica.",
+    "p2": "Actualmente formo parte del Grupo de Investigación <strong>\"Documentación, Patrimonio e Historia Atlántica\" (DPHA)</strong> del Instituto Universitario de Análisis y Aplicaciones Textuales (IATEXT), del cual fui coordinador entre 2015 y 2025.",
+    "p3": "A lo largo de mi trayectoria he asumido diversas responsabilidades académicas y de gestión: Secretario del Departamento de Ciencias Históricas, miembro del Claustro Universitario, coordinador del Área de Historia Económica, coordinador del GIR-DPHA y del Grupo de Innovación Educativa en Economía e Historia (GIZEH).",
+    "highlights": {
+      "formation_title": "Formación",
+      "formation": "Licenciado y Doctor en Historia por la Universidad de Navarra",
+      "teaching": "Facultad de Economía, Empresa y Turismo - Facultad de Geografía e Historia",
+      "research": "Coordinador del Grupo DPHA del Instituto IATEXT",
+      "specialization_title": "Especialidad",
+      "specialization": "Historia Económica - Siglo XVIII - Fiscalidad"
+    },
+    "details": {
+      "name": "Nombre",
+      "title": "Título",
+      "area": "Área",
+      "department": "Departamento",
+      "institute": "Instituto",
+      "university": "Universidad",
+      "email": "Email",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "orcid": "ORCID"
+    },
+    "management": "Gestión Académica",
+    "accreditations": "Acreditaciones y Premios",
+    "academic_background": "Formación Académica",
+    "bachelors": "Licenciado en Filosofía y Letras",
+    "doctorate": "Doctor en Historia",
+    "thesis": "Tesis",
+    "director": "Director",
+    "grade": "Calificación",
+    "division": "División",
+    "section_label": "Sección",
+    "city": "Ciudad",
+    "program": "Programa",
+    "courses": "Cursos y Seminarios",
+    "complementary_formation": "Formación complementaria"
+  },
+  "research": {
+    "title": "Investigación",
+    "lines": "Líneas de Investigación",
+    "description": "Mi trabajo se orienta hacia la <strong>Historia de España en el siglo XVIII</strong>, especialmente el mundo de las finanzas y la formación del Estado moderno.",
+    "stats": {
+      "articles": "Artículos",
+      "books": "Libros",
+      "chapters": "Capítulos",
+      "reviews": "Reseñas",
+      "congresses": "Congresos",
+      "stays": "Estancias"
+    },
+    "merits": "Méritos de Investigación",
+    "stays_title": "Estancias de Investigación",
+    "stays_objectives": "Objetivos",
+    "stays_tasks": "Tareas",
+    "activity_type": "Tipo de actividad",
+    "participation_mode": "Modo de participación",
+    "scope": "Ámbito",
+    "congresses_title": "Participación en Congresos"
+  },
+  "projects": {
+    "title": "Proyectos de Investigación",
+    "description": "Participación en proyectos de investigación competitivos de ámbito nacional e internacional, centrados en la historia económica y fiscal.",
+    "pi": "Investigador Principal",
+    "funding": "Financiación",
+    "period": "Periodo",
+    "relevant": "Proyectos Relevantes"
+  },
+  "publications": {
+    "title": "Publicaciones",
+    "description": "Mi producción académica abarca artículos en revistas científicas, libros y capítulos de libro, así como contribuciones a congresos internacionales.",
+    "articles": "Artículos",
+    "books": "Libros",
+    "chapters": "Capítulos",
+    "reviews": "Reseñas",
+    "view_more": "Ver más",
+    "view_less": "Ver menos"
+  },
+  "teaching": {
+    "title": "Docencia",
+    "experience": "Actividad docente universitaria ininterrumpida desde 1993, impartiendo asignaturas de historia económica en diversos niveles académicos.",
+    "subjects": "Asignaturas Actuales",
+    "innovation": "Innovación Docente",
+    "direction": "Dirección de Trabajos",
+    "theses": "Tesis Doctorales Dirigidas",
+    "tfgs": "TFG y TFM Dirigidos",
+    "years": "años de experiencia",
+    "levels": "Niveles",
+    "institutions": "Instituciones",
+    "credits": "Créditos",
+    "type": "Tipo",
+    "student": "Estudiante",
+    "year": "Año"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Ponerse en contacto",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando..."
+    },
+    "info": "Información de contacto"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "links": "Enlaces de interés",
+    "developed_by": "Desarrollado por:",
+    "funding": "Financia:"
+  },
+  "profile": {
+    "title": "Doctor en Historia y Catedrático",
+    "area": "Historia e Instituciones Económicas",
+    "department": "Departamento de Ciencias Históricas",
+    "institute": "Instituto Universitario de Análisis y Aplicaciones Textuales (IATEXT)",
+    "university": "Universidad de Las Palmas de Gran Canaria",
+    "address": "Departamento de Ciencias Históricas - IATEXT, Edificio de Humanidades, Campus del Obelisco, 35003 Las Palmas de Gran Canaria",
+    "phone": "928 45 82 47 - Ext. 1712",
+    "bio": "Doctor en Historia y Catedrático de Historia e Instituciones Económicas. Especializado en el estudio de las finanzas públicas y la formación del Estado moderno en el siglo XVIII."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "about": "Über mich",
+    "research": "Forschung",
+    "projects": "Projekte",
+    "publications": "Publikationen",
+    "teaching": "Lehre",
+    "contact": "Kontakt",
+    "change_language": "Sprache ändern"
+  },
+  "hero": {
+    "greeting": "Hallo, ich bin",
+    "roles": "Historiker - Forscher - Dozent",
+    "title": "Professor für Wirtschaftsgeschichte",
+    "description": "Spezialisiert auf die Untersuchung der öffentlichen Finanzen und der Bildung des modernen Staates im 18. Jahrhundert.",
+    "cv_button": "Vollständigen Lebenslauf anzeigen",
+    "contact_button": "Kontakt",
+    "location": "Las Palmas de Gran Canaria",
+    "degree": "Dr. phil. in Geschichte",
+    "teaching_years": "Jahre Lehrerfahrung"
+  },
+  "about": {
+    "title": "Über mich",
+    "subtitle": "Akademisches Profil",
+    "p1": "Seit 1993 entwickle ich meine Lehr- und Forschungstätigkeit in der <strong>Abteilung für Geschichtswissenschaften</strong> der Universität von Las Palmas de Gran Canaria. Mein akademischer Hintergrund umfasst ein Studium und eine Promotion in Geschichte an der Universität von Navarra, spezialisiert auf Wirtschaftsgeschichte.",
+    "p2": "Ich bin derzeit Mitglied der Forschungsgruppe <strong>\"Dokumentation, Erbe und atlantische Geschichte\" (DPHA)</strong> des Universitätsinstituts für Textanalyse und Anwendungen (IATEXT), dessen Koordinator ich zwischen 2015 und 2025 war.",
+    "p3": "Im Laufe meiner Karriere habe ich verschiedene akademische und Management-Aufgaben übernommen: Sekretär der Abteilung für Geschichtswissenschaften, Mitglied des Universitätssenats, Koordinator des Bereichs Wirtschaftsgeschichte, Koordinator der GIR-DPHA und der Innovationsgruppe für Bildung in Wirtschaft und Geschichte (GIZEH).",
+    "highlights": {
+      "formation_title": "Ausbildung",
+      "formation": "Studium und Promotion in Geschichte an der Universität von Navarra",
+      "teaching": "Fakultät für Wirtschaft, Unternehmen und Tourismus - Fakultät für Geographie und Geschichte",
+      "research": "Koordinator der DPHA-Gruppe des IATEXT-Instituts",
+      "specialization_title": "Fachgebiet",
+      "specialization": "Wirtschaftsgeschichte - 18. Jahrhundert - Besteuerung"
+    },
+    "details": {
+      "name": "Name",
+      "title": "Titel",
+      "area": "Bereich",
+      "department": "Abteilung",
+      "institute": "Institut",
+      "university": "Universität",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "address": "Adresse",
+      "orcid": "ORCID"
+    },
+    "management": "Akademisches Management",
+    "accreditations": "Akkreditierungen und Auszeichnungen",
+    "academic_background": "Akademischer Werdegang",
+    "bachelors": "Bachelor in Philosophie und Geisteswissenschaften",
+    "doctorate": "Doktorat in Geschichte",
+    "thesis": "Dissertation",
+    "director": "Doktorvater",
+    "grade": "Note",
+    "division": "Abteilung",
+    "section_label": "Bereich",
+    "city": "Stadt",
+    "program": "Programm",
+    "courses": "Kurse und Seminare",
+    "complementary_formation": "Zusatzqualifikation"
+  },
+  "research": {
+    "title": "Forschung",
+    "lines": "Forschungsschwerpunkte",
+    "description": "Meine Arbeit orientiert sich an der <strong>Geschichte Spaniens im 18. Jahrhundert</strong>, insbesondere an der Welt der Finanzen und der Bildung des modernen Staates.",
+    "stats": {
+      "articles": "Artikel",
+      "books": "Bücher",
+      "chapters": "Kapitel",
+      "reviews": "Rezensionen",
+      "congresses": "Kongresse",
+      "stays": "Aufenthalte"
+    },
+    "merits": "Forschungsverdienste",
+    "stays_title": "Forschungsaufenthalte",
+    "stays_objectives": "Ziele",
+    "stays_tasks": "Aufgaben",
+    "activity_type": "Aktivitätsart",
+    "participation_mode": "Teilnahmemodus",
+    "scope": "Bereich",
+    "congresses_title": "Teilnahme an Kongressen"
+  },
+  "projects": {
+    "title": "Forschungsprojekte",
+    "description": "Teilnahme an wettbewerbsfähigen nationalen und internationalen Forschungsprojekten mit Schwerpunkt auf Wirtschafts- und Finanzgeschichte.",
+    "pi": "Hauptinvestigator",
+    "funding": "Finanzierung",
+    "period": "Zeitraum",
+    "relevant": "Relevante Projekte"
+  },
+  "publications": {
+    "title": "Publikationen",
+    "description": "Meine akademische Produktion umfasst Artikel in wissenschaftlichen Zeitschriften, Bücher und Buchkapitel sowie Beiträge zu internationalen Kongressen.",
+    "articles": "Artikel",
+    "books": "Bücher",
+    "chapters": "Kapitel",
+    "reviews": "Rezensionen",
+    "view_more": "Mehr sehen",
+    "view_less": "Weniger sehen"
+  },
+  "teaching": {
+    "title": "Lehre",
+    "experience": "Ununterbrochene universitäre Lehrtätigkeit seit 1993, Unterricht in wirtschaftshistorischen Fächern auf verschiedenen akademischen Ebenen.",
+    "subjects": "Aktuelle Fächer",
+    "innovation": "Lehrinnovation",
+    "direction": "Betreuung von Arbeiten",
+    "theses": "Betreute Dissertationen",
+    "tfgs": "Betreute Bachelor- und Masterarbeiten",
+    "years": "Jahre Erfahrung",
+    "levels": "Niveaus",
+    "institutions": "Institutionen",
+    "credits": "Credits",
+    "type": "Typ",
+    "student": "Student",
+    "year": "Jahr"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Kontakt aufnehmen",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail-Adresse",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet..."
+    },
+    "info": "Kontaktinformationen"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "links": "Nützliche Links",
+    "developed_by": "Entwickelt von:",
+    "funding": "Gefördert durch:"
+  },
+  "profile": {
+    "title": "Doktor der Geschichte und Professor",
+    "area": "Wirtschaftsgeschichte und Wirtschaftsinstitutionen",
+    "department": "Abteilung für Geschichtswissenschaften",
+    "institute": "Universitätsinstitut für Textanalyse und Anwendungen (IATEXT)",
+    "university": "Universität von Las Palmas de Gran Canaria",
+    "address": "Abteilung für Geschichtswissenschaften - IATEXT, Geisteswissenschaftliches Gebäude, Campus del Obelisco, 35003 Las Palmas de Gran Canaria",
+    "phone": "+34 928 45 82 47 - Durchst. 1712",
+    "bio": "Doktor der Geschichte und Professor für Wirtschaftsgeschichte und Wirtschaftsinstitutionen. Spezialisiert auf die Untersuchung der öffentlichen Finanzen und der Bildung des modernen Staates im 18. Jahrhundert."
+  }
+}

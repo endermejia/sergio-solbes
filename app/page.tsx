@@ -8,16 +8,17 @@ import { TeachingSection } from "@/components/teaching-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { profileData } from "@/lib/data"
+import esMessages from "@/lib/i18n/messages/es.json"
 
 export default function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": profileData.name,
-    "jobTitle": profileData.title,
+    "jobTitle": esMessages.profile.title,
     "affiliation": {
       "@type": "Organization",
-      "name": profileData.university
+      "name": esMessages.profile.university
     },
     "url": "https://personales.ulpgc.es/sergio.solbes/",
     "image": "https://personales.ulpgc.es/sergio.solbes/sergio-profile.png",
@@ -25,9 +26,8 @@ export default function HomePage() {
       profileData.links.accedaCris,
       profileData.links.researchGate,
       `https://orcid.org/${profileData.orcid}`
-      // Add other social links if available in profileData
     ],
-    "description": profileData.bio
+    "description": esMessages.profile.bio
   }
 
   return (

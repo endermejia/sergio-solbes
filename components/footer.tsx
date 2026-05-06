@@ -1,8 +1,10 @@
 "use client"
 import { useState, useEffect } from "react"
 import { profileData } from "@/lib/data"
+import { useLanguage } from "@/lib/i18n/context"
 
 export function Footer() {
+  const { t } = useLanguage();
   const [year, setYear] = useState(new Date().getFullYear())
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export function Footer() {
               {profileData.name}
             </p>
             <p className="text-sm text-muted-foreground">
-              {profileData.title} · {profileData.university}
+              {t('profile.title')} · {t('profile.university')}
             </p>
           </div>
           
@@ -51,12 +53,12 @@ export function Footer() {
         
         <div className="mt-8 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left text-xs text-muted-foreground">
-            <p>© {year} {profileData.name}. Todos los derechos reservados.</p>
+            <p>© {year} {profileData.name}. {t('footer.rights')}</p>
           </div>
           
           <div className="flex items-center gap-8 bg-white/50 p-2 rounded-lg">
             <div className="flex flex-col items-start gap-1">
-              <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Desarrollado por:</span>
+              <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{t('footer.developed_by')}</span>
               <a 
                 href="https://www.linkedin.com/in/gabrimejia/" 
                 target="_blank" 
@@ -67,7 +69,7 @@ export function Footer() {
               </a>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Financia:</span>
+              <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{t('footer.funding')}</span>
               <a 
                 href="https://www.ciencia.gob.es/" 
                 target="_blank" 

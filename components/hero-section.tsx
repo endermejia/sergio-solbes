@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button"
 import { profileData, stats } from "@/lib/data"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { useLanguage } from "@/lib/i18n/context"
 
 export function HeroSection() {
+  const { t } = useLanguage();
+
   const handleTabClick = (tabId: string) => {
     // Dispatch event for publications section to update state
     window.dispatchEvent(new CustomEvent('changeTab', { detail: { tab: tabId } }));
@@ -21,8 +24,8 @@ export function HeroSection() {
     }
   };
 
-  const handleScrollToDocencia = () => {
-    const element = document.getElementById('docencia');
+  const handleScrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -64,29 +67,29 @@ export function HeroSection() {
           {/* Content */}
           <div className="flex-1 text-center md:text-left">
             <p className="text-sm font-medium uppercase tracking-widest text-accent mb-3">
-              Historiador - Investigador - Docente
+              {t('hero.roles')}
             </p>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 text-balance">
               {profileData.name}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              {profileData.title} de {profileData.area}. 
-              Especializado en el estudio de las finanzas públicas y la formación del Estado moderno en el siglo XVIII.
+              {t('profile.title')} de {t('profile.area')}.{" "}
+              {t('hero.description')}
             </p>
 
             {/* Quick Info */}
             <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Building2 className="h-4 w-4 text-accent" />
-                <span>{profileData.university}</span>
+                <span>{t('profile.university')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-accent" />
-                <span>Las Palmas de Gran Canaria</span>
+                <span>{t('hero.location')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <BookMarked className="h-4 w-4 text-accent" />
-                <span>Doctor en Historia</span>
+                <span>{t('hero.degree')}</span>
               </div>
             </div>
 
@@ -94,12 +97,12 @@ export function HeroSection() {
             <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
               <Button asChild>
                 <a href="#contacto">
-                  Contactar
+                  {t('hero.contact_button')}
                 </a>
               </Button>
               <Button asChild variant="outline" className="gap-2">
                 <a href={profileData.links.accedaCris} target="_blank" rel="noopener noreferrer">
-                  Ver CV completo
+                  {t('hero.cv_button')}
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </Button>
@@ -112,35 +115,42 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-16 grid grid-cols-2 md:grid-cols-5 gap-4"
         >
           <div
             onClick={() => handleTabClick('articulos')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
           >
             <p className="font-serif text-3xl font-bold text-foreground">{stats.articulos}</p>
-            <p className="mt-1 text-sm text-muted-foreground">Artículos</p>
+            <p className="mt-1 text-sm text-muted-foreground">{t('research.stats.articles')}</p>
           </div>
           <div
             onClick={() => handleTabClick('libros')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
           >
             <p className="font-serif text-3xl font-bold text-foreground">{stats.libros}</p>
-            <p className="mt-1 text-sm text-muted-foreground">Libros</p>
+            <p className="mt-1 text-sm text-muted-foreground">{t('research.stats.books')}</p>
           </div>
           <div
             onClick={() => handleTabClick('capitulos')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
           >
             <p className="font-serif text-3xl font-bold text-foreground">{stats.capitulos}</p>
-            <p className="mt-1 text-sm text-muted-foreground">Capítulos</p>
+            <p className="mt-1 text-sm text-muted-foreground">{t('research.stats.chapters')}</p>
           </div>
           <div
-            onClick={handleScrollToDocencia}
+            onClick={() => handleScrollToSection('proyectos')}
+            className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
+          >
+            <p className="font-serif text-3xl font-bold text-foreground">{stats.proyectos}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{t('nav.projects')}</p>
+          </div>
+          <div
+            onClick={() => handleScrollToSection('docencia')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
           >
             <p className="font-serif text-3xl font-bold text-foreground">30+</p>
-            <p className="mt-1 text-sm text-muted-foreground">Años docencia</p>
+            <p className="mt-1 text-sm text-muted-foreground">{t('hero.teaching_years')}</p>
           </div>
         </motion.div>
       </div>

@@ -17,48 +17,49 @@ import {
 import {
   Tabs,
   TabsContent,
-  TabsList,
-  TabsTrigger,
 } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { motion } from "framer-motion"
-
-const statItems = [
-  { icon: FileText, value: stats.articulos, label: "Artículos" },
-  { icon: BookOpen, value: stats.libros, label: "Libros" },
-  { icon: Newspaper, value: stats.capitulos, label: "Capítulos" },
-  { icon: BookMarked, value: stats.resenas, label: "Reseñas" },
-  { icon: Users, value: stats.congresos, label: "Congresos" },
-  { icon: Award, value: stats.estancias, label: "Estancias" },
-  { icon: BookMarked, value: meritosInvestigacion.length, label: "Méritos" },
-]
+import { useLanguage } from "@/lib/i18n/context"
+import { cn } from "@/lib/utils"
 
 export function PublicationsSection() {
+  const { t } = useLanguage();
   const [showMoreArticles, setShowMoreArticles] = useState(false)
   const [showMoreBooks, setShowMoreBooks] = useState(false)
   const [showMoreChapters, setShowMoreChapters] = useState(false)
   const [showMoreMeritos, setShowMoreMeritos] = useState(false)
   const [activeTab, setActiveTab] = useState("articulos")
+
+  const statItems = [
+    { icon: FileText, value: stats.articulos, label: t('publications.articles'), id: 'articulos' },
+    { icon: BookOpen, value: stats.libros, label: t('publications.books'), id: 'libros' },
+    { icon: Newspaper, value: stats.capitulos, label: t('publications.chapters'), id: 'capitulos' },
+    { icon: BookMarked, value: stats.resenas, label: t('publications.reviews'), id: 'resenas' },
+    { icon: Users, value: stats.congresos, label: t('research.stats.congresses'), id: 'congresos' },
+    { icon: Award, value: stats.estancias, label: t('research.stats.stays'), id: 'estancias' },
+    { icon: BookMarked, value: meritosInvestigacion.length, label: t('research.merits'), id: 'meritos' },
+  ]
   
+  const handleStatClick = (tabId: string) => {
+    setActiveTab(tabId);
+    const element = document.getElementById('publicaciones-tabs');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   useEffect(() => {
     const handleTabChange = (e: Event) => {
       const customEvent = e as CustomEvent;
       if (customEvent.detail && customEvent.detail.tab) {
-        setActiveTab(customEvent.detail.tab);
+        handleStatClick(customEvent.detail.tab);
       }
     };
 
     window.addEventListener('changeTab', handleTabChange);
     return () => window.removeEventListener('changeTab', handleTabChange);
   }, []);
-
-  const handleStatClick = (tabId: string) => {
-    setActiveTab(tabId);
-    const element = document.getElementById('publicaciones-tabs');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const displayedArticles = showMoreArticles ? publicaciones.articulos : publicaciones.articulos.slice(0, 6)
   const displayedBooks = showMoreBooks ? publicaciones.libros : publicaciones.libros.slice(0, 5)
@@ -76,30 +77,32 @@ export function PublicationsSection() {
       >
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Publicaciones
+            {t('publications.title')}
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Mi producción académica abarca artículos en revistas científicas, libros y capítulos de libro, 
-            así como contribuciones a congresos internacionales.
+            {t('publications.description') || t('profile.bio')}
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-12">
           {statItems.map((stat) => {
-            const tabId = stat.label.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const isActive = activeTab === stat.id
             return (
               <Card
-                key={stat.label}
-                className="border-border/50 bg-card/50 cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
-                onClick={() => handleStatClick(tabId)}
+                key={stat.id}
+                className={cn(
+                  "border-border/50 bg-card/50 cursor-pointer hover:bg-card/90 transition-all duration-200",
+                  isActive ? "ring-2 ring-accent border-accent bg-accent/5" : "hover:border-accent/50"
+                )}
+                onClick={() => handleStatClick(stat.id)}
               >
                 <CardContent className="pt-6">
                   <div className="flex flex-col items-center text-center gap-2">
-                    <stat.icon className="h-6 w-6 text-accent" />
-                    <span className="text-3xl font-bold text-foreground">{stat.value}</span>
-                    <span className="text-sm text-muted-foreground">{stat.label}</span>
+                    <stat.icon className={cn("h-6 w-6 transition-colors", isActive ? "text-accent" : "text-muted-foreground")} />
+                    <span className={cn("text-3xl font-bold transition-colors", isActive ? "text-foreground" : "text-muted-foreground")}>{stat.value}</span>
+                    <span className={cn("text-xs font-medium transition-colors uppercase tracking-wider", isActive ? "text-accent" : "text-muted-foreground/60")}>{stat.label}</span>
                   </div>
                 </CardContent>
               </Card>
@@ -110,15 +113,12 @@ export function PublicationsSection() {
         {/* Publications Tabs */}
         <div id="publicaciones-tabs" className="scroll-mt-24">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-7 h-auto mb-8">
-            <TabsTrigger value="articulos">Artículos</TabsTrigger>
-            <TabsTrigger value="libros">Libros</TabsTrigger>
-            <TabsTrigger value="capitulos">Capítulos</TabsTrigger>
-            <TabsTrigger value="resenas">Reseñas</TabsTrigger>
-            <TabsTrigger value="congresos">Congresos</TabsTrigger>
-            <TabsTrigger value="estancias">Estancias</TabsTrigger>
-            <TabsTrigger value="meritos">Méritos</TabsTrigger>
-          </TabsList>
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl font-serif font-bold text-foreground">
+              {statItems.find(s => s.id === activeTab)?.label}
+            </h3>
+            <div className="h-px flex-1 bg-border/50 ml-6 hidden md:block" />
+          </div>
           
           {/* Artículos */}
           <TabsContent value="articulos">
@@ -162,12 +162,12 @@ export function PublicationsSection() {
                   {showMoreArticles ? (
                     <>
                       <ChevronUp className="h-4 w-4" />
-                      Ver menos
+                      {t('publications.view_less')}
                     </>
                   ) : (
                     <>
                       <ChevronDown className="h-4 w-4" />
-                      Ver todos ({publicaciones.articulos.length} artículos)
+                      {t('publications.view_more')} ({publicaciones.articulos.length} {t('publications.articles').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -220,12 +220,12 @@ export function PublicationsSection() {
                   {showMoreBooks ? (
                     <>
                       <ChevronUp className="h-4 w-4" />
-                      Ver menos
+                      {t('publications.view_less')}
                     </>
                   ) : (
                     <>
                       <ChevronDown className="h-4 w-4" />
-                      Ver todos ({publicaciones.libros.length} libros)
+                      {t('publications.view_more')} ({publicaciones.libros.length} {t('publications.books').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -273,12 +273,12 @@ export function PublicationsSection() {
                   {showMoreChapters ? (
                     <>
                       <ChevronUp className="h-4 w-4" />
-                      Ver menos
+                      {t('publications.view_less')}
                     </>
                   ) : (
                     <>
                       <ChevronDown className="h-4 w-4" />
-                      Ver todos ({publicaciones.capitulos.length} capítulos)
+                      {t('publications.view_more')} ({publicaciones.capitulos.length} {t('publications.chapters').toLowerCase()})
                     </>
                   )}
                 </Button>
@@ -317,11 +317,15 @@ export function PublicationsSection() {
               {participacionCongresos.slice(0, 10).map((c, index) => (
                 <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
                   <CardContent className="py-4">
-                    <h4 className="font-medium text-foreground text-sm">{c.trabajo || "Sin título"}</h4>
+                    <h4 className="font-medium text-foreground text-sm leading-snug">{c.trabajo || ""}</h4>
                     <p className="text-xs text-muted-foreground mt-1">{c.congreso}</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs text-accent">{c.ciudad}</span>
-                      <span className="text-xs text-muted-foreground">{c.organizador}</span>
+                    <div className="mt-2 space-y-1">
+                      {c.tipo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.activity_type')}:</span> {c.tipo}</p>}
+                      {c.modo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.participation_mode')}:</span> {c.modo}</p>}
+                      <div className="flex justify-between items-center pt-1 border-t border-border/30 mt-1">
+                        <span className="text-[10px] text-accent font-medium">{c.ciudad}</span>
+                        {c.ambito && <span className="text-[10px] text-muted-foreground/60">{c.ambito}</span>}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -332,21 +336,27 @@ export function PublicationsSection() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline" className="gap-2">
-                      Ver todos los congresos ({participacionCongresos.length})
+                      {t('publications.view_more')} ({participacionCongresos.length})
                       <ExternalLink className="h-4 w-4" />
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-4xl max-h-[80vh]">
                     <DialogHeader>
-                      <DialogTitle>Listado Completo de Congresos</DialogTitle>
+                      <DialogTitle>{t('research.congresses_title')}</DialogTitle>
                     </DialogHeader>
                     <ScrollArea className="h-[60vh] pr-4">
                       <div className="space-y-4">
                         {participacionCongresos.map((c, index) => (
-                          <div key={index} className="p-4 border-b border-border/50">
-                            <h4 className="font-medium text-sm">{c.trabajo || "Sin título"}</h4>
+                          <div key={index} className="p-4 border-b border-border/50 last:border-0 hover:bg-accent/5 transition-colors">
+                            <h4 className="font-medium text-sm leading-snug">{c.trabajo || ""}</h4>
                             <p className="text-xs text-muted-foreground mt-1">{c.congreso}</p>
-                            <p className="text-[10px] text-accent mt-1">{c.ciudad} - {c.organizador}</p>
+                            <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
+                              {c.tipo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.activity_type')}:</span> {c.tipo}</p>}
+                              {c.modo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.participation_mode')}:</span> {c.modo}</p>}
+                              <p className="text-[10px] text-accent font-medium mt-1 col-span-2">
+                                {c.ciudad} {c.ambito ? `(${c.ambito})` : ""} {c.organizador ? `- ${c.organizador}` : ""}
+                              </p>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -370,6 +380,16 @@ export function PublicationsSection() {
                       </div>
                       <p className="text-sm text-muted-foreground">{e.centro}</p>
                       <p className="text-xs text-accent italic">{e.programa}</p>
+                      {e.objetivos && (
+                        <p className="text-xs mt-1">
+                          <span className="font-medium text-foreground">{t('research.stays_objectives')}:</span> {e.objetivos}
+                        </p>
+                      )}
+                      {e.tareas && (
+                        <p className="text-xs mt-1 text-muted-foreground">
+                          <span className="font-medium text-foreground">{t('research.stays_tasks')}:</span> {e.tareas}
+                        </p>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -410,12 +430,12 @@ export function PublicationsSection() {
                 {showMoreMeritos ? (
                   <>
                     <ChevronUp className="mr-2 h-4 w-4" />
-                    Ver menos
+                    {t('publications.view_less')}
                   </>
                 ) : (
                   <>
                     <ChevronDown className="mr-2 h-4 w-4" />
-                    Ver todos ({meritosInvestigacion.length})
+                    {t('publications.view_more')} ({meritosInvestigacion.length})
                   </>
                 )}
               </Button>
@@ -432,7 +452,7 @@ export function PublicationsSection() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              Ver listado completo en accedaCRIS
+              {t('hero.cv_button')}
               <ExternalLink className="h-4 w-4" />
             </a>
           </Button>

@@ -5,19 +5,22 @@ import Link from "next/link"
 import { Menu, X, BookOpen, GraduationCap, FileText, Mail, Briefcase, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-
-const navItems = [
-  { href: "#sobre-mi", label: "Sobre mí", icon: GraduationCap },
-  { href: "#investigacion", label: "Investigación", icon: BookOpen },
-  { href: "#proyectos", label: "Proyectos", icon: Award },
-  { href: "#publicaciones", label: "Publicaciones", icon: FileText },
-  { href: "#docencia", label: "Docencia", icon: Briefcase },
-  { href: "#contacto", label: "Contacto", icon: Mail },
-]
+import { useLanguage } from "@/lib/i18n/context"
+import { LanguageSelector } from "@/components/language-selector"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
+  const { t } = useLanguage()
+
+  const navItems = [
+    { href: "#sobre-mi", label: t("nav.about"), icon: GraduationCap },
+    { href: "#investigacion", label: t("nav.research"), icon: BookOpen },
+    { href: "#proyectos", label: t("nav.projects"), icon: Award },
+    { href: "#publicaciones", label: t("nav.publications"), icon: FileText },
+    { href: "#docencia", label: t("nav.teaching"), icon: Briefcase },
+    { href: "#contacto", label: t("nav.contact"), icon: Mail },
+  ]
 
   useEffect(() => {
     const observerOptions = {
@@ -94,36 +97,42 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href.slice(1)
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full",
-                    isActive 
-                      ? "text-accent bg-accent/10" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
-          </nav>
+          <div className="hidden md:flex items-center gap-4">
+            <nav className="flex items-center gap-1">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.slice(1)
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full",
+                      isActive 
+                        ? "text-accent bg-accent/10" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              })}
+            </nav>
+            <div className="w-px h-6 bg-border/50 mx-2" />
+            <LanguageSelector />
+          </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSelector />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? t("publications.view_less") : t("publications.view_more")}
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

@@ -7,8 +7,10 @@ import { Badge } from "@/components/ui/badge"
 import { Award, ChevronDown, ChevronUp } from "lucide-react"
 import { proyectosInvestigacion } from "@/lib/data"
 import { motion } from "framer-motion"
+import { useLanguage } from "@/lib/i18n/context"
 
 export function ProjectsSection() {
+  const { t } = useLanguage();
   const [showMore, setShowMore] = useState(false)
 
   const displayedProjects = showMore 
@@ -26,12 +28,11 @@ export function ProjectsSection() {
       >
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Proyectos de Investigación
+            {t('projects.title')}
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Participación en proyectos de investigación competitivos de ámbito nacional e internacional, 
-            centrados en la historia económica y fiscal.
+            {t('projects.description')}
           </p>
         </div>
 
@@ -49,11 +50,11 @@ export function ProjectsSection() {
               <CardContent>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2 text-accent font-medium">
-                    <span>{proyecto.periodo || "Varios años"}</span>
+                    <span>{proyecto.periodo || t('projects.period')}</span>
                   </div>
-                  <p><span className="text-muted-foreground">Entidad:</span> {proyecto.entidadFinanciadora}</p>
+                  <p><span className="text-muted-foreground">{t('projects.funding')}:</span> {proyecto.entidadFinanciadora}</p>
                   {proyecto.investigadorPrincipal && (
-                    <p><span className="text-muted-foreground">IP:</span> {proyecto.investigadorPrincipal}</p>
+                    <p><span className="text-muted-foreground">{t('projects.pi')}:</span> {proyecto.investigadorPrincipal}</p>
                   )}
                   {proyecto.participacion && (
                     <Badge variant="secondary" className="mt-2">
@@ -77,12 +78,12 @@ export function ProjectsSection() {
               {showMore ? (
                 <>
                   <ChevronUp className="h-4 w-4" />
-                  Ver menos proyectos
+                  {t('publications.view_less')}
                 </>
               ) : (
                 <>
                   <ChevronDown className="h-4 w-4" />
-                  Ver todos los proyectos ({proyectosInvestigacion.length})
+                  {t('publications.view_more')} ({proyectosInvestigacion.length})
                 </>
               )}
             </Button>

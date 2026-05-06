@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "about": "About",
+    "research": "Research",
+    "projects": "Projects",
+    "publications": "Publications",
+    "teaching": "Teaching",
+    "contact": "Contact",
+    "change_language": "Change language"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "roles": "Historian - Researcher - Teacher",
+    "title": "Professor of Economic History",
+    "description": "Specialized in the study of public finances and the formation of the modern state in the 18th century.",
+    "cv_button": "View full CV",
+    "contact_button": "Contact",
+    "location": "Las Palmas de Gran Canaria",
+    "degree": "PhD in History",
+    "teaching_years": "Years of teaching"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Academic Profile",
+    "p1": "Since 1993 I have developed my teaching and research work in the <strong>Department of Historical Sciences</strong> of the University of Las Palmas de Gran Canaria. My academic background includes a degree and a doctorate in History from the University of Navarra, specializing in Economic History.",
+    "p2": "I am currently part of the Research Group <strong>\"Documentation, Heritage and Atlantic History\" (DPHA)</strong> of the University Institute of Textual Analysis and Applications (IATEXT), of which I was coordinator between 2015 and 2025.",
+    "p3": "Throughout my career I have assumed various academic and management responsibilities: Secretary of the Department of Historical Sciences, member of the University Senate, coordinator of the Economic History Area, coordinator of the GIR-DPHA and the Educational Innovation Group in Economy and History (GIZEH).",
+    "highlights": {
+      "formation_title": "Education",
+      "formation": "Degree and PhD in History from the University of Navarra",
+      "teaching": "Faculty of Economics, Business and Tourism - Faculty of Geography and History",
+      "research": "Coordinator of the DPHA Group of the IATEXT Institute",
+      "specialization_title": "Specialization",
+      "specialization": "Economic History - 18th Century - Taxation"
+    },
+    "details": {
+      "name": "Name",
+      "title": "Title",
+      "area": "Area",
+      "department": "Department",
+      "institute": "Institute",
+      "university": "University",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "orcid": "ORCID"
+    },
+    "management": "Academic Management",
+    "accreditations": "Accreditations and Awards",
+    "academic_background": "Academic Background",
+    "bachelors": "BA in Philosophy and Letters",
+    "doctorate": "PhD in History",
+    "thesis": "Thesis",
+    "director": "Director",
+    "grade": "Grade",
+    "division": "Division",
+    "section_label": "Section",
+    "city": "City",
+    "program": "Program",
+    "courses": "Courses and Seminars",
+    "complementary_formation": "Complementary formation"
+  },
+  "research": {
+    "title": "Research",
+    "lines": "Research Lines",
+    "description": "My work is oriented towards the <strong>History of Spain in the 18th century</strong>, especially the world of finance and the formation of the modern State.",
+    "stats": {
+      "articles": "Articles",
+      "books": "Books",
+      "chapters": "Chapters",
+      "reviews": "Reviews",
+      "congresses": "Congresses",
+      "stays": "Stays"
+    },
+    "merits": "Research Merits",
+    "stays_title": "Research Stays",
+    "stays_objectives": "Objectives",
+    "stays_tasks": "Tasks",
+    "activity_type": "Activity Type",
+    "participation_mode": "Participation Mode",
+    "scope": "Scope",
+    "congresses_title": "Participation in Congresses"
+  },
+  "projects": {
+    "title": "Research Projects",
+    "description": "Participation in competitive national and international research projects, focused on economic and fiscal history.",
+    "pi": "Principal Investigator",
+    "funding": "Funding",
+    "period": "Period",
+    "relevant": "Relevant Projects"
+  },
+  "publications": {
+    "title": "Publications",
+    "description": "My academic production includes articles in scientific journals, books, and book chapters, as well as contributions to international congresses.",
+    "articles": "Articles",
+    "books": "Books",
+    "chapters": "Chapters",
+    "reviews": "Reviews",
+    "view_more": "View more",
+    "view_less": "View less"
+  },
+  "teaching": {
+    "title": "Teaching",
+    "experience": "Uninterrupted university teaching activity since 1993, teaching economic history subjects at various academic levels.",
+    "subjects": "Current Subjects",
+    "innovation": "Teaching Innovation",
+    "direction": "Thesis Supervision",
+    "theses": "Supervised Doctoral Theses",
+    "tfgs": "Supervised Bachelor's and Master's Theses",
+    "years": "years of experience",
+    "levels": "Levels",
+    "institutions": "Institutions",
+    "credits": "Credits",
+    "type": "Type",
+    "student": "Student",
+    "year": "Year"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch",
+    "form": {
+      "name": "Name",
+      "email": "Email address",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending..."
+    },
+    "info": "Contact information"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "links": "Useful links",
+    "developed_by": "Developed by:",
+    "funding": "Funded by:"
+  },
+  "profile": {
+    "title": "PhD in History and Professor",
+    "area": "Economic History and Institutions",
+    "department": "Department of Historical Sciences",
+    "institute": "University Institute of Textual Analysis and Applications (IATEXT)",
+    "university": "University of Las Palmas de Gran Canaria",
+    "address": "Department of Historical Sciences - IATEXT, Humanities Building, Obelisco Campus, 35003 Las Palmas de Gran Canaria",
+    "phone": "+34 928 45 82 47 - Ext. 1712",
+    "bio": "PhD in History and Professor of Economic History and Institutions. Specialized in the study of public finances and the formation of the modern state in the 18th century."
+  }
+}
