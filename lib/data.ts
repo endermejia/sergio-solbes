@@ -33,7 +33,7 @@ export const profileData: ProfileData = {
   dialnetId: "173209",
   links: {
     researchGate: "https://www.researchgate.net/profile/Sergio-Solbes-Ferri",
-    googleScholar: "https://scholar.google.com/citations?user=XXXXXX",
+    googleScholar: "https://scholar.google.com/citations?user=2pM2u94AAAAJ",
     accedaCris: "https://accedacris.ulpgc.es/cris/rp/rp01750",
     iatext: "https://iatext.ulpgc.es/it/node/151"
   },
