@@ -141,10 +141,6 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
   const handleStatClick = (tabId: string) => {
     setActiveTab(tabId);
     setSectionIntersected(true); // Manually clicking a tab counts as reaching the section
-    const element = document.getElementById('publicaciones-tabs');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
   };
 
   useEffect(() => {

@@ -17,12 +17,9 @@ export function HeroSection() {
     window.dispatchEvent(new CustomEvent('changeTab', { detail: { tab: tabId } }));
 
     // Scroll to publications section
-    const element = document.getElementById('publicaciones-tabs');
+    const element = document.getElementById('publicaciones');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      const pubSection = document.getElementById('publicaciones');
-      if (pubSection) pubSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
