@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, BookOpen, FileText, Newspaper, ChevronDown, ChevronUp, BookMarked, X, Users, Award, Loader2 } from "lucide-react"
-import { publicaciones, stats, participacionCongresos, estanciasInvestigacion, meritosInvestigacion } from "@/lib/data"
-import { getPublicationDetails } from "@/lib/actions/publications"
+import { publicaciones, stats as localStats, participacionCongresos, estanciasInvestigacion, meritosInvestigacion } from "@/lib/data"
+import { getPublicationDetails, getPublicationList } from "@/lib/actions/publications"
 import {
   Dialog,
   DialogContent,
@@ -23,67 +23,138 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/lib/i18n/context"
 import { cn } from "@/lib/utils"
+import { usePublicationCounts } from "@/lib/publications-context"
 
 import { Publicaciones } from "@/lib/types"
 
 export function PublicationsSection({ initialData }: { initialData?: Publicaciones }) {
   const { t } = useLanguage();
+  const { setCounts } = usePublicationCounts();
+  // Start with local empty data — never block render on network
   const [data, setData] = useState<Publicaciones>(initialData || publicaciones);
+  // loadingList = true means we haven't received the list yet from accedaCris
+  const [loadingList, setLoadingList] = useState(!initialData);
   const [showMoreArticles, setShowMoreArticles] = useState(false)
   const [showMoreBooks, setShowMoreBooks] = useState(false)
   const [showMoreChapters, setShowMoreChapters] = useState(false)
   const [showMoreMeritos, setShowMoreMeritos] = useState(false)
   const [activeTab, setActiveTab] = useState("articulos")
+  const [sectionIntersected, setSectionIntersected] = useState(false)
 
+  // Track which tabs have already had their details loaded
+  const detailsLoadedForTab = useRef<Set<string>>(new Set())
+  // Keep a ref to the latest data so the detail-enrichment closure sees it
+  const dataRef = useRef(data)
+  useEffect(() => { dataRef.current = data }, [data])
+
+  const sectionRef = useRef<HTMLElement>(null!)
+
+  // --- Phase 1: Fetch the list immediately on mount ---
+  const listFetchedRef = useRef(false)
   useEffect(() => {
-    if (!initialData) return;
-    
-    const fetchAllDetails = async () => {
-      const allItems = [
-        ...initialData.articulos.map(i => ({ ...i, type: 'articulo' })),
-        ...initialData.libros.map(i => ({ ...i, type: 'libro' })),
-        ...initialData.capitulos.map(i => ({ ...i, type: 'capitulo' })),
-        ...initialData.resenas.map(i => ({ ...i, type: 'resena' }))
-      ];
+    if (initialData || listFetchedRef.current) return;
+    listFetchedRef.current = true;
+
+    const fetchList = async () => {
+      const list = await getPublicationList();
+      setData(list);
+      setLoadingList(false);
+      // Broadcast live counts to the shared context → HeroSection will update
+      setCounts({
+        articulos: list.articulos.length,
+        libros: list.libros.length,
+        capitulos: list.capitulos.length,
+        resenas: list.resenas.length,
+        loading: false,
+      });
+    };
+
+    fetchList();
+  }, [initialData, setCounts]);
+
+  // --- Phase 2 trigger: observe section entering viewport ---
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          observer.disconnect();
+          setSectionIntersected(true);
+        }
+      },
+      { rootMargin: "200px" } // start loading 200px before the section appears
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  // --- Phase 2: load details only for items in the active tab when section is reached ---
+  useEffect(() => {
+    if (loadingList || !sectionIntersected) return; // list not yet available or section not reached
+    if (detailsLoadedForTab.current.has(activeTab)) return; // already done
+    // Only applies to tabs backed by accedaCris data
+    const tabsWithDetails = ['articulos', 'libros', 'capitulos', 'resenas'];
+    if (!tabsWithDetails.includes(activeTab)) return;
+
+    detailsLoadedForTab.current.add(activeTab);
+
+    const getItemsForTab = (d: Publicaciones, tab: string) => {
+      if (tab === 'articulos') return d.articulos.map(i => ({ ...i, type: 'articulo' as const }));
+      if (tab === 'libros')    return d.libros.map(i => ({ ...i, type: 'libro' as const }));
+      if (tab === 'capitulos') return d.capitulos.map(i => ({ ...i, type: 'capitulo' as const }));
+      if (tab === 'resenas')   return d.resenas.map(i => ({ ...i, type: 'resena' as const }));
+      return [];
+    };
+
+    const enrichTab = async () => {
+      const items = getItemsForTab(data, activeTab);
+      if (items.length === 0) return; // wait for data
+
+      detailsLoadedForTab.current.add(activeTab);
 
       const BATCH_SIZE = 5;
-      for (let i = 0; i < allItems.length; i += BATCH_SIZE) {
-        const batch = allItems.slice(i, i + BATCH_SIZE);
+      for (let i = 0; i < items.length; i += BATCH_SIZE) {
+        const batch = items.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (item) => {
           if (!item.handle) return;
           const details = await getPublicationDetails(item.handle);
-          if (details) {
-            setData(prev => {
-              const newData = { ...prev };
-              const updateItem = (list: any[]) => list.map(p => p.handle === item.handle ? { ...p, ...details } : p);
-              
-              if (item.type === 'articulo') newData.articulos = updateItem(newData.articulos);
-              else if (item.type === 'libro') newData.libros = updateItem(newData.libros);
-              else if (item.type === 'capitulo') newData.capitulos = updateItem(newData.capitulos);
-              else if (item.type === 'resena') newData.resenas = updateItem(newData.resenas);
-              
-              return newData;
-            });
-          }
+          setData(prev => {
+            const newData = { ...prev };
+            const updateItem = (arr: any[]) =>
+              arr.map(p => p.handle === item.handle ? { ...p, ...details, detailsLoaded: true } : p);
+            
+            if (item.type === 'articulo') newData.articulos = updateItem(newData.articulos);
+            else if (item.type === 'libro')    newData.libros    = updateItem(newData.libros);
+            else if (item.type === 'capitulo') newData.capitulos = updateItem(newData.capitulos);
+            else if (item.type === 'resena')   newData.resenas   = updateItem(newData.resenas);
+            return newData;
+          });
         }));
       }
     };
 
-    fetchAllDetails();
-  }, [initialData]);
+    enrichTab();
+  // We re-run when activeTab, loadingList, data (list part) or sectionIntersected changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab, loadingList, sectionIntersected, data.articulos.length, data.libros.length]);
 
+  // Stats: always show local (hardcoded) counts immediately; swap to live counts once loaded
   const statItems = [
-    { icon: FileText, value: data.articulos.length, label: t('publications.articles'), id: 'articulos' },
-    { icon: BookOpen, value: data.libros.length, label: t('publications.books'), id: 'libros' },
-    { icon: Newspaper, value: data.capitulos.length, label: t('publications.chapters'), id: 'capitulos' },
-    { icon: BookMarked, value: data.resenas.length, label: t('publications.reviews'), id: 'resenas' },
-    { icon: Users, value: stats.congresos, label: t('research.stats.congresses'), id: 'congresos' },
-    { icon: Award, value: stats.estancias, label: t('research.stats.stays'), id: 'estancias' },
-    { icon: BookMarked, value: meritosInvestigacion.length, label: t('research.merits'), id: 'meritos' },
+    { icon: FileText, value: loadingList ? localStats.articulos : data.articulos.length, label: t('publications.articles'), id: 'articulos', loading: loadingList },
+    { icon: BookOpen, value: loadingList ? localStats.libros : data.libros.length, label: t('publications.books'), id: 'libros', loading: loadingList },
+    { icon: Newspaper, value: loadingList ? localStats.capitulos : data.capitulos.length, label: t('publications.chapters'), id: 'capitulos', loading: loadingList },
+    { icon: BookMarked, value: loadingList ? localStats.resenas ?? 0 : data.resenas.length, label: t('publications.reviews'), id: 'resenas', loading: loadingList },
+    { icon: Users, value: localStats.congresos, label: t('research.stats.congresses'), id: 'congresos', loading: false },
+    { icon: Award, value: localStats.estancias, label: t('research.stats.stays'), id: 'estancias', loading: false },
+    { icon: BookMarked, value: meritosInvestigacion.length, label: t('research.merits'), id: 'meritos', loading: false },
   ]
   
   const handleStatClick = (tabId: string) => {
     setActiveTab(tabId);
+    setSectionIntersected(true); // Manually clicking a tab counts as reaching the section
     const element = document.getElementById('publicaciones-tabs');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -108,7 +179,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
   const displayedMeritos = showMoreMeritos ? meritosInvestigacion : meritosInvestigacion.slice(0, 6)
 
   return (
-    <section id="publicaciones" className="py-20 md:py-28 scroll-mt-20">
+    <section id="publicaciones" className="py-20 md:py-28 scroll-mt-20" ref={sectionRef}>
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -142,7 +213,11 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                 <CardContent className="pt-6">
                   <div className="flex flex-col items-center text-center gap-2">
                     <stat.icon className={cn("h-6 w-6 transition-colors", isActive ? "text-accent" : "text-muted-foreground")} />
-                    <span className={cn("text-3xl font-bold transition-colors", isActive ? "text-foreground" : "text-muted-foreground")}>{stat.value}</span>
+                    <span className={cn(
+                      "text-3xl font-bold transition-colors",
+                      isActive ? "text-foreground" : "text-muted-foreground",
+                      stat.loading ? "opacity-60 animate-pulse" : ""
+                    )}>{stat.value}</span>
                     <span className={cn("text-xs font-medium transition-colors uppercase tracking-wider", isActive ? "text-accent" : "text-muted-foreground/60")}>{stat.label}</span>
                   </div>
                 </CardContent>
@@ -163,6 +238,22 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
           
           {/* Artículos */}
           <TabsContent value="articulos">
+            {loadingList && (
+              <div className="space-y-3">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="rounded-lg border border-border/50 p-4 animate-pulse">
+                    <div className="flex gap-3">
+                      <div className="h-7 w-12 rounded bg-muted/60 shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 w-3/4 rounded bg-muted/60" />
+                        <div className="h-3 w-1/2 rounded bg-muted/40" />
+                        <div className="h-3 w-2/3 rounded bg-muted/40" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="space-y-3">
               {displayedArticles.map((pub, index) => (
                 <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
@@ -205,14 +296,14 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                               {t('publications.view_pdf')}
                             </Button>
                           </div>
-                        ) : pub.handle && !pub.pdfUrl && (
+                        ) : pub.handle && !pub.detailsLoaded && (
                           <div className="mt-3">
                             <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                              <Loader2 className="h-3 w-3 animate-spin" />
-                              {t('contact.form.sending').replace('...', '')}
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                                {t('publications.loading_details') || 'Cargando...'}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </div>
                   </CardContent>
@@ -293,14 +384,14 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                               {t('publications.view_pdf')}
                             </Button>
                           </div>
-                        ) : pub.handle && !pub.pdfUrl && (
+                        ) : pub.handle && !pub.detailsLoaded && (
                           <div className="mt-3">
                             <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                              <Loader2 className="h-3 w-3 animate-spin" />
-                              {t('contact.form.sending').replace('...', '')}
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                                {t('publications.loading_details') || 'Cargando...'}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </div>
                   </CardContent>
@@ -384,14 +475,14 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                               {t('publications.view_pdf')}
                             </Button>
                           </div>
-                        ) : pub.handle && !pub.pdfUrl && (
+                        ) : pub.handle && !pub.detailsLoaded && (
                           <div className="mt-3">
                             <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                              <Loader2 className="h-3 w-3 animate-spin" />
-                              {t('contact.form.sending').replace('...', '')}
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                                {t('publications.loading_details') || 'Cargando...'}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </div>
                   </CardContent>
@@ -461,14 +552,14 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                               {t('publications.view_pdf')}
                             </Button>
                           </div>
-                        ) : pub.handle && !pub.pdfUrl && (
+                        ) : pub.handle && !pub.detailsLoaded && (
                           <div className="mt-3">
                             <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                              <Loader2 className="h-3 w-3 animate-spin" />
-                              {t('contact.form.sending').replace('...', '')}
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                                {t('publications.loading_details') || 'Cargando...'}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </div>
                   </CardContent>

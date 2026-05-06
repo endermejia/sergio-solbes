@@ -103,7 +103,8 @@
     "volume": "Vol.",
     "in": "In",
     "isbn": "ISBN",
-    "publisher": "Publisher"
+    "publisher": "Publisher",
+    "loading_details": "Loading details..."
   },
   "teaching": {
     "title": "Teaching",

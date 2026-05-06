@@ -103,7 +103,8 @@
     "volume": "Bd.",
     "in": "In",
     "isbn": "ISBN",
-    "publisher": "Verlag"
+    "publisher": "Verlag",
+    "loading_details": "Details laden..."
   },
   "teaching": {
     "title": "Lehre",

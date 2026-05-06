@@ -122,6 +122,7 @@ export interface BasePublicacion {
   pdfUrl?: string;
   isbn?: string;
   clasificacion?: string[];
+  detailsLoaded?: boolean;
 }
 
 export interface PublicacionArticulo extends BasePublicacion {

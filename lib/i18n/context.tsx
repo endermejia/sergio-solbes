@@ -27,14 +27,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setMounted(true)
     const savedLang = localStorage.getItem("language") as Language
     if (savedLang && ["es", "en", "fr", "de"].includes(savedLang)) {
-      if (savedLang !== language) setLanguage(savedLang)
+      setLanguage(savedLang)
     } else {
       const browserLang = navigator.language.split("-")[0] as Language
       if (["es", "en", "fr", "de"].includes(browserLang)) {
-        if (browserLang !== language) setLanguage(browserLang)
+        setLanguage(browserLang)
       }
     }
-  }, [language])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // Only run once on mount to read stored preference
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang)

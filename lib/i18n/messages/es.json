@@ -103,7 +103,8 @@
     "volume": "Vol.",
     "in": "En",
     "isbn": "ISBN",
-    "publisher": "Editorial"
+    "publisher": "Editorial",
+    "loading_details": "Cargando detalles..."
   },
   "teaching": {
     "title": "Docencia",

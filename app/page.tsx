@@ -9,12 +9,9 @@ import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { profileData } from "@/lib/data"
 import esMessages from "@/lib/i18n/messages/es.json"
-
-import { fetchPublicacionesList } from "@/lib/scrapers/accedacris"
+import { PublicationsProvider } from "@/lib/publications-context"
 
 export default async function HomePage() {
-  const publicaciones = await fetchPublicacionesList();
-  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -40,17 +37,19 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header />
-      <main className="flex-1">
-        <HeroSection />
-        <AboutSection />
-        <ResearchSection />
-        <ProjectsSection />
-        <PublicationsSection initialData={publicaciones} />
-        <TeachingSection />
-        <ContactSection />
-      </main>
-      <Footer />
+      <PublicationsProvider>
+        <Header />
+        <main className="flex-1">
+          <HeroSection />
+          <AboutSection />
+          <ResearchSection />
+          <ProjectsSection />
+          <PublicationsSection />
+          <TeachingSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </PublicationsProvider>
     </div>
   )
 }
