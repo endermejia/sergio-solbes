@@ -97,7 +97,13 @@
     "chapters": "Kapitel",
     "reviews": "Rezensionen",
     "view_more": "Mehr sehen",
-    "view_less": "Weniger sehen"
+    "view_less": "Weniger sehen",
+    "view_pdf": "PDF ansehen",
+    "pages": "S.",
+    "volume": "Bd.",
+    "in": "In",
+    "isbn": "ISBN",
+    "publisher": "Verlag"
   },
   "teaching": {
     "title": "Lehre",
@@ -113,7 +119,8 @@
     "credits": "Credits",
     "type": "Typ",
     "student": "Student",
-    "year": "Jahr"
+    "year": "Jahr",
+    "teacher_training": "Lehrerausbildung"
   },
   "contact": {
     "title": "Kontakt",

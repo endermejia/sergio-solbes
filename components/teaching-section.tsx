@@ -263,7 +263,7 @@ export function TeachingSection() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <GraduationCap className="h-5 w-5 text-accent" />
-                {t('research.stats.congresses')}
+                {t('teaching.teacher_training')}
               </CardTitle>
             </CardHeader>
             <CardContent>

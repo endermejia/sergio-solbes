@@ -97,7 +97,13 @@
     "chapters": "Capítulos",
     "reviews": "Reseñas",
     "view_more": "Ver más",
-    "view_less": "Ver menos"
+    "view_less": "Ver menos",
+    "view_pdf": "Ver PDF",
+    "pages": "pp.",
+    "volume": "Vol.",
+    "in": "En",
+    "isbn": "ISBN",
+    "publisher": "Editorial"
   },
   "teaching": {
     "title": "Docencia",
@@ -113,7 +119,8 @@
     "credits": "Créditos",
     "type": "Tipo",
     "student": "Estudiante",
-    "year": "Año"
+    "year": "Año",
+    "teacher_training": "Formación Docente"
   },
   "contact": {
     "title": "Contacto",

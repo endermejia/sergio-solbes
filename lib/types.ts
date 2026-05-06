@@ -114,11 +114,18 @@ export interface LineaInvestigacion {
   icon: string;
 }
 
-export interface PublicacionArticulo {
+export interface BasePublicacion {
   autores: string;
   titulo: string;
-  revista: string;
   año: number;
+  handle?: string;
+  pdfUrl?: string;
+  isbn?: string;
+  clasificacion?: string[];
+}
+
+export interface PublicacionArticulo extends BasePublicacion {
+  revista: string;
   tipo?: string;
   volumen?: string;
   paginas?: string;
@@ -126,25 +133,19 @@ export interface PublicacionArticulo {
   indices?: string;
 }
 
-export interface PublicacionLibro {
-  autores: string;
-  titulo: string;
+export interface PublicacionLibro extends BasePublicacion {
   editorial: string;
   ciudad?: string;
-  año: number;
   isbn?: string;
   tipo: string;
 }
 
-export interface PublicacionCapitulo {
-  autores: string;
-  titulo: string;
+export interface PublicacionCapitulo extends BasePublicacion {
   libro: string;
   editores?: string;
   paginas?: string;
   editorial: string;
   ciudad?: string;
-  año: number;
   isbn?: string;
   tipo?: string;
 }

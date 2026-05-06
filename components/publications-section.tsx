@@ -4,8 +4,9 @@ import { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, BookOpen, FileText, Newspaper, ChevronDown, ChevronUp, BookMarked, X, Users, Award } from "lucide-react"
+import { ExternalLink, BookOpen, FileText, Newspaper, ChevronDown, ChevronUp, BookMarked, X, Users, Award, Loader2 } from "lucide-react"
 import { publicaciones, stats, participacionCongresos, estanciasInvestigacion, meritosInvestigacion } from "@/lib/data"
+import { getPublicationDetails } from "@/lib/actions/publications"
 import {
   Dialog,
   DialogContent,
@@ -27,13 +28,49 @@ import { Publicaciones } from "@/lib/types"
 
 export function PublicationsSection({ initialData }: { initialData?: Publicaciones }) {
   const { t } = useLanguage();
+  const [data, setData] = useState<Publicaciones>(initialData || publicaciones);
   const [showMoreArticles, setShowMoreArticles] = useState(false)
   const [showMoreBooks, setShowMoreBooks] = useState(false)
   const [showMoreChapters, setShowMoreChapters] = useState(false)
   const [showMoreMeritos, setShowMoreMeritos] = useState(false)
   const [activeTab, setActiveTab] = useState("articulos")
 
-  const data = initialData || publicaciones;
+  useEffect(() => {
+    if (!initialData) return;
+    
+    const fetchAllDetails = async () => {
+      const allItems = [
+        ...initialData.articulos.map(i => ({ ...i, type: 'articulo' })),
+        ...initialData.libros.map(i => ({ ...i, type: 'libro' })),
+        ...initialData.capitulos.map(i => ({ ...i, type: 'capitulo' })),
+        ...initialData.resenas.map(i => ({ ...i, type: 'resena' }))
+      ];
+
+      const BATCH_SIZE = 5;
+      for (let i = 0; i < allItems.length; i += BATCH_SIZE) {
+        const batch = allItems.slice(i, i + BATCH_SIZE);
+        await Promise.all(batch.map(async (item) => {
+          if (!item.handle) return;
+          const details = await getPublicationDetails(item.handle);
+          if (details) {
+            setData(prev => {
+              const newData = { ...prev };
+              const updateItem = (list: any[]) => list.map(p => p.handle === item.handle ? { ...p, ...details } : p);
+              
+              if (item.type === 'articulo') newData.articulos = updateItem(newData.articulos);
+              else if (item.type === 'libro') newData.libros = updateItem(newData.libros);
+              else if (item.type === 'capitulo') newData.capitulos = updateItem(newData.capitulos);
+              else if (item.type === 'resena') newData.resenas = updateItem(newData.resenas);
+              
+              return newData;
+            });
+          }
+        }));
+      }
+    };
+
+    fetchAllDetails();
+  }, [initialData]);
 
   const statItems = [
     { icon: FileText, value: data.articulos.length, label: t('publications.articles'), id: 'articulos' },
@@ -142,12 +179,39 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                           {pub.autores}
                         </p>
                         <p className="text-xs text-muted-foreground italic">
-                          {pub.revista}{pub.volumen ? `, ${pub.volumen}` : ""}{pub.paginas ? `, pp. ${pub.paginas}` : ""}
+                          {pub.revista}{pub.volumen ? `, ${t('publications.volume')} ${pub.volumen}` : ""}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
                         </p>
                         {pub.indices && (
                           <Badge variant="secondary" className="mt-2 text-xs font-normal whitespace-normal text-left">
                             {pub.indices}
                           </Badge>
+                        )}
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {pub.clasificacion?.map((c, i) => (
+                            <Badge key={i} variant="outline" className="text-xs font-normal">
+                              {c}
+                            </Badge>
+                          ))}
+                        </div>
+                        {pub.pdfUrl ? (
+                          <div className="mt-3">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                              onClick={() => window.open(pub.pdfUrl, "_blank")}
+                            >
+                              <ExternalLink className="h-3.5 w-3.5" />
+                              {t('publications.view_pdf')}
+                            </Button>
+                          </div>
+                        ) : pub.handle && !pub.pdfUrl && (
+                          <div className="mt-3">
+                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                              {t('contact.form.sending').replace('...', '')}
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -201,12 +265,42 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                         </p>
                         {pub.isbn && (
                           <p className="text-xs text-muted-foreground">
-                            ISBN: {pub.isbn}
+                            {t('publications.isbn')}: {pub.isbn}
                           </p>
                         )}
-                        <Badge variant="outline" className="mt-2 text-xs font-normal">
-                          {pub.tipo}
-                        </Badge>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {pub.clasificacion && pub.clasificacion.length > 0 ? (
+                            pub.clasificacion.map((c, i) => (
+                              <Badge key={i} variant="outline" className="text-xs font-normal">
+                                {c}
+                              </Badge>
+                            ))
+                          ) : (
+                            <Badge variant="outline" className="text-xs font-normal">
+                              {pub.tipo}
+                            </Badge>
+                          )}
+                        </div>
+                        {pub.pdfUrl ? (
+                          <div className="mt-3">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                              onClick={() => window.open(pub.pdfUrl, "_blank")}
+                            >
+                              <ExternalLink className="h-3.5 w-3.5" />
+                              {t('publications.view_pdf')}
+                            </Button>
+                          </div>
+                        ) : pub.handle && !pub.pdfUrl && (
+                          <div className="mt-3">
+                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                              {t('contact.form.sending').replace('...', '')}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </CardContent>
@@ -255,11 +349,49 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                           {pub.autores}
                         </p>
                         <p className="text-xs text-muted-foreground italic">
-                          En: {pub.libro}
+                          {t('publications.in')}: {pub.libro}
                         </p>
                         <p className="text-xs text-muted-foreground">
-                          {pub.editorial}{pub.paginas ? `, pp. ${pub.paginas}` : ""}
+                          {pub.editorial}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
                         </p>
+                        {pub.isbn && (
+                          <p className="text-xs text-muted-foreground">
+                            {t('publications.isbn')}: {pub.isbn}
+                          </p>
+                        )}
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {pub.clasificacion && pub.clasificacion.length > 0 ? (
+                            pub.clasificacion.map((c, i) => (
+                              <Badge key={i} variant="outline" className="text-xs font-normal">
+                                {c}
+                              </Badge>
+                            ))
+                          ) : (
+                            <Badge variant="outline" className="text-xs font-normal">
+                              {pub.tipo || t('publications.chapters')}
+                            </Badge>
+                          )}
+                        </div>
+                        {pub.pdfUrl ? (
+                          <div className="mt-3">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                              onClick={() => window.open(pub.pdfUrl, "_blank")}
+                            >
+                              <ExternalLink className="h-3.5 w-3.5" />
+                              {t('publications.view_pdf')}
+                            </Button>
+                          </div>
+                        ) : pub.handle && !pub.pdfUrl && (
+                          <div className="mt-3">
+                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                              {t('contact.form.sending').replace('...', '')}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </CardContent>
@@ -304,9 +436,39 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
                         <h4 className="font-medium text-foreground leading-snug text-sm">
                           {pub.titulo}
                         </h4>
-                        <p className="text-xs text-muted-foreground mt-1 italic">
-                          {pub.revista}, {pub.volumen}{pub.paginas ? `, pp. ${pub.paginas}` : ""}
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {pub.autores}
                         </p>
+                        <p className="text-xs text-muted-foreground italic">
+                          {pub.revista}{pub.volumen ? `, ${t('publications.volume')} ${pub.volumen}` : ""}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
+                        </p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {pub.clasificacion?.map((c, i) => (
+                            <Badge key={i} variant="outline" className="text-xs font-normal">
+                              {c}
+                            </Badge>
+                          ))}
+                        </div>
+                        {pub.pdfUrl ? (
+                          <div className="mt-3">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                              onClick={() => window.open(pub.pdfUrl, "_blank")}
+                            >
+                              <ExternalLink className="h-3.5 w-3.5" />
+                              {t('publications.view_pdf')}
+                            </Button>
+                          </div>
+                        ) : pub.handle && !pub.pdfUrl && (
+                          <div className="mt-3">
+                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                              {t('contact.form.sending').replace('...', '')}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </CardContent>

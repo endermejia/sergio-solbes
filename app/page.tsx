@@ -10,10 +10,10 @@ import { Footer } from "@/components/footer"
 import { profileData } from "@/lib/data"
 import esMessages from "@/lib/i18n/messages/es.json"
 
-import { fetchPublicaciones } from "@/lib/scrapers/accedacris"
+import { fetchPublicacionesList } from "@/lib/scrapers/accedacris"
 
 export default async function HomePage() {
-  const publicaciones = await fetchPublicaciones();
+  const publicaciones = await fetchPublicacionesList();
   
   const jsonLd = {
     "@context": "https://schema.org",
