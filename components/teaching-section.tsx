@@ -39,7 +39,7 @@ export function TeachingSection() {
   const displayedForm = showMoreForm ? docencia.formacionDocente : docencia.formacionDocente.filter(f => f.relevante !== false).slice(0, 4)
 
   return (
-    <section className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
+    <section id="docencia" className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
