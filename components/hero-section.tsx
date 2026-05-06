@@ -7,6 +7,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/lib/i18n/context"
 import { usePublicationCounts } from "@/lib/publications-context"
+import { AnimatedCounter } from "@/components/ui/counter"
 export function HeroSection() {
   const { t } = useLanguage();
   const { counts } = usePublicationCounts();
@@ -122,8 +123,8 @@ export function HeroSection() {
             onClick={() => handleTabClick('articulos')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
           >
-            <p className={`font-serif text-3xl font-bold text-foreground transition-all${counts.loading ? ' opacity-60 animate-pulse' : ''}`}>
-              {counts.articulos}
+            <p className="font-serif text-3xl font-bold text-foreground transition-all">
+              <AnimatedCounter value={counts.articulos} />
             </p>
             <p className="mt-1 text-sm text-muted-foreground">{t('research.stats.articles')}</p>
           </div>
@@ -131,8 +132,8 @@ export function HeroSection() {
             onClick={() => handleTabClick('libros')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
           >
-            <p className={`font-serif text-3xl font-bold text-foreground transition-all${counts.loading ? ' opacity-60 animate-pulse' : ''}`}>
-              {counts.libros}
+            <p className="font-serif text-3xl font-bold text-foreground transition-all">
+              <AnimatedCounter value={counts.libros} />
             </p>
             <p className="mt-1 text-sm text-muted-foreground">{t('research.stats.books')}</p>
           </div>
@@ -140,8 +141,8 @@ export function HeroSection() {
             onClick={() => handleTabClick('capitulos')}
             className="bg-card/80 rounded-xl border border-border/50 p-6 text-center cursor-pointer hover:bg-card/90 hover:border-accent/50 transition-colors"
           >
-            <p className={`font-serif text-3xl font-bold text-foreground transition-all${counts.loading ? ' opacity-60 animate-pulse' : ''}`}>
-              {counts.capitulos}
+            <p className="font-serif text-3xl font-bold text-foreground transition-all">
+              <AnimatedCounter value={counts.capitulos} />
             </p>
             <p className="mt-1 text-sm text-muted-foreground">{t('research.stats.chapters')}</p>
           </div>
