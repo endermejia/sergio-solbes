@@ -39,7 +39,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
   const [showMoreChapters, setShowMoreChapters] = useState(false)
   const [showMoreMeritos, setShowMoreMeritos] = useState(false)
   const [activeTab, setActiveTab] = useState("articulos")
-  const [sectionIntersected, setSectionIntersected] = useState(false)
+  const [sectionIntersected, setSectionIntersected] = useState(true)
 
   // Track which tabs have already had their details loaded
   const detailsLoadedForTab = useRef<Set<string>>(new Set())
@@ -75,24 +75,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
     return () => clearTimeout(timer);
   }, [initialData, setCounts]);
 
-  // --- Phase 2 trigger: observe section entering viewport ---
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          observer.disconnect();
-          setSectionIntersected(true);
-        }
-      },
-      { rootMargin: "200px" } // start loading 200px before the section appears
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
 
   // --- Phase 2: load details only for items in the active tab when section is reached ---
   useEffect(() => {
@@ -182,7 +165,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
   const displayedMeritos = showMoreMeritos ? meritosInvestigacion : meritosInvestigacion.slice(0, 6)
 
   return (
-    <section className="py-20 md:py-28 scroll-mt-20" ref={sectionRef}>
+    <section className="py-20 md:py-28 scroll-mt-20">
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

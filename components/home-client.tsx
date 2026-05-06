@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from 'next/dynamic'
-import { InViewRender } from "@/components/performance/in-view-render"
+
 
 const AboutSection = dynamic(() => import("@/components/about-section").then(mod => mod.AboutSection))
 const ResearchSection = dynamic(() => import("@/components/research-section").then(mod => mod.ResearchSection), { ssr: false })
@@ -17,21 +17,10 @@ export function HomeClient() {
       <main className="flex-1">
         <AboutSection />
         
-        <InViewRender id="investigacion" fallbackHeight="600px">
-          <ResearchSection />
-        </InViewRender>
-
-        <InViewRender id="proyectos" fallbackHeight="600px">
-          <ProjectsSection />
-        </InViewRender>
-
-        <InViewRender id="publicaciones" fallbackHeight="800px">
-          <PublicationsWrapper />
-        </InViewRender>
-
-        <InViewRender id="docencia" fallbackHeight="600px">
-          <TeachingSection />
-        </InViewRender>
+        <ResearchSection />
+        <ProjectsSection />
+        <PublicationsWrapper />
+        <TeachingSection />
 
         <ContactSection />
       </main>
