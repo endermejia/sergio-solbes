@@ -27,6 +27,42 @@ import { usePublicationCounts } from "@/lib/publications-context"
 
 import { Publicaciones } from "@/lib/types"
 
+function LazyLoadWrapper({ 
+  handle, 
+  detailsLoaded, 
+  onVisible, 
+  children 
+}: { 
+  handle?: string; 
+  detailsLoaded?: boolean; 
+  onVisible: () => void; 
+  children: React.ReactNode 
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (detailsLoaded || !handle) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          onVisible();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "150px" } // trigger 150px before entering viewport
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [handle, detailsLoaded, onVisible]);
+
+  return <div ref={ref}>{children}</div>;
+}
+
 export function PublicationsSection({ initialData }: { initialData?: Publicaciones }) {
   const { t } = useLanguage();
   const { setCounts } = usePublicationCounts();
@@ -77,55 +113,32 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
 
 
 
-  // --- Phase 2: load details only for items in the active tab when section is reached ---
-  useEffect(() => {
-    if (loadingList || !sectionIntersected) return; // list not yet available or section not reached
-    if (detailsLoadedForTab.current.has(activeTab)) return; // already done
-    // Only applies to tabs backed by accedaCris data
-    const tabsWithDetails = ['articulos', 'libros', 'capitulos', 'resenas'];
-    if (!tabsWithDetails.includes(activeTab)) return;
+  const loadingHandles = useRef<Set<string>>(new Set())
 
-    detailsLoadedForTab.current.add(activeTab);
+  const loadDetailsForItem = async (handle: string, type: 'articulo' | 'libro' | 'capitulo' | 'resena') => {
+    if (!handle || loadingHandles.current.has(handle)) return;
 
-    const getItemsForTab = (d: Publicaciones, tab: string) => {
-      if (tab === 'articulos') return d.articulos.map(i => ({ ...i, type: 'articulo' as const }));
-      if (tab === 'libros')    return d.libros.map(i => ({ ...i, type: 'libro' as const }));
-      if (tab === 'capitulos') return d.capitulos.map(i => ({ ...i, type: 'capitulo' as const }));
-      if (tab === 'resenas')   return d.resenas.map(i => ({ ...i, type: 'resena' as const }));
-      return [];
-    };
+    loadingHandles.current.add(handle);
 
-    const enrichTab = async () => {
-      const items = getItemsForTab(data, activeTab);
-      if (items.length === 0) return; // wait for data
-
-      detailsLoadedForTab.current.add(activeTab);
-
-      const BATCH_SIZE = 5;
-      for (let i = 0; i < items.length; i += BATCH_SIZE) {
-        const batch = items.slice(i, i + BATCH_SIZE);
-        await Promise.all(batch.map(async (item) => {
-          if (!item.handle) return;
-          const details = await getPublicationDetails(item.handle);
-          setData(prev => {
-            const newData = { ...prev };
-            const updateItem = (arr: any[]) =>
-              arr.map(p => p.handle === item.handle ? { ...p, ...details, detailsLoaded: true } : p);
-            
-            if (item.type === 'articulo') newData.articulos = updateItem(newData.articulos);
-            else if (item.type === 'libro')    newData.libros    = updateItem(newData.libros);
-            else if (item.type === 'capitulo') newData.capitulos = updateItem(newData.capitulos);
-            else if (item.type === 'resena')   newData.resenas   = updateItem(newData.resenas);
-            return newData;
-          });
-        }));
-      }
-    };
-
-    enrichTab();
-  // We re-run when activeTab, loadingList, data (list part) or sectionIntersected changes
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, loadingList, sectionIntersected, data.articulos.length, data.libros.length]);
+    try {
+      const details = await getPublicationDetails(handle);
+      setData(prev => {
+        const newData = { ...prev };
+        const updateItem = (arr: any[]) =>
+          arr.map(p => p.handle === handle ? { ...p, ...details, detailsLoaded: true } : p);
+        
+        if (type === 'articulo') newData.articulos = updateItem(newData.articulos);
+        else if (type === 'libro')    newData.libros    = updateItem(newData.libros);
+        else if (type === 'capitulo') newData.capitulos = updateItem(newData.capitulos);
+        else if (type === 'resena')   newData.resenas   = updateItem(newData.resenas);
+        return newData;
+      });
+    } catch (e) {
+      console.error("Error loading publication details:", e);
+    } finally {
+      loadingHandles.current.delete(handle);
+    }
+  };
 
   // Stats: always show local (hardcoded) counts immediately; swap to live counts once loaded
   const statItems = [
@@ -238,58 +251,65 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
             )}
             <div className="space-y-3">
               {displayedArticles.map((pub, index) => (
-                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
-                  <CardContent className="py-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
-                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
-                        {pub.año}
-                      </span>
-                      <div className="flex-1">
-                        <h4 className="font-medium text-foreground leading-snug text-sm">
-                          {pub.titulo}
-                        </h4>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {pub.autores}
-                        </p>
-                        <p className="text-xs text-muted-foreground italic">
-                          {pub.revista}{pub.volumen ? `, ${t('publications.volume')} ${pub.volumen}` : ""}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
-                        </p>
-                        {pub.indices && (
-                          <Badge variant="secondary" className="mt-2 text-xs font-normal whitespace-normal text-left">
-                            {pub.indices}
-                          </Badge>
-                        )}
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {pub.clasificacion?.map((c, i) => (
-                            <Badge key={i} variant="outline" className="text-xs font-normal">
-                              {c}
+                <LazyLoadWrapper
+                  key={index}
+                  handle={pub.handle}
+                  detailsLoaded={pub.detailsLoaded}
+                  onVisible={() => pub.handle && loadDetailsForItem(pub.handle, 'articulo')}
+                >
+                  <Card className="border-border/50 hover:shadow-sm transition-shadow">
+                    <CardContent className="py-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                        <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                          {pub.año}
+                        </span>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-foreground leading-snug text-sm">
+                            {pub.titulo}
+                          </h4>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {pub.autores}
+                          </p>
+                          <p className="text-xs text-muted-foreground italic">
+                            {pub.revista}{pub.volumen ? `, ${t('publications.volume')} ${pub.volumen}` : ""}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
+                          </p>
+                          {pub.indices && (
+                            <Badge variant="secondary" className="mt-2 text-xs font-normal whitespace-normal text-left">
+                              {pub.indices}
                             </Badge>
-                          ))}
-                        </div>
-                        {pub.pdfUrl ? (
-                          <div className="mt-3">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
-                              onClick={() => window.open(pub.pdfUrl, "_blank")}
-                            >
-                              <ExternalLink className="h-3.5 w-3.5" />
-                              {t('publications.view_pdf')}
-                            </Button>
-                          </div>
-                        ) : pub.handle && !pub.detailsLoaded && (
-                          <div className="mt-3">
-                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                                {t('publications.loading_details') || 'Cargando...'}
-                              </div>
-                            </div>
                           )}
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {pub.clasificacion?.map((c, i) => (
+                              <Badge key={i} variant="outline" className="text-xs font-normal">
+                                {c}
+                              </Badge>
+                            ))}
+                          </div>
+                          {pub.pdfUrl ? (
+                            <div className="mt-3">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                                onClick={() => window.open(pub.pdfUrl, "_blank")}
+                              >
+                                <ExternalLink className="h-3.5 w-3.5" />
+                                {t('publications.view_pdf')}
+                              </Button>
+                            </div>
+                          ) : pub.handle && !pub.detailsLoaded && (
+                            <div className="mt-3">
+                              <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                                  <Loader2 className="h-3 w-3 animate-spin" />
+                                  {t('publications.loading_details') || 'Cargando...'}
+                                </div>
+                              </div>
+                            )}
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </LazyLoadWrapper>
               ))}
             </div>
             
@@ -320,64 +340,71 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
           <TabsContent value="libros">
             <div className="space-y-3">
               {displayedBooks.map((pub, index) => (
-                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
-                  <CardContent className="py-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
-                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
-                        {pub.año}
-                      </span>
-                      <div className="flex-1">
-                        <h4 className="font-medium text-foreground leading-snug text-sm">
-                          {pub.titulo}
-                        </h4>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {pub.autores}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {pub.editorial}{pub.ciudad ? `, ${pub.ciudad}` : ""}
-                        </p>
-                        {pub.isbn && (
-                          <p className="text-xs text-muted-foreground">
-                            {t('publications.isbn')}: {pub.isbn}
+                <LazyLoadWrapper
+                  key={index}
+                  handle={pub.handle}
+                  detailsLoaded={pub.detailsLoaded}
+                  onVisible={() => pub.handle && loadDetailsForItem(pub.handle, 'libro')}
+                >
+                  <Card className="border-border/50 hover:shadow-sm transition-shadow">
+                    <CardContent className="py-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                        <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                          {pub.año}
+                        </span>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-foreground leading-snug text-sm">
+                            {pub.titulo}
+                          </h4>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {pub.autores}
                           </p>
-                        )}
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {pub.clasificacion && pub.clasificacion.length > 0 ? (
-                            pub.clasificacion.map((c, i) => (
-                              <Badge key={i} variant="outline" className="text-xs font-normal">
-                                {c}
+                          <p className="text-xs text-muted-foreground">
+                            {pub.editorial}{pub.ciudad ? `, ${pub.ciudad}` : ""}
+                          </p>
+                          {pub.isbn && (
+                            <p className="text-xs text-muted-foreground">
+                              {t('publications.isbn')}: {pub.isbn}
+                            </p>
+                          )}
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {pub.clasificacion && pub.clasificacion.length > 0 ? (
+                              pub.clasificacion.map((c, i) => (
+                                <Badge key={i} variant="outline" className="text-xs font-normal">
+                                  {c}
+                                </Badge>
+                              ))
+                            ) : (
+                              <Badge variant="outline" className="text-xs font-normal">
+                                {pub.tipo}
                               </Badge>
-                            ))
-                          ) : (
-                            <Badge variant="outline" className="text-xs font-normal">
-                              {pub.tipo}
-                            </Badge>
-                          )}
-                        </div>
-                        {pub.pdfUrl ? (
-                          <div className="mt-3">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
-                              onClick={() => window.open(pub.pdfUrl, "_blank")}
-                            >
-                              <ExternalLink className="h-3.5 w-3.5" />
-                              {t('publications.view_pdf')}
-                            </Button>
+                            )}
                           </div>
-                        ) : pub.handle && !pub.detailsLoaded && (
-                          <div className="mt-3">
-                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                                {t('publications.loading_details') || 'Cargando...'}
-                              </div>
+                          {pub.pdfUrl ? (
+                            <div className="mt-3">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                                onClick={() => window.open(pub.pdfUrl, "_blank")}
+                              >
+                                <ExternalLink className="h-3.5 w-3.5" />
+                                {t('publications.view_pdf')}
+                              </Button>
                             </div>
-                          )}
+                          ) : pub.handle && !pub.detailsLoaded && (
+                            <div className="mt-3">
+                              <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                                  <Loader2 className="h-3 w-3 animate-spin" />
+                                  {t('publications.loading_details') || 'Cargando...'}
+                                </div>
+                              </div>
+                            )}
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </LazyLoadWrapper>
               ))}
             </div>
             
@@ -408,67 +435,74 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
           <TabsContent value="capitulos">
             <div className="space-y-3">
               {displayedChapters.map((pub, index) => (
-                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
-                  <CardContent className="py-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
-                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
-                        {pub.año}
-                      </span>
-                      <div className="flex-1">
-                        <h4 className="font-medium text-foreground leading-snug text-sm">
-                          {pub.titulo}
-                        </h4>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {pub.autores}
-                        </p>
-                        <p className="text-xs text-muted-foreground italic">
-                          {t('publications.in')}: {pub.libro}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {pub.editorial}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
-                        </p>
-                        {pub.isbn && (
-                          <p className="text-xs text-muted-foreground">
-                            {t('publications.isbn')}: {pub.isbn}
+                <LazyLoadWrapper
+                  key={index}
+                  handle={pub.handle}
+                  detailsLoaded={pub.detailsLoaded}
+                  onVisible={() => pub.handle && loadDetailsForItem(pub.handle, 'capitulo')}
+                >
+                  <Card className="border-border/50 hover:shadow-sm transition-shadow">
+                    <CardContent className="py-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                        <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                          {pub.año}
+                        </span>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-foreground leading-snug text-sm">
+                            {pub.titulo}
+                          </h4>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {pub.autores}
                           </p>
-                        )}
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {pub.clasificacion && pub.clasificacion.length > 0 ? (
-                            pub.clasificacion.map((c, i) => (
-                              <Badge key={i} variant="outline" className="text-xs font-normal">
-                                {c}
+                          <p className="text-xs text-muted-foreground italic">
+                            {t('publications.in')}: {pub.libro}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {pub.editorial}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
+                          </p>
+                          {pub.isbn && (
+                            <p className="text-xs text-muted-foreground">
+                              {t('publications.isbn')}: {pub.isbn}
+                            </p>
+                          )}
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {pub.clasificacion && pub.clasificacion.length > 0 ? (
+                              pub.clasificacion.map((c, i) => (
+                                <Badge key={i} variant="outline" className="text-xs font-normal">
+                                  {c}
+                                </Badge>
+                              ))
+                            ) : (
+                              <Badge variant="outline" className="text-xs font-normal">
+                                {pub.tipo || t('publications.chapters')}
                               </Badge>
-                            ))
-                          ) : (
-                            <Badge variant="outline" className="text-xs font-normal">
-                              {pub.tipo || t('publications.chapters')}
-                            </Badge>
-                          )}
-                        </div>
-                        {pub.pdfUrl ? (
-                          <div className="mt-3">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
-                              onClick={() => window.open(pub.pdfUrl, "_blank")}
-                            >
-                              <ExternalLink className="h-3.5 w-3.5" />
-                              {t('publications.view_pdf')}
-                            </Button>
+                            )}
                           </div>
-                        ) : pub.handle && !pub.detailsLoaded && (
-                          <div className="mt-3">
-                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                                {t('publications.loading_details') || 'Cargando...'}
-                              </div>
+                          {pub.pdfUrl ? (
+                            <div className="mt-3">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                                onClick={() => window.open(pub.pdfUrl, "_blank")}
+                              >
+                                <ExternalLink className="h-3.5 w-3.5" />
+                                {t('publications.view_pdf')}
+                              </Button>
                             </div>
-                          )}
+                          ) : pub.handle && !pub.detailsLoaded && (
+                            <div className="mt-3">
+                              <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                                  <Loader2 className="h-3 w-3 animate-spin" />
+                                  {t('publications.loading_details') || 'Cargando...'}
+                                </div>
+                              </div>
+                            )}
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </LazyLoadWrapper>
               ))}
             </div>
             
@@ -499,53 +533,60 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
           <TabsContent value="resenas">
             <div className="space-y-3">
               {data.resenas.map((pub, index) => (
-                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
-                  <CardContent className="py-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-3">
-                      <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
-                        {pub.año}
-                      </span>
-                      <div className="flex-1">
-                        <h4 className="font-medium text-foreground leading-snug text-sm">
-                          {pub.titulo}
-                        </h4>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {pub.autores}
-                        </p>
-                        <p className="text-xs text-muted-foreground italic">
-                          {pub.revista}{pub.volumen ? `, ${t('publications.volume')} ${pub.volumen}` : ""}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
-                        </p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {pub.clasificacion?.map((c, i) => (
-                            <Badge key={i} variant="outline" className="text-xs font-normal">
-                              {c}
-                            </Badge>
-                          ))}
-                        </div>
-                        {pub.pdfUrl ? (
-                          <div className="mt-3">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
-                              onClick={() => window.open(pub.pdfUrl, "_blank")}
-                            >
-                              <ExternalLink className="h-3.5 w-3.5" />
-                              {t('publications.view_pdf')}
-                            </Button>
+                <LazyLoadWrapper
+                  key={index}
+                  handle={pub.handle}
+                  detailsLoaded={pub.detailsLoaded}
+                  onVisible={() => pub.handle && loadDetailsForItem(pub.handle, 'resena')}
+                >
+                  <Card className="border-border/50 hover:shadow-sm transition-shadow">
+                    <CardContent className="py-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                        <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                          {pub.año}
+                        </span>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-foreground leading-snug text-sm">
+                            {pub.titulo}
+                          </h4>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {pub.autores}
+                          </p>
+                          <p className="text-xs text-muted-foreground italic">
+                            {pub.revista}{pub.volumen ? `, ${t('publications.volume')} ${pub.volumen}` : ""}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
+                          </p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {pub.clasificacion?.map((c, i) => (
+                              <Badge key={i} variant="outline" className="text-xs font-normal">
+                                {c}
+                              </Badge>
+                            ))}
                           </div>
-                        ) : pub.handle && !pub.detailsLoaded && (
-                          <div className="mt-3">
-                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                                {t('publications.loading_details') || 'Cargando...'}
-                              </div>
+                          {pub.pdfUrl ? (
+                            <div className="mt-3">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                                onClick={() => window.open(pub.pdfUrl, "_blank")}
+                              >
+                                <ExternalLink className="h-3.5 w-3.5" />
+                                {t('publications.view_pdf')}
+                              </Button>
                             </div>
-                          )}
+                          ) : pub.handle && !pub.detailsLoaded && (
+                            <div className="mt-3">
+                              <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 italic animate-pulse">
+                                  <Loader2 className="h-3 w-3 animate-spin" />
+                                  {t('publications.loading_details') || 'Cargando...'}
+                                </div>
+                              </div>
+                            )}
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </LazyLoadWrapper>
               ))}
             </div>
           </TabsContent>
