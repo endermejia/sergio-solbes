@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import crypto from 'crypto';
 import {
   Publicaciones,
   PublicacionArticulo as Articulo,
@@ -9,6 +10,113 @@ import {
 const BASE_URL = 'https://accedacris.ulpgc.es';
 const ACCEDA_CRIS_URL = `${BASE_URL}/cris/rp/rp01750/publicaciones.html?open=all&sort_byall=1&orderall=desc&rppall=2000&etalall=-1&startall=0`;
 
+let cachedCookies: string | null = null;
+
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+  'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8'
+};
+
+function sha256(str: string): string {
+  return crypto.createHash('sha256').update(str).digest('hex');
+}
+
+function parseCookies(cookieHeader: string | null): Record<string, string> {
+  if (!cookieHeader) return {};
+  const jar: Record<string, string> = {};
+  cookieHeader.split(',').forEach(c => {
+    const parts = c.split(';')[0].split('=');
+    if (parts.length >= 2) {
+      const name = parts[0].trim();
+      const val = parts[1].trim();
+      if (name) jar[name] = val;
+    }
+  });
+  return jar;
+}
+
+function serializeCookies(jar: Record<string, string>): string {
+  return Object.entries(jar).map(([k, v]) => `${k}=${v}`).join('; ');
+}
+
+async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<Response> {
+  const mergedHeaders = {
+    ...HEADERS,
+    ...(options.headers as Record<string, string> || {})
+  };
+
+  if (cachedCookies) {
+    mergedHeaders['Cookie'] = cachedCookies;
+  }
+
+  let response = await fetch(url, {
+    ...options,
+    headers: mergedHeaders
+  });
+
+  if (response.ok) {
+    const text = await response.clone().text();
+    if (text.includes('id="anubis_challenge"')) {
+      const $ = cheerio.load(text);
+      const challengeText = $('#anubis_challenge').text().trim();
+      if (challengeText) {
+        try {
+          const challengeData = JSON.parse(challengeText);
+          const challenge = challengeData.challenge;
+          const difficulty = challengeData.rules.difficulty;
+          
+          const startTime = Date.now();
+          let nonce = 0;
+          let hash = '';
+          const prefix = '0'.repeat(difficulty);
+          
+          while (true) {
+            const candidate = challenge + nonce;
+            const h = sha256(candidate);
+            if (h.startsWith(prefix)) {
+              hash = h;
+              break;
+            }
+            nonce++;
+          }
+          const elapsedTime = Date.now() - startTime;
+
+          const initialCookies = parseCookies(response.headers.get('set-cookie'));
+          const passUrl = `${BASE_URL}/.within.website/x/cmd/anubis/api/pass-challenge?response=${hash}&nonce=${nonce}&redir=${encodeURIComponent(url)}&elapsedTime=${elapsedTime}`;
+          
+          const passResponse = await fetch(passUrl, {
+            method: 'GET',
+            headers: {
+              ...HEADERS,
+              'Cookie': serializeCookies(initialCookies)
+            },
+            redirect: 'manual'
+          });
+
+          const passCookies = parseCookies(passResponse.headers.get('set-cookie'));
+          const combinedCookies = { ...initialCookies, ...passCookies };
+          cachedCookies = serializeCookies(combinedCookies);
+
+          const finalHeaders = {
+            ...mergedHeaders,
+            'Cookie': cachedCookies
+          };
+          
+          response = await fetch(url, {
+            ...options,
+            headers: finalHeaders
+          });
+        } catch (e) {
+          console.error("[Anubis] Error solving challenge:", e);
+        }
+      }
+    }
+  }
+
+  return response;
+}
+
 export async function fetchItemDetails(handleUrl: string) {
   try {
     const handleMatch = handleUrl.match(/handle\/(.+)$/);
@@ -16,7 +124,7 @@ export async function fetchItemDetails(handleUrl: string) {
     const handlePath = handleMatch[1];
 
     const apiUrl = `${BASE_URL}/rest/handle/${handlePath}?expand=metadata,bitstreams`;
-    const response = await fetch(apiUrl, {
+    const response = await fetchWithAnubis(apiUrl, {
       headers: { 'Accept': 'application/json' },
       next: { revalidate: 86400 }
     });
@@ -89,7 +197,7 @@ export async function fetchItemDetails(handleUrl: string) {
 
 export async function fetchPublicacionesList(): Promise<Publicaciones> {
   try {
-    const response = await fetch(ACCEDA_CRIS_URL, {
+    const response = await fetchWithAnubis(ACCEDA_CRIS_URL, {
       next: { revalidate: 3600 }
     });
 
@@ -164,7 +272,6 @@ export async function fetchPublicacionesList(): Promise<Publicaciones> {
 // Keep old function for backward compatibility if needed, but updated to use batches
 export async function fetchPublicaciones(): Promise<Publicaciones> {
   const list = await fetchPublicacionesList();
-  // We can't easily fetch details here without making it slow again.
-  // But for the sake of completeness if called from server:
-  return list; // Or implement full batching again
+  return list;
 }
+
