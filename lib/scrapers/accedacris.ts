@@ -12,6 +12,10 @@ const ACCEDA_CRIS_URL = `${BASE_URL}/cris/rp/rp01750/publicaciones.html?open=all
 
 let cachedCookies: string | null = null;
 
+let cachedPublicaciones: Publicaciones | null = null;
+let cacheTimestamp: number = 0;
+const CACHE_DURATION = 3600 * 1000; // 1 hour in ms
+
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -50,8 +54,11 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
     mergedHeaders['Cookie'] = cachedCookies;
   }
 
+  // Force cache: 'no-store' to completely bypass Next.js fetch caching
+  // which might cache the Anubis challenge page and cause a loop.
   let response = await fetch(url, {
     ...options,
+    cache: 'no-store',
     headers: mergedHeaders
   });
 
@@ -87,6 +94,7 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
           
           const passResponse = await fetch(passUrl, {
             method: 'GET',
+            cache: 'no-store',
             headers: {
               ...HEADERS,
               'Cookie': serializeCookies(initialCookies)
@@ -105,6 +113,7 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
           
           response = await fetch(url, {
             ...options,
+            cache: 'no-store',
             headers: finalHeaders
           });
         } catch (e) {
@@ -125,8 +134,7 @@ export async function fetchItemDetails(handleUrl: string) {
 
     const apiUrl = `${BASE_URL}/rest/handle/${handlePath}?expand=metadata,bitstreams`;
     const response = await fetchWithAnubis(apiUrl, {
-      headers: { 'Accept': 'application/json' },
-      next: { revalidate: 86400 }
+      headers: { 'Accept': 'application/json' }
     });
 
     if (!response.ok) return null;
@@ -196,10 +204,13 @@ export async function fetchItemDetails(handleUrl: string) {
 }
 
 export async function fetchPublicacionesList(): Promise<Publicaciones> {
+  const now = Date.now();
+  if (cachedPublicaciones && (now - cacheTimestamp < CACHE_DURATION)) {
+    return cachedPublicaciones;
+  }
+
   try {
-    const response = await fetchWithAnubis(ACCEDA_CRIS_URL, {
-      next: { revalidate: 3600 }
-    });
+    const response = await fetchWithAnubis(ACCEDA_CRIS_URL);
 
     if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
 
@@ -258,18 +269,30 @@ export async function fetchPublicacionesList(): Promise<Publicaciones> {
       }
     }
 
-    return {
+    const result = {
       articulos: articulos.sort((a, b) => b.año - a.año),
       libros: libros.sort((a, b) => b.año - a.año),
       capitulos: capitulos.sort((a, b) => b.año - a.año),
       resenas: resenas.sort((a, b) => b.año - a.año)
     };
+
+    // Cache the successful list in memory
+    if (result.articulos.length > 0 || result.libros.length > 0 || result.capitulos.length > 0) {
+      cachedPublicaciones = result;
+      cacheTimestamp = now;
+    }
+
+    return result;
   } catch (error) {
+    if (cachedPublicaciones) {
+      console.warn("[Scraper] Fetch failed, returning stale cached data:", error);
+      return cachedPublicaciones;
+    }
     return { articulos: [], libros: [], capitulos: [], resenas: [] };
   }
 }
 
-// Keep old function for backward compatibility if needed, but updated to use batches
+// Keep old function for backward compatibility if needed
 export async function fetchPublicaciones(): Promise<Publicaciones> {
   const list = await fetchPublicacionesList();
   return list;
