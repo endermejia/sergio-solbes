@@ -26,7 +26,7 @@ export function PublicationsProvider({ children }: { children: ReactNode }) {
     libros: localStats.libros,
     capitulos: localStats.capitulos,
     resenas: localStats.resenas ?? 0,
-    loading: true,
+    loading: false,
   })
 
   const setCounts = useCallback((partial: Partial<LiveCounts>) =>

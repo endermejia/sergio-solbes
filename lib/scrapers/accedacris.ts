@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import crypto from 'crypto';
+import publicationsMock from '../data/publications-mock.json';
 import {
   Publicaciones,
   PublicacionArticulo as Articulo,
@@ -276,19 +277,21 @@ export async function fetchPublicacionesList(): Promise<Publicaciones> {
       resenas: resenas.sort((a, b) => b.año - a.año)
     };
 
-    // Cache the successful list in memory
     if (result.articulos.length > 0 || result.libros.length > 0 || result.capitulos.length > 0) {
       cachedPublicaciones = result;
       cacheTimestamp = now;
+      return result;
     }
 
-    return result;
+    console.warn("[Scraper] Scraped data empty, returning fallback mock data");
+    return (cachedPublicaciones || publicationsMock) as Publicaciones;
   } catch (error) {
     if (cachedPublicaciones) {
       console.warn("[Scraper] Fetch failed, returning stale cached data:", error);
       return cachedPublicaciones;
     }
-    return { articulos: [], libros: [], capitulos: [], resenas: [] };
+    console.warn("[Scraper] Fetch failed, returning fallback mock data:", error);
+    return publicationsMock as Publicaciones;
   }
 }
 

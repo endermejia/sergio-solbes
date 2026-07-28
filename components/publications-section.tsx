@@ -66,10 +66,10 @@ function LazyLoadWrapper({
 export function PublicationsSection({ initialData }: { initialData?: Publicaciones }) {
   const { t } = useLanguage();
   const { setCounts } = usePublicationCounts();
-  // Start with local empty data — never block render on network
+  // Start with mock data — never block render on network
   const [data, setData] = useState<Publicaciones>(initialData || publicaciones);
-  // loadingList = true means we haven't received the list yet from accedaCris
-  const [loadingList, setLoadingList] = useState(!initialData);
+  // loadingList is false by default since mock data is immediately available
+  const [loadingList, setLoadingList] = useState(false);
   const [showMoreArticles, setShowMoreArticles] = useState(false)
   const [showMoreBooks, setShowMoreBooks] = useState(false)
   const [showMoreChapters, setShowMoreChapters] = useState(false)
@@ -85,30 +85,32 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
 
   const sectionRef = useRef<HTMLElement>(null!)
 
-  // --- Phase 1: Fetch the list after a delay to prioritize Hero animations ---
+  // --- Phase 1: Fetch live list in background to update mock data if available ---
   const listFetchedRef = useRef(false)
   useEffect(() => {
     if (initialData || listFetchedRef.current) return;
     
-    const timer = setTimeout(() => {
-      listFetchedRef.current = true;
-      const fetchList = async () => {
+    listFetchedRef.current = true;
+    const fetchList = async () => {
+      try {
         const list = await getPublicationList();
-        setData(list);
-        setLoadingList(false);
-        // Broadcast live counts to the shared context → HeroSection will update
-        setCounts({
-          articulos: list.articulos.length,
-          libros: list.libros.length,
-          capitulos: list.capitulos.length,
-          resenas: list.resenas.length,
-          loading: false,
-        });
-      };
-      fetchList();
-    }, 500); // 500ms delay
+        if (list && (list.articulos.length > 0 || list.libros.length > 0 || list.capitulos.length > 0)) {
+          setData(list);
+          // Broadcast live counts to the shared context → HeroSection will update
+          setCounts({
+            articulos: list.articulos.length,
+            libros: list.libros.length,
+            capitulos: list.capitulos.length,
+            resenas: list.resenas.length,
+            loading: false,
+          });
+        }
+      } catch (e) {
+        console.error("Error updating publications from live network call, using mock data fallback:", e);
+      }
+    };
 
-    return () => clearTimeout(timer);
+    fetchList();
   }, [initialData, setCounts]);
 
 
