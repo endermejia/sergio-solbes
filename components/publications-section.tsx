@@ -156,9 +156,52 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
     { icon: BookMarked, value: meritosInvestigacion.length, label: t('research.merits'), id: 'meritos', loading: false },
   ]
   
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
   const handleStatClick = (tabId: string) => {
     setActiveTab(tabId);
-    setSectionIntersected(true); // Manually clicking a tab counts as reaching the section
+    setSectionIntersected(true);
+
+    const tabEl = tabRefs.current[tabId];
+    if (tabEl) {
+      tabEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    // Scroll smoothly so the first item of the newly selected tab is positioned directly below the sticky tabs bar
+    setTimeout(() => {
+      const tabsContainer = document.getElementById('publicaciones-tabs');
+      if (tabsContainer) {
+        const headerHeight = 64; // Main navbar height (h-16)
+        const containerDocTop = window.scrollY + tabsContainer.getBoundingClientRect().top;
+        const targetScrollY = Math.max(0, containerDocTop - headerHeight);
+
+        // Only scroll if difference is noticeable
+        if (Math.abs(window.scrollY - targetScrollY) > 8) {
+          window.scrollTo({
+            top: targetScrollY,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 40);
+  };
+
+  const handleCongressSubTabChange = (subTab: 'actas' | 'participaciones') => {
+    setCongressSubTab(subTab);
+    setTimeout(() => {
+      const tabsContainer = document.getElementById('publicaciones-tabs');
+      if (tabsContainer) {
+        const headerHeight = 64;
+        const containerDocTop = window.scrollY + tabsContainer.getBoundingClientRect().top;
+        const targetScrollY = Math.max(0, containerDocTop - headerHeight);
+        if (Math.abs(window.scrollY - targetScrollY) > 8) {
+          window.scrollTo({
+            top: targetScrollY,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 40);
   };
 
   useEffect(() => {
@@ -179,65 +222,80 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
   const displayedMeritos = showMoreMeritos ? meritosInvestigacion : meritosInvestigacion.slice(0, 6)
 
   return (
-    <section id="publicaciones" className="py-20 md:py-28 scroll-mt-20">
-      <motion.div 
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-5xl px-6"
-      >
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <section id="publicaciones" className="py-20 md:py-28 scroll-mt-16 border-b border-border/40">
+      <div className="mx-auto max-w-6xl px-6">
+        
+        {/* Section Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-10"
+        >
+          <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+            Producción Científica
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
             {t('publications.title')}
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <div className="w-16 h-1 bg-accent mx-auto rounded-full my-4" />
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             {t('publications.description') || t('profile.bio')}
           </p>
-        </div>
+        </motion.div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mb-12">
-          {statItems.map((stat) => {
-            const isActive = activeTab === stat.id
-            return (
-              <Card
-                key={stat.id}
-                className={cn(
-                  "border-border/50 bg-card/50 cursor-pointer hover:bg-card/90 transition-all duration-200",
-                  isActive ? "ring-2 ring-accent border-accent bg-accent/5" : "hover:border-accent/50"
-                )}
-                onClick={() => handleStatClick(stat.id)}
-              >
-                <CardContent className="pt-6">
-                  <div className="flex flex-col items-center text-center gap-2">
-                    <stat.icon className={cn("h-6 w-6 transition-colors", isActive ? "text-accent" : "text-muted-foreground")} />
-                    <span className={cn(
-                      "text-3xl font-bold transition-colors",
-                      isActive ? "text-foreground" : "text-muted-foreground",
-                      stat.loading ? "opacity-60 animate-pulse" : ""
-                    )}>{stat.value}</span>
-                    <span className={cn("text-xs font-medium transition-colors uppercase tracking-wider", isActive ? "text-accent" : "text-muted-foreground/60")}>{stat.label}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </div>
+        {/* Publications Tabs & Sticky Category Cards */}
+        <div id="publicaciones-tabs" className="scroll-mt-20">
+          <Tabs value={activeTab} onValueChange={(val) => handleStatClick(val)} className="w-full">
+            
+            {/* Sticky Cards Tab Bar: sticks under navbar while user is in the publications section */}
+            <div 
+              id="publicaciones-tabs-bar"
+              className="sticky top-16 z-30 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 bg-background/95 backdrop-blur-md border-y border-border/70 shadow-xs mb-8 transition-all"
+            >
+              <div className="flex lg:grid lg:grid-cols-7 gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden py-0.5">
+                {statItems.map((stat) => {
+                  const isActive = activeTab === stat.id;
+                  return (
+                    <button
+                      key={stat.id}
+                      ref={(el) => { tabRefs.current[stat.id] = el; }}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      onClick={() => handleStatClick(stat.id)}
+                      className={cn(
+                        "shrink-0 min-w-[110px] sm:min-w-[125px] lg:min-w-0 flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl border transition-all duration-200 select-none group focus:outline-none cursor-pointer",
+                        isActive
+                          ? "bg-card border-accent shadow-xs ring-2 ring-accent/25 text-accent font-semibold"
+                          : "bg-card/40 border-border/60 hover:bg-card hover:border-accent/40 text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <stat.icon className={cn("h-4 w-4 transition-colors shrink-0", isActive ? "text-accent" : "text-muted-foreground/70 group-hover:text-accent")} />
+                        <span className={cn(
+                          "text-lg sm:text-xl font-serif font-bold transition-colors leading-none",
+                          isActive ? "text-foreground" : "text-foreground/85 group-hover:text-foreground",
+                          stat.loading ? "opacity-60 animate-pulse" : ""
+                        )}>
+                          {stat.value}
+                        </span>
+                      </div>
+                      <span className={cn(
+                        "text-[11px] sm:text-xs tracking-tight line-clamp-1 transition-colors text-center",
+                        isActive ? "text-accent font-semibold" : "text-muted-foreground group-hover:text-foreground"
+                      )}>
+                        {stat.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-        {/* Publications Tabs */}
-        <div id="publicaciones-tabs" className="scroll-mt-24">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-2xl font-serif font-bold text-foreground">
-              {statItems.find(s => s.id === activeTab)?.label}
-            </h3>
-            <div className="h-px flex-1 bg-border/50 ml-6 hidden md:block" />
-          </div>
-          
-          {/* Artículos */}
-          <TabsContent value="articulos">
+            {/* Artículos */}
+            <TabsContent value="articulos">
             {loadingList && (
               <div className="space-y-3">
                 {Array.from({ length: 4 }).map((_, i) => (
@@ -602,7 +660,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
               <Button
                 variant={congressSubTab === 'actas' ? 'default' : 'outline'}
                 size="sm"
-                onClick={() => setCongressSubTab('actas')}
+                onClick={() => handleCongressSubTabChange('actas')}
                 className="gap-2"
               >
                 <FileText className="h-4 w-4" />
@@ -611,7 +669,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
               <Button
                 variant={congressSubTab === 'participaciones' ? 'default' : 'outline'}
                 size="sm"
-                onClick={() => setCongressSubTab('participaciones')}
+                onClick={() => handleCongressSubTabChange('participaciones')}
                 className="gap-2"
               >
                 <Users className="h-4 w-4" />
@@ -823,19 +881,19 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
 
             {meritosInvestigacion.length > 6 && (
               <Button 
-                variant="ghost" 
+                variant="outline" 
                 size="sm" 
                 onClick={() => setShowMoreMeritos(!showMoreMeritos)} 
-                className="mt-4 w-full"
+                className="mt-4 w-full gap-1.5 text-xs"
               >
                 {showMoreMeritos ? (
                   <>
-                    <ChevronUp className="mr-2 h-4 w-4" />
+                    <ChevronUp className="h-3.5 w-3.5" />
                     {t('publications.view_less')}
                   </>
                 ) : (
                   <>
-                    <ChevronDown className="mr-2 h-4 w-4" />
+                    <ChevronDown className="h-3.5 w-3.5" />
                     {t('publications.view_more')} ({meritosInvestigacion.length})
                   </>
                 )}
@@ -858,7 +916,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
             </a>
           </Button>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

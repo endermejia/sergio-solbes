@@ -10,14 +10,17 @@ export function ContactSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="contacto" className="py-20 md:py-28 scroll-mt-20">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <section id="contacto" className="py-20 md:py-28 scroll-mt-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+            Canales Oficiales
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
             {t('contact.title')}
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <div className="w-16 h-1 bg-accent mx-auto rounded-full my-4" />
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             {t('contact.subtitle')}
           </p>
         </div>

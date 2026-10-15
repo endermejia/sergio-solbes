@@ -1,7 +1,9 @@
 "use client"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { Landmark, Coins, ScrollText, Ship, Factory } from "lucide-react"
+import { Landmark, Coins, ScrollText, Shield, Ship, ArrowRight } from "lucide-react"
 import { lineasInvestigacion } from "@/lib/data"
 import { useLanguage } from "@/lib/i18n/context"
 
@@ -9,50 +11,115 @@ const iconMap: Record<string, React.ElementType> = {
   Building: Landmark,
   Map: Coins,
   Leaf: ScrollText,
-  Shield: Ship,
-  Ship: Factory,
+  Shield: Shield,
+  Ship: Ship,
 }
 
 export function ResearchSection() {
   const { t } = useLanguage();
   
+  const handleScrollToPublications = () => {
+    const el = document.getElementById('publicaciones');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const flagship = lineasInvestigacion[0];
+  const complementary = lineasInvestigacion.slice(1);
+
   return (
-    <section id="investigacion" className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
+    <section id="investigacion" className="py-20 md:py-28 bg-background scroll-mt-16 border-b border-border/40">
       <motion.div 
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-5xl px-6"
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7 }}
+        className="mx-auto max-w-6xl px-6"
       >
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+            Especialización Historiográfica
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
             {t('research.lines')}
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
+          <div className="w-16 h-1 bg-accent mx-auto rounded-full my-4" />
           <p 
-            className="text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-muted-foreground text-base sm:text-lg leading-relaxed"
             dangerouslySetInnerHTML={{ __html: t('research.description') }}
           />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {lineasInvestigacion.map((area) => {
-            const Icon = iconMap[area.icon] || ScrollText;
-            return (
-              <Card key={area.titulo} className="border-border/50 bg-card hover:shadow-md transition-shadow">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-accent/10">
-                      <Icon className="h-5 w-5 text-accent" />
-                    </div>
-                    <CardTitle className="text-lg font-semibold">{area.titulo}</CardTitle>
+        {/* Research Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          {/* Featured Flagship Line (Spans 12 cols / full width banner) */}
+          {flagship && (
+            <Card className="lg:col-span-12 border-accent/30 bg-gradient-to-r from-card via-card to-accent/5 shadow-sm hover:shadow-md transition-all">
+              <CardContent className="p-7 sm:p-9 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="flex items-start gap-5">
+                  <div className="p-3.5 rounded-2xl bg-accent/10 text-accent shrink-0">
+                    <Landmark className="h-7 w-7" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {area.descripcion}
-                  </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-accent/15 text-accent uppercase tracking-wider">
+                        Especialización Principal
+                      </span>
+                      <span className="text-xs text-muted-foreground font-mono">01</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-foreground">
+                      {flagship.titulo}
+                    </h3>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
+                      {flagship.descripcion}
+                    </p>
+                  </div>
+                </div>
+
+                <Button
+                  type="button"
+                  variant="outline-accent"
+                  size="sm"
+                  onClick={handleScrollToPublications}
+                  className="gap-2 shrink-0 self-start md:self-center font-medium"
+                >
+                  <span>Ver publicaciones asociadas</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* 4 Complementary Research Pillars (2x2 Grid) */}
+          {complementary.map((area, index) => {
+            const Icon = iconMap[area.icon] || ScrollText;
+            const number = String(index + 2).padStart(2, '0');
+            return (
+              <Card 
+                key={area.titulo} 
+                className="lg:col-span-6 border-border/60 bg-card/80 hover:bg-card hover:border-accent/40 shadow-xs hover:shadow-sm transition-all flex flex-col justify-between"
+              >
+                <CardContent className="p-6 sm:p-7 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="p-2.5 rounded-xl bg-accent/10 text-accent">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-xs font-mono font-medium text-muted-foreground/60">
+                      {number}
+                    </span>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-foreground mb-2">
+                      {area.titulo}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {area.descripcion}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             );

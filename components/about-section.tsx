@@ -3,250 +3,219 @@
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { GraduationCap, Users, Award, BookOpen, ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
+import { GraduationCap, Award, BookOpen, ChevronDown, ChevronUp, ExternalLink, ShieldCheck, Landmark, Briefcase, ScrollText } from "lucide-react"
 import { profileData, formacionAcademica, acreditaciones, gestionAcademica, cursosRecibidos } from "@/lib/data"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/lib/i18n/context"
 
 export function AboutSection() {
   const { t } = useLanguage();
-  const [showAllAcred, setShowAllAcred] = useState(false)
-  const displayedAcred = showAllAcred ? acreditaciones : acreditaciones.slice(0, 4)
+  const [showAllAcred, setShowAllAcred] = useState(false);
+  const [showAllCourses, setShowAllCourses] = useState(false);
 
-  const highlights = [
-    {
-      icon: GraduationCap,
-      title: t('about.highlights.formation_title') || t('about.academic_background'),
-      description: t('about.highlights.formation'),
-      href: "#formacion"
-    },
-    {
-      icon: Users,
-      title: t('teaching.title'),
-      description: t('about.highlights.teaching'),
-      href: "#docencia"
-    },
-    {
-      icon: Award,
-      title: t('research.title'),
-      description: t('about.highlights.research'),
-      href: "#investigacion"
-    },
-    {
-      icon: BookOpen,
-      title: t('about.highlights.specialization_title') || t('about.subtitle'),
-      description: t('about.highlights.specialization'),
-      href: "#publicaciones"
-    },
-  ]
+  const displayedAcred = showAllAcred ? acreditaciones : acreditaciones.slice(0, 4);
+  const displayedCourses = showAllCourses ? cursosRecibidos : (cursosRecibidos || []).slice(0, 3);
 
   return (
-    <section id="sobre-mi" className="py-20 md:py-28 scroll-mt-20">
+    <section id="sobre-mi" className="py-20 md:py-28 scroll-mt-16 bg-secondary/20 border-b border-border/40">
       <motion.div 
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-5xl px-6"
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7 }}
+        className="mx-auto max-w-6xl px-6"
       >
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+            Trayectoria & Méritos
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
             {t('about.title')}
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full" />
+          <div className="w-16 h-1 bg-accent mx-auto rounded-full my-4" />
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+            Más de tres décadas dedicadas a la investigación de las finanzas de la Corona castellana y a la docencia universitaria.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-12">
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <p 
-                className="text-muted-foreground leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: t('about.p1') }}
-              />
-              <p 
-                className="text-muted-foreground leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: t('about.p2') }}
-              />
-            </div>
-          </div>
-          <div className="space-y-8">
-            <p 
-              className="text-muted-foreground leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: t('about.p3') }}
-            />
-            <div className="flex flex-wrap gap-4 pt-4 border-t border-border/50">
-              <a
-                href={`https://orcid.org/${profileData.orcid}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline transition-colors"
-              >
-                ORCID <ExternalLink className="h-3 w-3" />
-              </a>
-              <a
-                href={profileData.links.researchGate}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline transition-colors"
-              >
-                ResearchGate <ExternalLink className="h-3 w-3" />
-              </a>
-              <a
-                href={profileData.links.iatext}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline transition-colors"
-              >
-                IATEXT <ExternalLink className="h-3 w-3" />
-              </a>
-            </div>
-          </div>
-        </div>
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {highlights.map((item) => (
-            <div 
-              key={item.title} 
-              onClick={(e) => {
-                e.preventDefault();
-                const id = item.href.slice(1);
-                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-              }} 
-              className="group block h-full cursor-pointer"
-            >
-              <Card className="border-border/50 bg-card/50 h-full transition-all hover:bg-accent/5 hover:border-accent/50 hover:shadow-sm">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <div className="p-3 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors">
-                      <item.icon className="h-6 w-6 text-accent" />
-                    </div>
-                    <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </div>
-
-        {/* Formación Académica y Acreditaciones */}
-        <div className="grid md:grid-cols-2 gap-8 scroll-mt-24">
-          {/* Formación Académica */}
-          <Card id="formacion" className="border-border/50 scroll-mt-24">
-            <CardContent className="pt-6">
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-accent" />
-                {t('about.academic_background')}
-              </h3>
-              
-              <Accordion type="single" collapsible className="w-full">
-                 <AccordionItem value="licenciatura">
-                  <AccordionTrigger className="text-left">
-                    <div>
-                      <p className="font-medium text-foreground">{t('about.bachelors')}</p>
-                      <p className="text-sm text-muted-foreground">{formacionAcademica.licenciatura.universidad}, {formacionAcademica.licenciatura.fecha}</p>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="space-y-2 text-sm">
-                      <p><span className="text-muted-foreground">{t('about.division')}:</span> {formacionAcademica.licenciatura.division}</p>
-                      <p><span className="text-muted-foreground">{t('about.section_label')}:</span> {formacionAcademica.licenciatura.seccion}</p>
-                      <p><span className="text-muted-foreground">{t('about.city')}:</span> {formacionAcademica.licenciatura.ciudad}</p>
-                      <p><span className="text-muted-foreground">{t('about.grade')}:</span> <span className="text-accent font-medium">{formacionAcademica.licenciatura.notaMedia}</span></p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+          {/* Bento Cell 1: Trayectoria & Liderazgo (8 cols) */}
+          <Card className="lg:col-span-8 border-border/60 bg-card/90 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-7 sm:p-8 flex flex-col justify-between h-full space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2.5 text-accent font-semibold text-sm">
+                  <Landmark className="h-5 w-5" />
+                  <span>Trayectoria Docente e Investigadora</span>
+                </div>
                 
-                <AccordionItem value="doctorado">
-                  <AccordionTrigger className="text-left">
-                    <div>
-                      <p className="font-medium text-foreground">{t('about.doctorate')}</p>
-                      <p className="text-sm text-muted-foreground">{formacionAcademica.doctorado.universidad}, {formacionAcademica.doctorado.fecha}</p>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="space-y-2 text-sm">
-                      <p><span className="text-muted-foreground">{t('about.program')}:</span> {formacionAcademica.doctorado.programa}</p>
-                      <p><span className="text-muted-foreground">{t('about.thesis')}:</span> <span className="italic">{formacionAcademica.doctorado.tesis}</span></p>
-                      <p><span className="text-muted-foreground">{t('about.director')}:</span> {formacionAcademica.doctorado.director}</p>
-                      <p><span className="text-muted-foreground">{t('about.grade')}:</span> <span className="text-accent font-medium">{formacionAcademica.doctorado.calificacion}</span></p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                <div className="space-y-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
+                  <p dangerouslySetInnerHTML={{ __html: t('about.p1') }} />
+                  <p dangerouslySetInnerHTML={{ __html: t('about.p2') }} />
+                  <p dangerouslySetInnerHTML={{ __html: t('about.p3') }} />
+                </div>
+              </div>
 
-                {cursosRecibidos && cursosRecibidos.length > 0 && (
-                  <AccordionItem value="cursos">
-                    <AccordionTrigger className="text-left">
-                      <div>
-                        <p className="font-medium text-foreground">{t('about.courses')}</p>
-                        <p className="text-sm text-muted-foreground">{t('about.complementary_formation')} ({cursosRecibidos.length} {t('teaching.subjects').toLowerCase()})</p>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ScrollArea className="h-48 pr-4">
-                        <div className="space-y-3">
-                          {cursosRecibidos.map((curso, i) => (
-                            <div key={i} className="text-xs border-l-2 border-border pl-2">
-                              <p className="font-medium">{curso.nombre}</p>
-                              <p className="text-muted-foreground">{curso.entidad} ({curso.año})</p>
-                            </div>
-                          ))}
-                        </div>
-                      </ScrollArea>
-                    </AccordionContent>
-                  </AccordionItem>
-                )}
-              </Accordion>
+              {/* Verified Institutional Links */}
+              <div className="pt-4 border-t border-border/60 flex flex-wrap items-center gap-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mr-1">
+                  Enlaces oficiales:
+                </span>
+                <a
+                  href={`https://orcid.org/${profileData.orcid}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-secondary/80 hover:bg-accent/10 hover:text-accent border border-border/60 text-xs font-medium text-foreground transition-colors"
+                >
+                  <span className="font-bold text-[#A6CE39]">ID</span>
+                  <span>ORCID ({profileData.orcid})</span>
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
+                <a
+                  href={profileData.links.researchGate}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-secondary/80 hover:bg-accent/10 hover:text-accent border border-border/60 text-xs font-medium text-foreground transition-colors"
+                >
+                  <span>ResearchGate</span>
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
+                <a
+                  href={profileData.links.iatext}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-secondary/80 hover:bg-accent/10 hover:text-accent border border-border/60 text-xs font-medium text-foreground transition-colors"
+                >
+                  <span>IATEXT (ULPGC)</span>
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
+              </div>
             </CardContent>
           </Card>
 
-          {/* Acreditaciones */}
-          <Card className="border-border/50">
-            <CardContent className="pt-6">
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                <Award className="h-5 w-5 text-accent" />
-                {t('about.accreditations')}
-              </h3>
-              
-              <ul className="space-y-4">
-                {displayedAcred.map((acred, index) => (
-                  <li key={index} className="border-l-2 border-accent pl-4">
-                    <p className="font-medium text-foreground text-sm">{acred.titulo}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{acred.entidad}</p>
-                    <p className="text-xs text-accent">{acred.fecha}</p>
-                  </li>
-                ))}
-              </ul>
-              
+          {/* Bento Cell 2: Formación de Máximo Nivel (4 cols) */}
+          <Card className="lg:col-span-4 border-border/60 bg-card/90 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-7 sm:p-8 flex flex-col justify-between h-full space-y-6">
+              <div>
+                <div className="flex items-center gap-2.5 text-accent font-semibold text-sm mb-4">
+                  <GraduationCap className="h-5 w-5" />
+                  <span>{t('about.academic_background')}</span>
+                </div>
+                
+                <div className="space-y-6">
+                  {/* Doctorado */}
+                  <div className="space-y-1.5 border-l-2 border-accent pl-3.5">
+                    <div className="flex items-center justify-between">
+                      <p className="font-semibold text-foreground text-sm">
+                        {t('about.doctorate')}
+                      </p>
+                      <span className="text-xs font-medium text-accent">
+                        {formacionAcademica.doctorado.fecha}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground font-medium">
+                      {formacionAcademica.doctorado.universidad}
+                    </p>
+                    <p className="text-xs text-muted-foreground italic line-clamp-2">
+                      "{formacionAcademica.doctorado.tesis}"
+                    </p>
+                    <div className="flex items-center gap-2 pt-1">
+                      <span className="text-[11px] px-2 py-0.5 rounded bg-accent/10 text-accent font-semibold">
+                        {formacionAcademica.doctorado.calificacion}
+                      </span>
+                      <span className="text-[11px] text-muted-foreground">
+                        Dir: {formacionAcademica.doctorado.director}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Licenciatura */}
+                  <div className="space-y-1.5 border-l-2 border-border pl-3.5">
+                    <div className="flex items-center justify-between">
+                      <p className="font-semibold text-foreground text-sm">
+                        {formacionAcademica.licenciatura.titulo}
+                      </p>
+                      <span className="text-xs font-medium text-muted-foreground">
+                        {formacionAcademica.licenciatura.fecha}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {formacionAcademica.licenciatura.universidad} · {formacionAcademica.licenciatura.seccion}
+                    </p>
+                    <span className="inline-block text-[11px] px-2 py-0.5 rounded bg-secondary text-foreground font-medium">
+                      Calificación: {formacionAcademica.licenciatura.notaMedia}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Formación complementaria desplegable */}
+              {cursosRecibidos && cursosRecibidos.length > 0 && (
+                <div className="pt-3 border-t border-border/60">
+                  <button
+                    type="button"
+                    onClick={() => setShowAllCourses(!showAllCourses)}
+                    className="flex items-center justify-between w-full text-xs font-medium text-muted-foreground hover:text-accent transition-colors"
+                  >
+                    <span>Cursos y seminarios recibidos ({cursosRecibidos.length})</span>
+                    {showAllCourses ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+                  </button>
+                  {showAllCourses && (
+                    <div className="mt-3 space-y-2 max-h-40 overflow-y-auto pr-1">
+                      {cursosRecibidos.map((curso, i) => (
+                        <div key={i} className="text-[11px] border-l border-border pl-2">
+                          <p className="font-medium text-foreground">{curso.nombre}</p>
+                          <p className="text-muted-foreground">{curso.entidad} ({curso.año})</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Bento Cell 3: Acreditaciones & Sexenios (5 cols) */}
+          <Card className="lg:col-span-5 border-border/60 bg-card/90 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-7 sm:p-8 flex flex-col justify-between h-full space-y-4">
+              <div>
+                <div className="flex items-center gap-2.5 text-accent font-semibold text-sm mb-4">
+                  <ShieldCheck className="h-5 w-5" />
+                  <span>{t('about.accreditations')}</span>
+                </div>
+                
+                <ul className="space-y-3.5">
+                  {displayedAcred.map((acred, index) => (
+                    <li key={index} className="flex items-start justify-between gap-3 border-l-2 border-accent pl-3.5">
+                      <div>
+                        <p className="font-medium text-foreground text-sm">{acred.titulo}</p>
+                        <p className="text-xs text-muted-foreground">{acred.entidad}</p>
+                      </div>
+                      <span className="text-xs font-semibold text-accent shrink-0">
+                        {acred.fecha}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {acreditaciones.length > 4 && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setShowAllAcred(!showAllAcred)}
-                  className="mt-4 w-full"
+                  className="w-full mt-3 gap-1.5 text-xs"
                 >
                   {showAllAcred ? (
                     <>
-                      <ChevronUp className="mr-2 h-4 w-4" />
+                      <ChevronUp className="h-3.5 w-3.5" />
                       {t('publications.view_less')}
                     </>
                   ) : (
                     <>
-                      <ChevronDown className="mr-2 h-4 w-4" />
+                      <ChevronDown className="h-3.5 w-3.5" />
                       {t('publications.view_more')} ({acreditaciones.length})
                     </>
                   )}
@@ -254,28 +223,27 @@ export function AboutSection() {
               )}
             </CardContent>
           </Card>
-        </div>
 
-        {/* Gestión Académica - New Section */}
-        <div className="mt-8">
-          <Card className="border-border/50">
-            <CardContent className="pt-6">
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                <Users className="h-5 w-5 text-accent" />
-                {t('about.management')}
-              </h3>
+          {/* Bento Cell 4: Liderazgo y Gestión Universitaria (7 cols) */}
+          <Card className="lg:col-span-7 border-border/60 bg-card/90 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-7 sm:p-8 space-y-4">
+              <div className="flex items-center gap-2.5 text-accent font-semibold text-sm mb-4">
+                <Briefcase className="h-5 w-5" />
+                <span>{t('about.management')}</span>
+              </div>
               
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid sm:grid-cols-2 gap-4">
                 {gestionAcademica.map((item, index) => (
-                  <div key={index} className="space-y-1 border-l-2 border-border pl-4">
-                    <p className="font-medium text-foreground text-sm">{item.cargo}</p>
+                  <div key={index} className="p-3.5 rounded-xl bg-secondary/50 border border-border/50 space-y-1">
+                    <p className="font-semibold text-foreground text-sm">{item.cargo}</p>
                     <p className="text-xs text-muted-foreground">{item.entidad}</p>
-                    <p className="text-xs text-accent">{item.periodo}</p>
+                    <p className="text-xs font-semibold text-accent">{item.periodo}</p>
                   </div>
                 ))}
               </div>
             </CardContent>
           </Card>
+
         </div>
       </motion.div>
     </section>

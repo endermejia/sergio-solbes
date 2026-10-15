@@ -11,6 +11,7 @@ import { LanguageSelector } from "@/components/language-selector"
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
+  const [showNavName, setShowNavName] = useState(false)
   const { t } = useLanguage()
 
   const navItems = useMemo(() => [
@@ -71,11 +72,21 @@ export function Header() {
     const scanInterval = setInterval(updateObservers, 1000);
 
     const handleScroll = () => {
+      const heroElement = document.getElementById("hero-name");
+      if (heroElement) {
+        const rect = heroElement.getBoundingClientRect();
+        setShowNavName(rect.top <= 60);
+      } else {
+        setShowNavName(window.scrollY > 100);
+      }
+
       if (window.scrollY < 100) {
         setActiveSection("");
       }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       observer.disconnect();
@@ -83,6 +94,29 @@ export function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [navItems]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   const scrollToSection = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
@@ -97,7 +131,8 @@ export function Header() {
   const handleHeaderClick = (e: React.MouseEvent) => {
     if (
       (e.target as HTMLElement).closest('a') ||
-      (e.target as HTMLElement).closest('button')
+      (e.target as HTMLElement).closest('button') ||
+      (e.target as HTMLElement).closest('nav')
     ) {
       return;
     }
@@ -109,11 +144,11 @@ export function Header() {
       onClick={handleHeaderClick}
       className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 cursor-pointer"
     >
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 group min-h-7"
             onClick={(e) => {
               if (window.location.pathname === '/') {
                 e.preventDefault();
@@ -121,9 +156,41 @@ export function Header() {
               }
             }}
           >
-            <span className="font-serif text-xl font-semibold text-foreground">
-              Sergio Solbes Ferri
-            </span>
+            {/* Mobile Brand: Permanent, authoritative, never leaves an empty bar */}
+            <div className="flex flex-col md:hidden py-0.5">
+              <span className="font-serif text-base sm:text-lg font-bold tracking-tight text-foreground leading-tight">
+                Sergio Solbes Ferri
+              </span>
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground leading-none mt-0.5">
+                Catedrático · ULPGC
+              </span>
+            </div>
+
+            {/* Desktop Brand: Crossfades title to full name on scroll to avoid duplication with hero */}
+            <div className="hidden md:flex items-center h-8">
+              <div className="relative flex items-center">
+                <span
+                  className={cn(
+                    "font-serif text-sm tracking-wide text-muted-foreground transition-all duration-300 ease-out whitespace-nowrap",
+                    showNavName
+                      ? "opacity-0 -translate-y-3 pointer-events-none absolute"
+                      : "opacity-100 translate-y-0"
+                  )}
+                >
+                  {t("hero.title")} · ULPGC
+                </span>
+                <span
+                  className={cn(
+                    "font-serif text-lg font-semibold text-foreground transition-all duration-300 ease-out whitespace-nowrap",
+                    showNavName
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-3 pointer-events-none absolute"
+                  )}
+                >
+                  Sergio Solbes Ferri
+                </span>
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -165,10 +232,15 @@ export function Header() {
             </Button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <nav className="md:hidden py-4 border-t border-border/50">
+      {/* Mobile Navigation Dropdown (Popup overlay) */}
+      {isOpen && (
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="md:hidden absolute top-full left-0 right-0 w-full border-b border-border/70 bg-background/98 backdrop-blur-md shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200"
+        >
+          <nav className="mx-auto max-w-6xl px-6 py-4">
             <div className="flex flex-col gap-1">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.slice(1)
@@ -178,9 +250,9 @@ export function Header() {
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
                     className={cn(
-                      "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors rounded-md",
+                      "flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors rounded-lg",
                       isActive
-                        ? "text-accent bg-accent/10"
+                        ? "text-accent bg-accent/10 font-semibold"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                     )}
                   >
@@ -191,8 +263,8 @@ export function Header() {
               })}
             </div>
           </nav>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   )
 }

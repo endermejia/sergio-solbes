@@ -39,20 +39,23 @@ export function TeachingSection() {
   const displayedForm = showMoreForm ? docencia.formacionDocente : docencia.formacionDocente.filter(f => f.relevante !== false).slice(0, 4)
 
   return (
-    <section id="docencia" className="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
+    <section id="docencia" className="py-20 md:py-28 bg-secondary/20 scroll-mt-16 border-b border-border/40">
       <motion.div 
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-5xl px-6"
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7 }}
+        className="mx-auto max-w-6xl px-6"
       >
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+            Actividad Docente Universitaria
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
             {t('teaching.title')}
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <div className="w-16 h-1 bg-accent mx-auto rounded-full my-4" />
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             {t('teaching.experience')}
           </p>
         </div>
@@ -83,22 +86,25 @@ export function TeachingSection() {
 
               {docencia.asignaturas.length > 5 && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setShowMoreAsig(!showMoreAsig)}
-                  className="mt-4 w-full"
+                  className="mt-4 w-full gap-1.5 text-xs"
                 >
                   {showMoreAsig ? (
-                    <><ChevronUp className="mr-2 h-4 w-4" /> {t('publications.view_less')}</>
+                    <><ChevronUp className="h-3.5 w-3.5" /> {t('publications.view_less')}</>
                   ) : (
-                    <><ChevronDown className="mr-2 h-4 w-4" /> {t('publications.view_more')} ({docencia.asignaturas.length})</>
+                    <><ChevronDown className="h-3.5 w-3.5" /> {t('publications.view_more')} ({docencia.asignaturas.length})</>
                   )}
                 </Button>
               )}
               
               <div className="mt-6 pt-4 border-t border-border/50">
                 <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">{t('teaching.experience')}:</strong> {docencia.experiencia.añosDocencia}+ {t('teaching.years')}
+                  <strong className="text-foreground font-semibold">
+                    {docencia.experiencia.añosDocencia}+ {t('teaching.years')}:
+                  </strong>{" "}
+                  {t('teaching.experience')}
                 </p>
               </div>
             </CardContent>
@@ -129,15 +135,15 @@ export function TeachingSection() {
 
               {docencia.innovacionDocente.length > 3 && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setShowMoreInn(!showMoreInn)}
-                  className="mt-4 w-full"
+                  className="mt-4 w-full gap-1.5 text-xs"
                 >
                   {showMoreInn ? (
-                    <><ChevronUp className="mr-2 h-4 w-4" /> {t('publications.view_less')}</>
+                    <><ChevronUp className="h-3.5 w-3.5" /> {t('publications.view_less')}</>
                   ) : (
-                    <><ChevronDown className="mr-2 h-4 w-4" /> {t('publications.view_more')} ({docencia.innovacionDocente.length})</>
+                    <><ChevronDown className="h-3.5 w-3.5" /> {t('publications.view_more')} ({docencia.innovacionDocente.length})</>
                   )}
                 </Button>
               )}
@@ -183,19 +189,19 @@ export function TeachingSection() {
 
               {direccionTrabajos.tesis.length > 3 && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setShowMoreTesis(!showMoreTesis)}
-                  className="mt-4 w-full"
+                  className="mt-4 w-full gap-1.5 text-xs"
                 >
                   {showMoreTesis ? (
                     <>
-                      <ChevronUp className="mr-2 h-4 w-4" />
+                      <ChevronUp className="h-3.5 w-3.5" />
                       {t('publications.view_less')}
                     </>
                   ) : (
                     <>
-                      <ChevronDown className="mr-2 h-4 w-4" />
+                      <ChevronDown className="h-3.5 w-3.5" />
                       {t('publications.view_more')} ({direccionTrabajos.tesis.length} {t('teaching.theses').toLowerCase()})
                     </>
                   )}
@@ -235,19 +241,19 @@ export function TeachingSection() {
               
               {direccionTrabajos.tfg.length > 4 && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setShowMoreTFG(!showMoreTFG)}
-                  className="mt-4 w-full"
+                  className="mt-4 w-full gap-1.5 text-xs"
                 >
                   {showMoreTFG ? (
                     <>
-                      <ChevronUp className="mr-2 h-4 w-4" />
+                      <ChevronUp className="h-3.5 w-3.5" />
                       {t('publications.view_less')}
                     </>
                   ) : (
                     <>
-                      <ChevronDown className="mr-2 h-4 w-4" />
+                      <ChevronDown className="h-3.5 w-3.5" />
                       {t('publications.view_more')} ({direccionTrabajos.tfg.length} {t('teaching.tfgs').toLowerCase()})
                     </>
                   )}
@@ -281,15 +287,15 @@ export function TeachingSection() {
 
               {docencia.formacionDocente.length > 4 && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setShowMoreForm(!showMoreForm)}
-                  className="mt-4 w-full"
+                  className="mt-4 w-full gap-1.5 text-xs"
                 >
                   {showMoreForm ? (
-                    <><ChevronUp className="mr-2 h-4 w-4" /> {t('publications.view_less')}</>
+                    <><ChevronUp className="h-3.5 w-3.5" /> {t('publications.view_less')}</>
                   ) : (
-                    <><ChevronDown className="mr-2 h-4 w-4" /> {t('publications.view_more')} ({docencia.formacionDocente.length})</>
+                    <><ChevronDown className="h-3.5 w-3.5" /> {t('publications.view_more')} ({docencia.formacionDocente.length})</>
                   )}
                 </Button>
               )}

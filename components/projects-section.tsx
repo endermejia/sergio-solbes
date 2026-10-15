@@ -37,27 +37,30 @@ export function ProjectsSection() {
     : projects.slice(0, 6);
 
   return (
-    <section id="proyectos" className="py-20 md:py-28 bg-background scroll-mt-20">
+    <section id="proyectos" className="py-20 md:py-28 bg-secondary/15 scroll-mt-16 border-b border-border/40">
       <motion.div 
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-5xl px-6"
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7 }}
+        className="mx-auto max-w-6xl px-6"
       >
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+            Investigación Financiada
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
             {t('projects.title')}
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <div className="w-16 h-1 bg-accent mx-auto rounded-full my-4" />
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             {t('projects.description')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {displayedProjects.map((proyecto, index) => (
-            <Card key={index} className="border-border/50 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <Card key={index} className="border-border/60 bg-card/90 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between gap-4">
