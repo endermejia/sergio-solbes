@@ -41,10 +41,10 @@ export function HeroSection() {
       
       <div className="relative mx-auto max-w-6xl px-6 pt-12 pb-14 md:pt-16 md:pb-20">
         {/* Main Hero: Asymmetric 2-Column Golden Ratio */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
           
           {/* Left Column: Academic Credentials & Presentation (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5">
+          <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5">
             
             {/* Institution & Department pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/80 border border-border/60 text-xs font-medium text-muted-foreground">
@@ -71,6 +71,23 @@ export function HeroSection() {
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
               {t('hero.description')}
             </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+              <Button 
+                onClick={() => handleScrollToSection('contacto')}
+                className="gap-2 shadow-sm font-medium"
+              >
+                <Mail className="h-4 w-4" />
+                {t('hero.contact_button')}
+              </Button>
+              <Button asChild variant="outline" className="gap-2">
+                <a href={profileData.links.accedaCris} target="_blank" rel="noopener noreferrer">
+                  {t('hero.cv_button')}
+                  <ExternalLink className="h-4 w-4 opacity-70" />
+                </a>
+              </Button>
+            </div>
 
             {/* Academic Profiles & Scientific Identity (Lightweight chips, no bulky cards) */}
             <div className="w-full pt-1">
@@ -123,28 +140,11 @@ export function HeroSection() {
                 </a>
               </div>
             </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-              <Button 
-                onClick={() => handleScrollToSection('contacto')}
-                className="gap-2 shadow-sm font-medium"
-              >
-                <Mail className="h-4 w-4" />
-                {t('hero.contact_button')}
-              </Button>
-              <Button asChild variant="outline" className="gap-2">
-                <a href={profileData.links.accedaCris} target="_blank" rel="noopener noreferrer">
-                  {t('hero.cv_button')}
-                  <ExternalLink className="h-4 w-4 opacity-70" />
-                </a>
-              </Button>
-            </div>
           </div>
 
           {/* Right Column: High-Res Master Editorial Portrait (Unobstructed & Dignified) */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center">
-            <div className="w-full max-w-[300px] sm:max-w-[320px] md:max-w-[340px]">
+          <div className="order-1 lg:order-2 lg:col-span-5 flex flex-col items-center lg:items-end justify-center">
+            <div className="w-full max-w-[190px] sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px]">
               
               {/* Portrait Container without rotated underlays or intrusive overlay badges */}
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-muted/30 border border-border/80 shadow-xl shadow-black/5 dark:shadow-black/25">
