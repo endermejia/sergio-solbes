@@ -1,25 +1,31 @@
 import * as cheerio from 'cheerio';
 import crypto from 'crypto';
 import publicationsMock from '../data/publications-mock.json';
+import projectsMock from '../data/projects.json';
 import {
   Publicaciones,
   PublicacionArticulo as Articulo,
   PublicacionLibro as Libro,
-  PublicacionCapitulo as Capitulo
+  PublicacionCapitulo as Capitulo,
+  ProyectoInvestigacion
 } from '../types';
 
 const BASE_URL = 'https://accedacris.ulpgc.es';
-const ACCEDA_CRIS_URL = `${BASE_URL}/cris/rp/rp01750/publicaciones.html?open=all&sort_byall=1&orderall=desc&rppall=2000&etalall=-1&startall=0`;
+const PERSON_PROFILE_ID = 'rp01750';
+const DEFAULT_PERSON_UUID = '7ba553dc-c186-4816-82a7-be5e7435a978';
 
 let cachedCookies: string | null = null;
+let resolvedPersonUuid: string | null = null;
 
 let cachedPublicaciones: Publicaciones | null = null;
 let cacheTimestamp: number = 0;
+let cachedProyectos: ProyectoInvestigacion[] | null = null;
+let projectsCacheTimestamp: number = 0;
 const CACHE_DURATION = 3600 * 1000; // 1 hour in ms
 
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+  'Accept': 'application/json, text/html, application/xhtml+xml, */*',
   'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8'
 };
 
@@ -27,17 +33,22 @@ function sha256(str: string): string {
   return crypto.createHash('sha256').update(str).digest('hex');
 }
 
-function parseCookies(cookieHeader: string | null): Record<string, string> {
-  if (!cookieHeader) return {};
+function parseCookies(cookieHeaders: string | string[] | null): Record<string, string> {
+  if (!cookieHeaders) return {};
   const jar: Record<string, string> = {};
-  cookieHeader.split(',').forEach(c => {
-    const parts = c.split(';')[0].split('=');
-    if (parts.length >= 2) {
-      const name = parts[0].trim();
-      const val = parts[1].trim();
-      if (name) jar[name] = val;
-    }
-  });
+  const list = Array.isArray(cookieHeaders) ? cookieHeaders : [cookieHeaders];
+
+  for (const header of list) {
+    if (!header) continue;
+    header.split(',').forEach(c => {
+      const parts = c.split(';')[0].split('=');
+      if (parts.length >= 2) {
+        const name = parts[0].trim();
+        const val = parts[1].trim();
+        if (name) jar[name] = val;
+      }
+    });
+  }
   return jar;
 }
 
@@ -45,18 +56,16 @@ function serializeCookies(jar: Record<string, string>): string {
   return Object.entries(jar).map(([k, v]) => `${k}=${v}`).join('; ');
 }
 
-async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<Response> {
-  const mergedHeaders = {
+export async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<Response> {
+  const mergedHeaders: Record<string, string> = {
     ...HEADERS,
-    ...(options.headers as Record<string, string> || {})
+    ...((options.headers as Record<string, string>) || {})
   };
 
   if (cachedCookies) {
     mergedHeaders['Cookie'] = cachedCookies;
   }
 
-  // Force cache: 'no-store' to completely bypass Next.js fetch caching
-  // which might cache the Anubis challenge page and cause a loop.
   let response = await fetch(url, {
     ...options,
     cache: 'no-store',
@@ -73,12 +82,12 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
           const challengeData = JSON.parse(challengeText);
           const challenge = challengeData.challenge;
           const difficulty = challengeData.rules.difficulty;
-          
+
           const startTime = Date.now();
           let nonce = 0;
           let hash = '';
           const prefix = '0'.repeat(difficulty);
-          
+
           while (true) {
             const candidate = challenge + nonce;
             const h = sha256(candidate);
@@ -90,9 +99,13 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
           }
           const elapsedTime = Date.now() - startTime;
 
-          const initialCookies = parseCookies(response.headers.get('set-cookie'));
+          const rawSetCookies = typeof (response.headers as any).getSetCookie === 'function'
+            ? (response.headers as any).getSetCookie()
+            : response.headers.get('set-cookie');
+          const initialCookies = parseCookies(rawSetCookies);
+
           const passUrl = `${BASE_URL}/.within.website/x/cmd/anubis/api/pass-challenge?response=${hash}&nonce=${nonce}&redir=${encodeURIComponent(url)}&elapsedTime=${elapsedTime}`;
-          
+
           const passResponse = await fetch(passUrl, {
             method: 'GET',
             cache: 'no-store',
@@ -103,7 +116,10 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
             redirect: 'manual'
           });
 
-          const passCookies = parseCookies(passResponse.headers.get('set-cookie'));
+          const rawPassCookies = typeof (passResponse.headers as any).getSetCookie === 'function'
+            ? (passResponse.headers as any).getSetCookie()
+            : passResponse.headers.get('set-cookie');
+          const passCookies = parseCookies(rawPassCookies);
           const combinedCookies = { ...initialCookies, ...passCookies };
           cachedCookies = serializeCookies(combinedCookies);
 
@@ -111,14 +127,14 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
             ...mergedHeaders,
             'Cookie': cachedCookies
           };
-          
+
           response = await fetch(url, {
             ...options,
             cache: 'no-store',
             headers: finalHeaders
           });
         } catch (e) {
-          console.error("[Anubis] Error solving challenge:", e);
+          console.error('[Anubis] Error solving challenge:', e);
         }
       }
     }
@@ -127,79 +143,137 @@ async function fetchWithAnubis(url: string, options: RequestInit = {}): Promise<
   return response;
 }
 
-export async function fetchItemDetails(handleUrl: string) {
-  try {
-    const handleMatch = handleUrl.match(/handle\/(.+)$/);
-    if (!handleMatch) return null;
-    const handlePath = handleMatch[1];
+async function getPersonUuid(): Promise<string> {
+  if (resolvedPersonUuid) return resolvedPersonUuid;
 
-    const apiUrl = `${BASE_URL}/rest/handle/${handlePath}?expand=metadata,bitstreams`;
-    const response = await fetchWithAnubis(apiUrl, {
+  try {
+    const searchUrl = `${BASE_URL}/server/api/discover/search/objects?configuration=person&query=${PERSON_PROFILE_ID}`;
+    const res = await fetchWithAnubis(searchUrl, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const pItem = data._embedded?.searchResult?._embedded?.objects?.[0]?._embedded?.indexableObject;
+      if (pItem?.id) {
+        resolvedPersonUuid = pItem.id;
+        return pItem.id;
+      }
+    }
+  } catch (err) {
+    console.warn('[AccedaCRIS] Failed to dynamically resolve person UUID, using default:', err);
+  }
+
+  resolvedPersonUuid = DEFAULT_PERSON_UUID;
+  return DEFAULT_PERSON_UUID;
+}
+
+function parseItem(item: any): { type: string; baseItem: any; rawType1: string; rawType2: string } {
+  const meta: Record<string, Array<{ value: string }>> = item.metadata || {};
+
+  const getMeta = (key: string): string[] =>
+    meta[key]?.map(m => m.value.trim()).filter(Boolean) || [];
+  const getFirst = (key: string): string => getMeta(key)[0] || '';
+
+  const title = item.name || getFirst('dc.title') || '';
+  const autores = getMeta('dc.contributor.author').join('; ');
+  const añoStr = getFirst('dc.date.issued');
+  const año = parseInt(añoStr.match(/\d{4}/)?.[0] || '') || new Date().getFullYear();
+  const type1 = getFirst('dc.type').toLowerCase();
+  const type2 = getFirst('dc.type2').toLowerCase();
+
+  const handle = item.handle
+    ? `${BASE_URL}/handle/${item.handle}`
+    : `${BASE_URL}/entities/publication/${item.id}`;
+
+  let pdfUrl = '';
+  const bundles: any[] = item._embedded?.bundles?._embedded?.bundles || [];
+  const origBundle = bundles.find(b => b.name === 'ORIGINAL');
+  if (origBundle?._embedded?.bitstreams?._embedded?.bitstreams) {
+    const bitstreams: any[] = origBundle._embedded.bitstreams._embedded.bitstreams;
+    const pdf = bitstreams.find(bs => bs.name?.toLowerCase().endsWith('.pdf')) || bitstreams[0];
+    if (pdf?._links?.content?.href) {
+      pdfUrl = pdf._links.content.href;
+    }
+  }
+
+  const unescoList: string[] = [];
+  getMeta('dc.subject.unesco').forEach(val => {
+    const text = val.replace(/^\d+\s*/, '').trim();
+    if (text && !unescoList.includes(text)) unescoList.push(text);
+  });
+  if (unescoList.length === 0) {
+    getMeta('dc.subject').forEach(val => {
+      const text = val.replace(/^\d+\s*/, '').trim();
+      if (text && !unescoList.includes(text)) unescoList.push(text);
+    });
+  }
+
+  const isbn = getFirst('dc.identifier.isbn') || '';
+  const editorial = getFirst('dc.publisher') || '';
+  const relationIsPartOf = getFirst('dc.relation.ispartof');
+  const source = getFirst('dc.source');
+  const journalOrBook = relationIsPartOf || source || '';
+
+  const volumen = getFirst('dc.identifier.volume') || getFirst('dc.identifier.issue') || '';
+  const startPage = getFirst('dc.description.firstpage') || getFirst('oaire.citation.startPage');
+  const endPage = getFirst('dc.description.lastpage') || getFirst('oaire.citation.endPage');
+  const paginas = startPage && endPage ? `${startPage}-${endPage}` : (startPage || endPage || '');
+  const doi = getFirst('dc.identifier.doi') || '';
+
+  const baseItem = {
+    autores,
+    titulo: title,
+    año,
+    handle,
+    pdfUrl: pdfUrl || undefined,
+    isbn: isbn || undefined,
+    editorial: editorial || undefined,
+    clasificacion: unescoList,
+    revistaOrLibro: journalOrBook,
+    volumen: volumen || undefined,
+    paginas: paginas || undefined,
+    doi: doi || undefined,
+    detailsLoaded: true
+  };
+
+  return { type: type2 || type1, baseItem, rawType1: type1, rawType2: type2 };
+}
+
+export async function fetchItemDetails(handleOrUrl: string) {
+  try {
+    let queryUrl = '';
+    const handleMatch = handleOrUrl.match(/handle\/(10553\/\d+)/i) || handleOrUrl.match(/(10553\/\d+)/);
+    const uuidMatch = handleOrUrl.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i);
+
+    if (handleMatch) {
+      queryUrl = `${BASE_URL}/server/api/pid/find?id=${handleMatch[1]}&embed=bundles/bitstreams`;
+    } else if (uuidMatch) {
+      queryUrl = `${BASE_URL}/server/api/core/items/${uuidMatch[1]}?embed=bundles/bitstreams`;
+    } else {
+      return null;
+    }
+
+    const response = await fetchWithAnubis(queryUrl, {
       headers: { 'Accept': 'application/json' }
     });
 
     if (!response.ok) return null;
-    const data = await response.json();
-
-    const metadataList: Array<{ key: string, value: string }> = data.metadata || [];
-    const bitstreamsList: Array<any> = data.bitstreams || [];
-
-    const getMetadataValues = (key: string): string[] =>
-      metadataList.filter(m => m.key === key).map(m => m.value.trim()).filter(Boolean);
-
-    // 1. PDF URL from Bitstreams
-    let pdfUrl = '';
-    const pdfBitstream = bitstreamsList.find(
-      b => b.mimeType === 'application/pdf' && b.bundleName === 'ORIGINAL'
-    ) || bitstreamsList.find(b => b.mimeType === 'application/pdf');
-
-    if (pdfBitstream) {
-      pdfUrl = `${BASE_URL}/rest${pdfBitstream.retrieveLink}`;
-    }
-
-    // 2. ISBN
-    const isbn = getMetadataValues('dc.identifier.isbn')[0] ||
-                 metadataList.find(m => m.key.toLowerCase().includes('isbn'))?.value ||
-                 '';
-
-    // 3. Editorial / Publisher
-    const editorial = getMetadataValues('dc.publisher')[0] ||
-                      getMetadataValues('dc.source')[0] ||
-                      '';
-
-    // 4. UNESCO / Classifications
-    const unescoList: string[] = [];
-    getMetadataValues('dc.subject.unesco').forEach(val => {
-      const text = val.replace(/^\d+\s*/, '').trim();
-      if (text && !unescoList.includes(text)) {
-        unescoList.push(text);
-      }
-    });
-
-    let clasificaciones = unescoList;
-    if (clasificaciones.length === 0) {
-      const fallback = getMetadataValues('dc.type2')[0] || getMetadataValues('dc.type')[0] || '';
-      if (fallback && fallback.toLowerCase() !== 'libro' && fallback.toLowerCase() !== 'artículo') {
-        clasificaciones.push(fallback);
-      }
-    }
-    clasificaciones = clasificaciones.map(c => c.charAt(0).toUpperCase() + c.slice(1));
-
-    // 5. Authors / Editors
-    const detailAutores = metadataList
-      .filter(m => m.key === 'dc.contributor.author' || m.key === 'dc.contributor.advisor' || m.key === 'dc.contributor.editor')
-      .map(m => m.value.trim())
-      .filter((value, index, self) => value && self.indexOf(value) === index);
-    const autoresResult = detailAutores.join('; ');
+    const item = await response.json();
+    const { baseItem } = parseItem(item);
 
     return {
-      pdfUrl,
-      isbn,
-      editorial,
-      clasificacion: clasificaciones,
-      autores: autoresResult
+      pdfUrl: baseItem.pdfUrl || '',
+      isbn: baseItem.isbn || '',
+      editorial: baseItem.editorial || '',
+      clasificacion: baseItem.clasificacion || [],
+      autores: baseItem.autores || '',
+      revista: baseItem.revistaOrLibro || '',
+      volumen: baseItem.volumen || '',
+      paginas: baseItem.paginas || '',
+      doi: baseItem.doi || ''
     };
   } catch (error) {
+    console.error('[AccedaCRIS] Error fetching item details:', error);
     return null;
   }
 }
@@ -211,70 +285,129 @@ export async function fetchPublicacionesList(): Promise<Publicaciones> {
   }
 
   try {
-    const response = await fetchWithAnubis(ACCEDA_CRIS_URL);
+    const personUuid = await getPersonUuid();
+    const allObjects: any[] = [];
+    let page = 0;
+    let totalPages = 1;
 
-    if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
-
-    const html = await response.text();
-    const $ = cheerio.load(html);
-
-    const entries: { type: string, handle: string, basic: any }[] = [];
-
-    $('a[href*="/handle/"]').each((_, el) => {
-      const $link = $(el);
-      const handle = $link.attr('href') || '';
-      if (!handle.includes('/handle/')) return;
-
-      let $entry = $link.closest('.artifact-description, .ds-artifact-item, tr');
-      if ($entry.length === 0) return;
-
-      const title = $link.text().trim();
-      const authorsList: string[] = [];
-      $entry.find('[id*="dc.contributor.author"], [id*="dc.contributor.editor"], .authority').each((_, auth) => {
-        const text = $(auth).text().trim().replace(/;$/, '');
-        if (text && !authorsList.includes(text)) authorsList.push(text);
+    while (page < totalPages) {
+      const url = `${BASE_URL}/server/api/discover/search/objects?sort=dc.date.issued,DESC&page=${page}&size=100&configuration=RELATION.Person.researchoutputs&scope=${personUuid}&embed=bundles/bitstreams`;
+      const res = await fetchWithAnubis(url, {
+        headers: { 'Accept': 'application/json' }
       });
 
-      const añoStr = $entry.find('[id*="dc.date.issued"]').text().trim();
-      const año = parseInt(añoStr.match(/\d{4}/)?.[0] || '') || new Date().getFullYear();
-      const source = $entry.find('[id*="dc.source"]').text().replace('Localización: ', '').trim();
-      const type = $entry.find('[id*="dc.type2"]').text().trim().toLowerCase();
+      if (!res.ok) {
+        throw new Error(`Discover API error page ${page}: ${res.status} ${res.statusText}`);
+      }
 
-      entries.push({
-        type,
-        handle: handle.startsWith('http') ? handle : BASE_URL + handle,
-        basic: { autores: authorsList.join('; '), titulo: title, año, source }
-      });
-    });
+      const json = await res.json();
+      const sr = json._embedded?.searchResult;
+      totalPages = sr?.page?.totalPages || 1;
+      const objects = sr?._embedded?.objects || [];
+      allObjects.push(...objects);
+      page++;
+    }
 
     const articulos: Articulo[] = [];
     const libros: Libro[] = [];
     const capitulos: Capitulo[] = [];
     const resenas: Articulo[] = [];
+    const actas: Articulo[] = [];
 
-    for (const entry of entries) {
-      const item: any = {
-        ...entry.basic,
-        handle: entry.handle,
-        clasificacion: [] // Empty for now, to be filled by details
-      };
+    for (const obj of allObjects) {
+      const item = obj._embedded?.indexableObject;
+      if (!item) continue;
 
-      if (entry.type.includes('artículo') || entry.type.includes('journal')) {
-        articulos.push({ ...item, revista: entry.basic.source });
-      } else if (entry.type.includes('libro') && !entry.type.includes('capítulo')) {
-        libros.push({ ...item, editorial: entry.basic.source, tipo: 'Libro' });
-      } else if (entry.type.includes('capítulo') || entry.type.includes('chapter')) {
-        capitulos.push({ ...item, libro: entry.basic.source, editorial: '' });
-      } else if (entry.type.includes('reseña') || entry.type.includes('review')) {
-        resenas.push({ ...item, revista: entry.basic.source });
+      const { baseItem, rawType1, rawType2 } = parseItem(item);
+
+      const isResena = rawType2.includes('reseña') || (!rawType2 && rawType1.includes('review'));
+      const isCapitulo = rawType2.includes('capítulo') || (!rawType2 && (rawType1.includes('bookpart') || rawType1.includes('chapter')));
+      const isLibro = rawType2.includes('libro') || (!rawType2 && rawType1.includes('book'));
+      const isArticulo = rawType2.includes('artículo') || (!rawType2 && rawType1.includes('article'));
+      const isActa = rawType2.includes('actas') || (!rawType2 && rawType1.includes('conference'));
+
+      if (isResena) {
+        resenas.push({
+          autores: baseItem.autores,
+          titulo: baseItem.titulo,
+          año: baseItem.año,
+          handle: baseItem.handle,
+          pdfUrl: baseItem.pdfUrl,
+          isbn: baseItem.isbn,
+          clasificacion: baseItem.clasificacion,
+          detailsLoaded: true,
+          revista: baseItem.revistaOrLibro,
+          volumen: baseItem.volumen,
+          paginas: baseItem.paginas,
+          doi: baseItem.doi
+        });
+      } else if (isCapitulo) {
+        capitulos.push({
+          autores: baseItem.autores,
+          titulo: baseItem.titulo,
+          año: baseItem.año,
+          handle: baseItem.handle,
+          pdfUrl: baseItem.pdfUrl,
+          isbn: baseItem.isbn,
+          clasificacion: baseItem.clasificacion,
+          detailsLoaded: true,
+          libro: baseItem.revistaOrLibro,
+          editorial: baseItem.editorial || '',
+          paginas: baseItem.paginas,
+          tipo: 'Capítulo de libro'
+        });
+      } else if (isLibro) {
+        libros.push({
+          autores: baseItem.autores,
+          titulo: baseItem.titulo,
+          año: baseItem.año,
+          handle: baseItem.handle,
+          pdfUrl: baseItem.pdfUrl,
+          isbn: baseItem.isbn,
+          clasificacion: baseItem.clasificacion,
+          detailsLoaded: true,
+          editorial: baseItem.editorial || '',
+          tipo: 'Libro'
+        });
+      } else if (isArticulo) {
+        articulos.push({
+          autores: baseItem.autores,
+          titulo: baseItem.titulo,
+          año: baseItem.año,
+          handle: baseItem.handle,
+          pdfUrl: baseItem.pdfUrl,
+          isbn: baseItem.isbn,
+          clasificacion: baseItem.clasificacion,
+          detailsLoaded: true,
+          revista: baseItem.revistaOrLibro,
+          volumen: baseItem.volumen,
+          paginas: baseItem.paginas,
+          doi: baseItem.doi
+        });
+      } else if (isActa) {
+        actas.push({
+          autores: baseItem.autores,
+          titulo: baseItem.titulo,
+          año: baseItem.año,
+          handle: baseItem.handle,
+          pdfUrl: baseItem.pdfUrl,
+          isbn: baseItem.isbn,
+          clasificacion: baseItem.clasificacion,
+          detailsLoaded: true,
+          revista: baseItem.revistaOrLibro,
+          volumen: baseItem.volumen,
+          paginas: baseItem.paginas,
+          doi: baseItem.doi
+        });
       }
     }
 
-    const result = {
+    const result: Publicaciones = {
       articulos: articulos.sort((a, b) => b.año - a.año),
       libros: libros.sort((a, b) => b.año - a.año),
       capitulos: capitulos.sort((a, b) => b.año - a.año),
-      resenas: resenas.sort((a, b) => b.año - a.año)
+      resenas: resenas.sort((a, b) => b.año - a.año),
+      actas: actas.sort((a, b) => b.año - a.año)
     };
 
     if (result.articulos.length > 0 || result.libros.length > 0 || result.capitulos.length > 0) {
@@ -283,21 +416,129 @@ export async function fetchPublicacionesList(): Promise<Publicaciones> {
       return result;
     }
 
-    console.warn("[Scraper] Scraped data empty, returning fallback mock data");
+    console.warn('[AccedaCRIS] Fetched data empty, returning fallback mock data');
     return (cachedPublicaciones || publicationsMock) as Publicaciones;
   } catch (error) {
     if (cachedPublicaciones) {
-      console.warn("[Scraper] Fetch failed, returning stale cached data:", error);
+      console.warn('[AccedaCRIS] Fetch failed, returning stale cached data:', error);
       return cachedPublicaciones;
     }
-    console.warn("[Scraper] Fetch failed, returning fallback mock data:", error);
+    console.warn('[AccedaCRIS] Fetch failed, returning fallback mock data:', error);
     return publicationsMock as Publicaciones;
   }
 }
 
-// Keep old function for backward compatibility if needed
 export async function fetchPublicaciones(): Promise<Publicaciones> {
-  const list = await fetchPublicacionesList();
-  return list;
+  return await fetchPublicacionesList();
 }
 
+function normalizeTitle(str: string): string {
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]/g, '');
+}
+
+export async function fetchProyectosList(): Promise<ProyectoInvestigacion[]> {
+  const now = Date.now();
+  if (cachedProyectos && (now - projectsCacheTimestamp < CACHE_DURATION)) {
+    return cachedProyectos;
+  }
+
+  try {
+    const personUuid = await getPersonUuid();
+    const url = `${BASE_URL}/server/api/discover/search/objects?configuration=RELATION.Person.projects&scope=${personUuid}&size=50`;
+    const res = await fetchWithAnubis(url, {
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (!res.ok) {
+      throw new Error(`Projects API error: ${res.status} ${res.statusText}`);
+    }
+
+    const json = await res.json();
+    const objects = json._embedded?.searchResult?._embedded?.objects || [];
+
+    const remoteProjects: ProyectoInvestigacion[] = objects.map((o: any) => {
+      const item = o._embedded?.indexableObject;
+      const meta = item?.metadata || {};
+      const getFirst = (k: string) => meta[k]?.[0]?.value || '';
+      const getAll = (k: string) => meta[k]?.map((x: any) => x.value) || [];
+
+      const startYear = getFirst('crispj.startdate').slice(0, 4);
+      const expYear = getFirst('crispj.expdate').slice(0, 4);
+      const periodo = startYear && expYear
+        ? (startYear === expYear ? startYear : `${startYear} - ${expYear}`)
+        : (startYear || expYear || getFirst('crispj.year') || '');
+
+      let funder = getFirst('crispj.funderorganization') || getFirst('crispj.funder');
+      if (funder && funder === funder.toUpperCase() && funder.length > 5) {
+        funder = funder.split(' ').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+      }
+
+      const rawAmount = getFirst('crispj.grantamount');
+      let cuantia = '';
+      if (rawAmount) {
+        const num = parseFloat(rawAmount.replace(',', '.'));
+        cuantia = !isNaN(num) ? new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(num) : `${rawAmount} €`;
+      }
+
+      const handle = item.handle
+        ? `${BASE_URL}/handle/${item.handle}`
+        : `${BASE_URL}/entities/project/${item.id}`;
+
+      return {
+        titulo: item.name || getFirst('dc.title'),
+        investigadorPrincipal: getAll('crispj.principalinvestigator').join('; ') || getFirst('crispj.coordinador'),
+        entidadFinanciadora: funder,
+        participacion: 'Investigador principal',
+        periodo,
+        referencia: getFirst('crispj.reference') || getFirst('crispj.expediente') || undefined,
+        cuantia: cuantia || undefined,
+        handle,
+        relevante: true
+      };
+    });
+
+    // Merge with base projectsMock so all 18 CV projects are retained
+    const baseProjects: ProyectoInvestigacion[] = (projectsMock as ProyectoInvestigacion[]).map(p => {
+      const normLocal = normalizeTitle(p.titulo);
+      const matchedRemote = remoteProjects.find(r => {
+        const normRemote = normalizeTitle(r.titulo);
+        return normLocal.includes(normRemote) || normRemote.includes(normLocal) ||
+          (p.referencia && r.referencia && p.referencia === r.referencia);
+      });
+
+      if (matchedRemote) {
+        return {
+          ...p,
+          handle: matchedRemote.handle,
+          referencia: p.referencia || matchedRemote.referencia,
+          cuantia: p.cuantia || matchedRemote.cuantia,
+          periodo: p.periodo || matchedRemote.periodo
+        };
+      }
+      return p;
+    });
+
+    // Check if there are any new remote projects not in base
+    for (const rp of remoteProjects) {
+      const normRemote = normalizeTitle(rp.titulo);
+      const alreadyPresent = baseProjects.some(bp => {
+        const normLocal = normalizeTitle(bp.titulo);
+        return normLocal.includes(normRemote) || normRemote.includes(normLocal);
+      });
+      if (!alreadyPresent) {
+        baseProjects.unshift(rp);
+      }
+    }
+
+    cachedProyectos = baseProjects;
+    projectsCacheTimestamp = now;
+    return baseProjects;
+  } catch (error) {
+    console.warn('[AccedaCRIS] Projects fetch failed, returning fallback mock data:', error);
+    return (cachedProyectos || projectsMock) as ProyectoInvestigacion[];
+  }
+}

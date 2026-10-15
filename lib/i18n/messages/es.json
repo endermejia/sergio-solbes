@@ -87,7 +87,11 @@
     "pi": "Investigador Principal",
     "funding": "Financiación",
     "period": "Periodo",
-    "relevant": "Proyectos Relevantes"
+    "relevant": "Proyectos Relevantes",
+    "reference": "Referencia",
+    "funding_amount": "Dotación",
+    "view_in_acceda": "Ver en accedaCRIS",
+    "view_all_projects": "Ver proyectos en accedaCRIS"
   },
   "publications": {
     "title": "Publicaciones",
@@ -96,9 +100,12 @@
     "books": "Libros",
     "chapters": "Capítulos",
     "reviews": "Reseñas",
+    "proceedings": "Actas en accedaCRIS",
+    "all_participations": "Todas las participaciones",
     "view_more": "Ver más",
     "view_less": "Ver menos",
     "view_pdf": "Ver PDF",
+    "view_in_acceda": "Ver en accedaCRIS",
     "pages": "pp.",
     "volume": "Vol.",
     "in": "En",

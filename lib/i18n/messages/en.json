@@ -87,7 +87,11 @@
     "pi": "Principal Investigator",
     "funding": "Funding",
     "period": "Period",
-    "relevant": "Relevant Projects"
+    "relevant": "Relevant Projects",
+    "reference": "Reference",
+    "funding_amount": "Funding amount",
+    "view_in_acceda": "View in accedaCRIS",
+    "view_all_projects": "View projects in accedaCRIS"
   },
   "publications": {
     "title": "Publications",
@@ -96,9 +100,12 @@
     "books": "Books",
     "chapters": "Chapters",
     "reviews": "Reviews",
+    "proceedings": "Proceedings in accedaCRIS",
+    "all_participations": "All participations",
     "view_more": "View more",
     "view_less": "View less",
     "view_pdf": "View PDF",
+    "view_in_acceda": "View in accedaCRIS",
     "pages": "pp.",
     "volume": "Vol.",
     "in": "In",

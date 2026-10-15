@@ -87,7 +87,11 @@
     "pi": "Hauptinvestigator",
     "funding": "Finanzierung",
     "period": "Zeitraum",
-    "relevant": "Relevante Projekte"
+    "relevant": "Relevante Projekte",
+    "reference": "Referenz",
+    "funding_amount": "Fördermittel",
+    "view_in_acceda": "Auf accedaCRIS ansehen",
+    "view_all_projects": "Projekte auf accedaCRIS ansehen"
   },
   "publications": {
     "title": "Publikationen",
@@ -96,9 +100,12 @@
     "books": "Bücher",
     "chapters": "Kapitel",
     "reviews": "Rezensionen",
+    "proceedings": "Tagungsbände auf accedaCRIS",
+    "all_participations": "Alle Teilnahmen",
     "view_more": "Mehr sehen",
     "view_less": "Weniger sehen",
     "view_pdf": "PDF ansehen",
+    "view_in_acceda": "Auf accedaCRIS ansehen",
     "pages": "S.",
     "volume": "Bd.",
     "in": "In",

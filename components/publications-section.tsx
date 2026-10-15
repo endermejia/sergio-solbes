@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, BookOpen, FileText, Newspaper, ChevronDown, ChevronUp, BookMarked, X, Users, Award, Loader2 } from "lucide-react"
-import { publicaciones, stats as localStats, participacionCongresos, estanciasInvestigacion, meritosInvestigacion } from "@/lib/data"
+import { profileData, publicaciones, stats as localStats, participacionCongresos, estanciasInvestigacion, meritosInvestigacion } from "@/lib/data"
 import { getPublicationDetails, getPublicationList } from "@/lib/actions/publications"
 import {
   Dialog,
@@ -74,6 +74,8 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
   const [showMoreBooks, setShowMoreBooks] = useState(false)
   const [showMoreChapters, setShowMoreChapters] = useState(false)
   const [showMoreMeritos, setShowMoreMeritos] = useState(false)
+  const [showMoreActas, setShowMoreActas] = useState(false)
+  const [congressSubTab, setCongressSubTab] = useState<'actas' | 'participaciones'>('actas')
   const [activeTab, setActiveTab] = useState("articulos")
   const [sectionIntersected, setSectionIntersected] = useState(true)
 
@@ -117,7 +119,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
 
   const loadingHandles = useRef<Set<string>>(new Set())
 
-  const loadDetailsForItem = async (handle: string, type: 'articulo' | 'libro' | 'capitulo' | 'resena') => {
+  const loadDetailsForItem = async (handle: string, type: 'articulo' | 'libro' | 'capitulo' | 'resena' | 'acta') => {
     if (!handle || loadingHandles.current.has(handle)) return;
 
     loadingHandles.current.add(handle);
@@ -133,6 +135,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
         else if (type === 'libro')    newData.libros    = updateItem(newData.libros);
         else if (type === 'capitulo') newData.capitulos = updateItem(newData.capitulos);
         else if (type === 'resena')   newData.resenas   = updateItem(newData.resenas);
+        else if (type === 'acta')     newData.actas     = updateItem(newData.actas || []);
         return newData;
       });
     } catch (e) {
@@ -595,57 +598,173 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
 
           {/* Congresos */}
           <TabsContent value="congresos">
-            <div className="space-y-3">
-              {participacionCongresos.slice(0, 10).map((c, index) => (
-                <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
-                  <CardContent className="py-4">
-                    <h4 className="font-medium text-foreground text-sm leading-snug">{c.trabajo || ""}</h4>
-                    <p className="text-xs text-muted-foreground mt-1">{c.congreso}</p>
-                    <div className="mt-2 space-y-1">
-                      {c.tipo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.activity_type')}:</span> {c.tipo}</p>}
-                      {c.modo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.participation_mode')}:</span> {c.modo}</p>}
-                      <div className="flex justify-between items-center pt-1 border-t border-border/30 mt-1">
-                        <span className="text-[10px] text-accent font-medium">{c.ciudad}</span>
-                        {c.ambito && <span className="text-[10px] text-muted-foreground/60">{c.ambito}</span>}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="flex flex-wrap gap-2 mb-6">
+              <Button
+                variant={congressSubTab === 'actas' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setCongressSubTab('actas')}
+                className="gap-2"
+              >
+                <FileText className="h-4 w-4" />
+                {t('publications.proceedings')} ({(data.actas || []).length})
+              </Button>
+              <Button
+                variant={congressSubTab === 'participaciones' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setCongressSubTab('participaciones')}
+                className="gap-2"
+              >
+                <Users className="h-4 w-4" />
+                {t('publications.all_participations')} ({participacionCongresos.length})
+              </Button>
             </div>
-            {participacionCongresos.length > 10 && (
-              <div className="mt-6 text-center">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="outline" className="gap-2">
-                      {t('publications.view_more')} ({participacionCongresos.length})
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl max-h-[80vh]">
-                    <DialogHeader>
-                      <DialogTitle>{t('research.congresses_title')}</DialogTitle>
-                    </DialogHeader>
-                    <ScrollArea className="h-[60vh] pr-4">
-                      <div className="space-y-4">
-                        {participacionCongresos.map((c, index) => (
-                          <div key={index} className="p-4 border-b border-border/50 last:border-0 hover:bg-accent/5 transition-colors">
-                            <h4 className="font-medium text-sm leading-snug">{c.trabajo || ""}</h4>
-                            <p className="text-xs text-muted-foreground mt-1">{c.congreso}</p>
-                            <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
-                              {c.tipo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.activity_type')}:</span> {c.tipo}</p>}
-                              {c.modo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.participation_mode')}:</span> {c.modo}</p>}
-                              <p className="text-[10px] text-accent font-medium mt-1 col-span-2">
-                                {c.ciudad} {c.ambito ? `(${c.ambito})` : ""} {c.organizador ? `- ${c.organizador}` : ""}
+
+            {congressSubTab === 'actas' ? (
+              <>
+                <div className="space-y-3">
+                  {((showMoreActas ? data.actas : data.actas?.slice(0, 6)) || []).map((pub, index) => (
+                    <LazyLoadWrapper
+                      key={index}
+                      handle={pub.handle}
+                      detailsLoaded={pub.detailsLoaded}
+                      onVisible={() => pub.handle && loadDetailsForItem(pub.handle, 'acta')}
+                    >
+                      <Card className="border-border/50 hover:shadow-sm transition-shadow">
+                        <CardContent className="py-4">
+                          <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                            <span className="shrink-0 text-sm font-medium text-accent bg-accent/10 px-2 py-1 rounded">
+                              {pub.año}
+                            </span>
+                            <div className="flex-1">
+                              <h4 className="font-medium text-foreground leading-snug text-sm">
+                                {pub.titulo}
+                              </h4>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                {pub.autores}
                               </p>
+                              {pub.revista && (
+                                <p className="text-xs text-muted-foreground italic mt-1">
+                                  {pub.revista}{pub.paginas ? `, ${t('publications.pages')} ${pub.paginas}` : ""}
+                                </p>
+                              )}
+                              <div className="mt-2 flex flex-wrap gap-2">
+                                {pub.clasificacion?.map((c, i) => (
+                                  <Badge key={i} variant="outline" className="text-xs font-normal">
+                                    {c}
+                                  </Badge>
+                                ))}
+                              </div>
+                              <div className="mt-3 flex flex-wrap items-center gap-3">
+                                {pub.pdfUrl && (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="h-8 text-xs gap-1.5 text-accent hover:text-accent/80 hover:bg-accent/5 p-0"
+                                    onClick={() => window.open(pub.pdfUrl, "_blank")}
+                                  >
+                                    <ExternalLink className="h-3.5 w-3.5" />
+                                    {t('publications.view_pdf')}
+                                  </Button>
+                                )}
+                                {pub.handle && (
+                                  <Button
+                                    asChild
+                                    variant="ghost"
+                                    size="sm"
+                                    className="h-8 text-xs gap-1.5 text-muted-foreground hover:text-foreground hover:bg-accent/5 p-0"
+                                  >
+                                    <a href={pub.handle} target="_blank" rel="noopener noreferrer">
+                                      <ExternalLink className="h-3.5 w-3.5" />
+                                      {t('publications.view_in_acceda')}
+                                    </a>
+                                  </Button>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    </ScrollArea>
-                  </DialogContent>
-                </Dialog>
-              </div>
+                        </CardContent>
+                      </Card>
+                    </LazyLoadWrapper>
+                  ))}
+                </div>
+
+                {(data.actas || []).length > 6 && (
+                  <div className="mt-6 text-center">
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowMoreActas(!showMoreActas)}
+                      className="gap-2"
+                    >
+                      {showMoreActas ? (
+                        <>
+                          <ChevronUp className="h-4 w-4" />
+                          {t('publications.view_less')}
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="h-4 w-4" />
+                          {t('publications.view_more')} ({(data.actas || []).length})
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="space-y-3">
+                  {participacionCongresos.slice(0, 10).map((c, index) => (
+                    <Card key={index} className="border-border/50 hover:shadow-sm transition-shadow">
+                      <CardContent className="py-4">
+                        <h4 className="font-medium text-foreground text-sm leading-snug">{c.trabajo || ""}</h4>
+                        <p className="text-xs text-muted-foreground mt-1">{c.congreso}</p>
+                        <div className="mt-2 space-y-1">
+                          {c.tipo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.activity_type')}:</span> {c.tipo}</p>}
+                          {c.modo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.participation_mode')}:</span> {c.modo}</p>}
+                          <div className="flex justify-between items-center pt-1 border-t border-border/30 mt-1">
+                            <span className="text-[10px] text-accent font-medium">{c.ciudad}</span>
+                            {c.ambito && <span className="text-[10px] text-muted-foreground/60">{c.ambito}</span>}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+                {participacionCongresos.length > 10 && (
+                  <div className="mt-6 text-center">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" className="gap-2">
+                          {t('publications.view_more')} ({participacionCongresos.length})
+                          <ExternalLink className="h-4 w-4" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl max-h-[80vh]">
+                        <DialogHeader>
+                          <DialogTitle>{t('research.congresses_title')}</DialogTitle>
+                        </DialogHeader>
+                        <ScrollArea className="h-[60vh] pr-4">
+                          <div className="space-y-4">
+                            {participacionCongresos.map((c, index) => (
+                              <div key={index} className="p-4 border-b border-border/50 last:border-0 hover:bg-accent/5 transition-colors">
+                                <h4 className="font-medium text-sm leading-snug">{c.trabajo || ""}</h4>
+                                <p className="text-xs text-muted-foreground mt-1">{c.congreso}</p>
+                                <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
+                                  {c.tipo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.activity_type')}:</span> {c.tipo}</p>}
+                                  {c.modo && <p className="text-[10px] text-muted-foreground"><span className="font-medium text-foreground">{t('research.participation_mode')}:</span> {c.modo}</p>}
+                                  <p className="text-[10px] text-accent font-medium mt-1 col-span-2">
+                                    {c.ciudad} {c.ambito ? `(${c.ambito})` : ""} {c.organizador ? `- ${c.organizador}` : ""}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </ScrollArea>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                )}
+              </>
             )}
           </TabsContent>
 
@@ -730,7 +849,7 @@ export function PublicationsSection({ initialData }: { initialData?: Publicacion
         <div className="text-center mt-10">
           <Button asChild variant="default" className="gap-2">
             <a 
-              href="https://accedacris.ulpgc.es/cris/rp/rp01750/publicaciones.html?open=all" 
+              href={profileData.links.accedaCris} 
               target="_blank" 
               rel="noopener noreferrer"
             >

@@ -1,522 +1,726 @@
 {
   "articulos": [
     {
-      "autores": "Solbes Ferri, Sergio ; Solbes Alegría, María",
+      "autores": "Solbes Ferri, Sergio; Solbes Alegría, María",
       "titulo": "El régimen económico y fiscal de Canarias (REF): evolución histórica, impacto y sostenibilidad",
       "año": 2026,
-      "source": "Hacienda Canaria [ISSN 1696-6945], nº 65, p. 99-137 (Marzo 2026)",
       "handle": "https://accedacris.ulpgc.es/handle/10553/165041",
-      "clasificacion": [],
-      "revista": "Hacienda Canaria [ISSN 1696-6945], nº 65, p. 99-137 (Marzo 2026)"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/d953496c-fca2-452c-b5c0-38bc074508a0/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Hacienda canaria",
+      "volumen": "65",
+      "paginas": "99-137"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel",
+      "titulo": "Guerras comerciales: lecciones del pasado para un presente incierto",
+      "año": 2025,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/136482",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/268363fe-deb6-419c-aa66-b98643a22875/content",
+      "clasificacion": [
+        "Comercio exterior"
+      ],
+      "detailsLoaded": true,
+      "revista": "The Conversation"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La recuperación del control financiero de la Corona para la defensa de las Islas Canarias, circa 1720-1770",
       "año": 2025,
-      "source": "Tempo 31 (3), 2025,  e310301",
       "handle": "https://accedacris.ulpgc.es/handle/10553/157045",
-      "clasificacion": [],
-      "revista": "Tempo 31 (3), 2025,  e310301"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/ee09a656-302b-4228-8bbb-0db23ca645bc/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Tempo (Brazil)",
+      "doi": "10.1590/TEM-1980-542X2024v300102"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Castillo Hidalgo, Daniel",
-      "titulo": "Guerras comerciales: lecciones del pasado para un presente incierto",
-      "año": 2025,
-      "source": "The Conversation [ISSN 2201-5639], (20 de febrero de 2025)",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/136482",
-      "clasificacion": [],
-      "revista": "The Conversation [ISSN 2201-5639], (20 de febrero de 2025)"
-    },
-    {
-      "autores": "Albareda Salvadó, Joaquim; Castellá Pujols, Maria Betlem; Solbes Ferri, Sergio ; Torres Sánchez, Rafael",
+      "autores": "Albareda Salvadó, Joaquim; Castellá Pujols, Maria Betlem; Solbes Ferri, Sergio; Torres Sánchez, Rafael",
       "titulo": "¿Amigos o enemigos? España y Francia: intereses dinásticos e intereses nacionales (siglo XVIII)  - Política, diplomacia y consulados",
       "año": 2024,
-      "source": "RiMe Rivista dell’Istituto di Storia dell’Europa Mediterranea. Special Issue n. 14/III y IV n.s., giugno 2024",
       "handle": "https://accedacris.ulpgc.es/handle/10553/136481",
-      "clasificacion": [],
-      "revista": "RiMe Rivista dell’Istituto di Storia dell’Europa Mediterranea. Special Issue n. 14/III y IV n.s., giugno 2024"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/42fe2b54-0c04-4924-9688-ad1ef96d5f63/content",
+      "clasificacion": [
+        "Historia por épocas"
+      ],
+      "detailsLoaded": true,
+      "revista": "RiMe. Istituto Di Storia Dell''Europa Mediterranea. Rivista"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Los almacenes de la corte y la provisión del vestuario del ejército de Felipe V durante la Guerra de Sucesión",
       "año": 2024,
-      "source": "RiMe 14/IV n,s. (june 2024), p. 7-13",
       "handle": "https://accedacris.ulpgc.es/handle/10553/136480",
-      "clasificacion": [],
-      "revista": "RiMe 14/IV n,s. (june 2024), p. 7-13"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/c23259a2-1b0e-447c-a8dc-4bb5dec4db90/content",
+      "clasificacion": [
+        "Historia por épocas"
+      ],
+      "detailsLoaded": true,
+      "revista": "RiMe. Istituto Di Storia Dell''Europa Mediterranea. Rivista",
+      "doi": "10.7410/1712"
     },
     {
-      "autores": "Lantigua Ojeda, Alejandro ; Solbes Ferri, Sergio",
-      "titulo": "Cambios institucionales ocurridos en Canarias durante la Guerra de la Independencia española (1808-1814). Un germen para futuras desavenencias",
-      "año": 2023,
-      "source": "Anuario de Estudios Atlánticos, ISSN 0570-4065, Nº. 69, 2023",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/121125",
-      "clasificacion": [],
-      "revista": "Anuario de Estudios Atlánticos, ISSN 0570-4065, Nº. 69, 2023"
-    },
-    {
-      "autores": "Solbes Ferri, Sergio ; Castillo Hidalgo, Daniel ; Quintana Navarro, Francisco Del Pino",
+      "autores": "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel; Quintana Navarro, Francisco Del Pino",
       "titulo": "La historia fiscal de Canarias en diez etapas (Una guía para la lectura de la Diferencia Insular)",
       "año": 2023,
-      "source": "Hacienda Canaria [1696-6945], nº 59, 2023, p. 113-151",
       "handle": "https://accedacris.ulpgc.es/handle/10553/122043",
-      "clasificacion": [],
-      "revista": "Hacienda Canaria [1696-6945], nº 59, 2023, p. 113-151"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/51d1b2e9-9b69-4a81-bb6a-6f59757cd5f2/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Hacienda canaria"
+    },
+    {
+      "autores": "Lantigua Ojeda, Alejandro; Solbes Ferri, Sergio",
+      "titulo": "Cambios institucionales ocurridos en Canarias durante la Guerra de la Independencia española (1808-1814). Un germen para futuras desavenencias",
+      "año": 2023,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/121125",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/6cca6665-6cdd-42dc-a6b9-5832c5fbc895/content",
+      "clasificacion": [
+        "Historia de la guerra"
+      ],
+      "detailsLoaded": true,
+      "revista": "Anuario de Estudios Atlánticos",
+      "volumen": "69",
+      "doi": "10.36980/10825/aea"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La logística naval: entre la administración directa y el asiento de la Armada española entre 1700 y 1754",
       "año": 2023,
-      "source": "Desperta Ferro: Especiales, ISSN 2255-4734, Nº. 34, 2023 (Ejemplar dedicado a: La Armada española (VI): el renacimiento de la Marina (1700-1750)), págs. 54-61",
       "handle": "https://accedacris.ulpgc.es/handle/10553/132193",
-      "clasificacion": [],
-      "revista": "Desperta Ferro: Especiales, ISSN 2255-4734, Nº. 34, 2023 (Ejemplar dedicado a: La Armada española (VI): el renacimiento de la Marina (1700-1750)), págs. 54-61"
+      "clasificacion": [
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
+      "revista": "Desperta Ferro"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Castillo Hidalgo, Daniel",
+      "autores": "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel",
       "titulo": "Europa frente al espejo de su propia historia",
       "año": 2022,
-      "source": "The Conversation [ISSN 2201-5639], 6 mayo 2022",
       "handle": "https://accedacris.ulpgc.es/handle/10553/114650",
-      "clasificacion": [],
-      "revista": "The Conversation [ISSN 2201-5639], 6 mayo 2022"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/bb797585-7f00-4965-a5dc-8dccc7a60cd2/content",
+      "clasificacion": [
+        "Historia de las relaciones internacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "The conversation"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La formación del Estado en el siglo XVIII: de la historiografía actual a la Real Fábrica de Paños de Alcoy",
       "año": 2022,
-      "source": "eWali: revista de investigación antropológica, histórica, cultural y social en el entorno Mediterráneo [ISSN 2659-5362], n. 4, p. 34-42, (2022)",
       "handle": "https://accedacris.ulpgc.es/handle/10553/121124",
-      "clasificacion": [],
-      "revista": "eWali: revista de investigación antropológica, histórica, cultural y social en el entorno Mediterráneo [ISSN 2659-5362], n. 4, p. 34-42, (2022)"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/4eaf2681-4bc9-4409-9f8e-80d62fd69d3d/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "eWali",
+      "volumen": "4",
+      "paginas": "34-42"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Martí Fraga, Eduard",
-      "titulo": "Military Supply without the Military? Supplying the Spanish Army in the 18th Century",
-      "año": 2021,
-      "source": "War & Society [0729-2473], v. 40 (1), p. 64-81",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/77803",
-      "clasificacion": [],
-      "revista": "War & Society [0729-2473], v. 40 (1), p. 64-81"
-    },
-    {
-      "autores": "Solbes Ferri, Sergio ; Castillo Hidalgo, Daniel",
+      "autores": "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel",
       "titulo": "Deuda pública, deuda odiosa y coronavirus: Lecciones de la historia",
       "año": 2021,
-      "source": "The conversation [ISSN 2201-5639], 1 agosto 2021",
       "handle": "https://accedacris.ulpgc.es/handle/10553/111368",
-      "clasificacion": [],
-      "revista": "The conversation [ISSN 2201-5639], 1 agosto 2021"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/7cb29952-43e1-453b-8783-c09f31d26366/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "The conversation"
     },
     {
-      "autores": "Brandon, Pepijn; Solbes Ferri, Sergio ; Valdez-Bubnov, Iván",
+      "autores": "Solbes Ferri, Sergio; Martí Fraga, Eduard",
+      "titulo": "Military Supply without the Military? Supplying the Spanish Army in the 18th Century",
+      "año": 2021,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/77803",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/0c2bdc62-ce17-4282-a1ef-1d61563cc2d1/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia de la guerra"
+      ],
+      "detailsLoaded": true,
+      "revista": "War & Society",
+      "volumen": "1",
+      "doi": "10.1080/07292473.2021.1860319"
+    },
+    {
+      "autores": "Brandon, Pepijn; Solbes Ferri, Sergio; Valdez-Bubnov, Iván",
       "titulo": "Mobilising Resources for the Army and Navy in the Eighteenth-Century Spanish Empire: Comparative, Transnational and Imperial Dimensions",
       "año": 2021,
-      "source": "War & Society [0729-2473], n. 40(1), p. 1-8",
       "handle": "https://accedacris.ulpgc.es/handle/10553/77913",
-      "clasificacion": [],
-      "revista": "War & Society [0729-2473], n. 40(1), p. 1-8"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/0d754b12-ed27-45fa-b18a-6d304feea824/content",
+      "clasificacion": [
+        "Historia de la guerra"
+      ],
+      "detailsLoaded": true,
+      "revista": "War & Society",
+      "volumen": "1",
+      "doi": "10.1080/07292473.2021.1860318"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Castillo Hidalgo, Daniel",
-      "titulo": "La Unión Europea: una historia de resiliencia, cooperación y aprendizaje",
-      "año": 2020,
-      "source": "The Conversation [ISSN 2201-5639], 18 de mayo 2020",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/75643",
-      "clasificacion": [],
-      "revista": "The Conversation [ISSN 2201-5639], 18 de mayo 2020"
-    },
-    {
-      "autores": "Castillo Hidalgo, Daniel ; Solbes Ferri, Sergio",
-      "titulo": "Milton Friedman 50 años después",
-      "año": 2020,
-      "source": "The Conversation [ISSN 2201-5639], 13 de septiembre 2020",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/75711",
-      "clasificacion": [],
-      "revista": "The Conversation [ISSN 2201-5639], 13 de septiembre 2020"
-    },
-    {
-      "autores": "Castillo Hidalgo, Daniel ; Solbes Ferri, Sergio",
+      "autores": "Castillo Hidalgo, Daniel; Solbes Ferri, Sergio",
       "titulo": "Europa 2020, ¿de nuevo el escenario de un Plan Marshall?",
       "año": 2020,
-      "source": "The Conversation [ISSN 2201-5639], 20 de abril 2020",
       "handle": "https://accedacris.ulpgc.es/handle/10553/75631",
-      "clasificacion": [],
-      "revista": "The Conversation [ISSN 2201-5639], 20 de abril 2020"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/67e283f6-3c96-4231-8af9-7e1074535cd5/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "The Conversation"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel",
+      "titulo": "La Unión Europea: una historia de resiliencia, cooperación y aprendizaje",
+      "año": 2020,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/75643",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/886195bc-4caf-410b-869a-f6e076b1b167/content",
+      "clasificacion": [
+        "Historia de países"
+      ],
+      "detailsLoaded": true,
+      "revista": "The Conversation"
+    },
+    {
+      "autores": "Castillo Hidalgo, Daniel; Solbes Ferri, Sergio",
+      "titulo": "Milton Friedman 50 años después",
+      "año": 2020,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/75711",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/b8e5f7b8-dc1d-4245-af69-10a1b224e7c5/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "The Conversation"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "The Spanish monarchy as a contractor state in the eighteenth century: interaction of political power with the market",
       "año": 2019,
-      "source": "Business History[ISSN 0007-6791],v. 60, p. 72-86",
       "handle": "https://accedacris.ulpgc.es/handle/10553/41542",
-      "clasificacion": [],
-      "revista": "Business History[ISSN 0007-6791],v. 60, p. 72-86"
+      "clasificacion": [
+        "Historia de la economía",
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Business history",
+      "volumen": "1",
+      "paginas": "72-86",
+      "doi": "10.1080/00076791.2017.1349107"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La navegación directa de Canarias a América y su papel en el sistema comercial atlántico, 1718-1778",
       "año": 2019,
-      "source": "América Latina en la Historia Económica [ISSN 1405-2253], v. 25, p. 36-97",
       "handle": "https://accedacris.ulpgc.es/handle/10553/41433",
-      "clasificacion": [],
-      "revista": "América Latina en la Historia Económica [ISSN 1405-2253], v. 25, p. 36-97"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/25425b03-2918-4d49-9b2f-f838bb970439/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
+      "revista": "América Latina en la Historia Económica",
+      "paginas": "36-97",
+      "doi": "10.18232/alhe.v25i1.875"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Farrujía Coello, Amós",
+      "autores": "Solbes Ferri, Sergio; Farrujía Coello, Amós",
       "titulo": "El papel de las instituciones y de los agentes privados en la provisión de suministros militares para la defensa de Canarias",
       "año": 2018,
-      "source": "Tiempos modernos: Revista Electrónica de Historia Moderna [ISSN 1699-7778], v. 9 (36), p. 56-79",
       "handle": "https://accedacris.ulpgc.es/handle/10553/55597",
-      "clasificacion": [],
-      "revista": "Tiempos modernos: Revista Electrónica de Historia Moderna [ISSN 1699-7778], v. 9 (36), p. 56-79"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/ab55e6a8-1c60-4fe6-a585-2c7e00e3031f/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Tiempos modernos. Revista Electrónica de Historia Moderna",
+      "volumen": "36",
+      "paginas": "56-79"
     },
     {
       "autores": "Torres-Sánchez, Rafael; Bertrand, Michel; Dubet, Anne; Solbes Ferri, Sergio",
       "titulo": "Introducción. La construcción de la Hacienda Hispánica (siglos XVIII y XIX). El gobierno de la hacienda",
       "año": 2017,
-      "source": "Espacio, Tiempo y Forma. Serie IV, Historia Moderna [ISSN 1131-768X], v. 30, p. 13-18",
       "handle": "https://accedacris.ulpgc.es/handle/10553/41609",
-      "clasificacion": [],
-      "revista": "Espacio, Tiempo y Forma. Serie IV, Historia Moderna [ISSN 1131-768X], v. 30, p. 13-18"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/20669024-2625-4e31-9b4c-89c6377e53e9/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Espacio, tiempo y forma. Serie IV, Historia moderna",
+      "paginas": "13-18",
+      "doi": "10.5944/etfiv.30.2017"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La prioridad dinástica del rey Felipe V. Análisis de los costes de la expedición del infante Don Felipe a Italia (1742-1746)",
       "año": 2016,
-      "source": "Revista universitaria de historia militar [ISSN 2254-6111], v. 5 (10), p. 111-134",
       "handle": "https://accedacris.ulpgc.es/handle/10553/55598",
-      "clasificacion": [],
-      "revista": "Revista universitaria de historia militar [ISSN 2254-6111], v. 5 (10), p. 111-134"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/3a40ac7c-31e3-43dd-8f57-50e98bd673d6/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Revista universitaria de historia militar",
+      "volumen": "10",
+      "paginas": "111-134"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Fé Cantó, Luis Fernando",
+      "autores": "Solbes Ferri, Sergio; Fé Cantó, Luis Fernando",
       "titulo": "Las estrategias defensivas del Imperio hispánico en el siglo XVIII. El precio de la seguridad",
       "año": 2016,
-      "source": "Vegueta : Anuario de la Facultad de Geografía e Historia. Las Palmas de Gran Canaria : Universidad de Las Palmas de Gran Canaria, Servicio de Publicaciones, 1992 [ISSN 1133-598X], v. 16, p. 13-30, 2016",
       "handle": "https://accedacris.ulpgc.es/handle/10553/19213",
-      "clasificacion": [],
-      "revista": "Vegueta : Anuario de la Facultad de Geografía e Historia. Las Palmas de Gran Canaria : Universidad de Las Palmas de Gran Canaria, Servicio de Publicaciones, 1992 [ISSN 1133-598X], v. 16, p. 13-30, 2016"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/65e2b964-4e12-49cd-98d0-9554cec5e9f1/content",
+      "clasificacion": [
+        "Historia"
+      ],
+      "detailsLoaded": true,
+      "revista": "Vegueta: Anuario de la Facultad de Geografía e Historia",
+      "volumen": "16",
+      "paginas": "13-30"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Privilegios territoriales en la España borbónica del siglo XVIII: reforma o consolidación",
       "año": 2016,
-      "source": "Mélanges de la Casa de Velázquez [ISSN 0076-230X], v. 46 (1), p.117-126",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17107",
-      "clasificacion": [],
-      "revista": "Mélanges de la Casa de Velázquez [ISSN 0076-230X], v. 46 (1), p.117-126"
-    },
-    {
-      "autores": "Solbes Ferri, Sergio ; Dubet, Anne",
-      "titulo": "Presentación [del monográfico \"La construcción de la hacienda hispánica en el largo siglo XVIII\"]",
-      "año": 2016,
-      "source": "Melanges de la Casa de Velazquez [ISSN 0076-230X], v. 46 (1), p. 9-19",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/17108",
-      "clasificacion": [],
-      "revista": "Melanges de la Casa de Velazquez [ISSN 0076-230X], v. 46 (1), p. 9-19"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/f4cef2c0-0057-4008-b3ba-17e6d19d5262/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Mélanges de la Casa de Velázquez",
+      "volumen": "1",
+      "paginas": "117-126",
+      "doi": "10.4000/mcv.6906"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Recaudación de rentas, control contable y ejecución del gasto. Las reformas combinadas de la renta del tabaco y la Tesorería General en el Siglo XVIII español",
       "año": 2016,
-      "source": "De Computis [ISSN 1886-1881], v. 13 (25), p. 137-160, (Diciembre 2016)",
       "handle": "https://accedacris.ulpgc.es/handle/10553/55599",
-      "clasificacion": [],
-      "revista": "De Computis [ISSN 1886-1881], v. 13 (25), p. 137-160, (Diciembre 2016)"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/742ecc91-ad90-4e02-8ff8-a03ae7d4157e/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "De Computis",
+      "volumen": "25",
+      "paginas": "137-160"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio; Dubet, Anne",
+      "titulo": "Presentación [del monográfico \"La construcción de la hacienda hispánica en el largo siglo XVIII\"]",
+      "año": 2016,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17108",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/b5eb099a-244f-426b-bcc5-f7f870082d1f/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Mélanges de la Casa de Velázquez"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Introducción: actores políticos y actores privados en el gobierno de la Hacienda",
       "año": 2015,
-      "source": "Tiempos modernos: revista electrónica de Historia Moderna [ISSN 1699-7778], v. 8 (30)",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17133",
-      "clasificacion": [],
-      "revista": "Tiempos modernos: revista electrónica de Historia Moderna [ISSN 1699-7778], v. 8 (30)"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/a4febef5-0a05-40a0-ba13-9dce320a5456/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Tiempos modernos. Revista Electrónica de Historia Moderna"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Gasto militar y agentes privados: la provisión de uniformes para el ejército español en el siglo XVIII",
       "año": 2015,
-      "source": "Tiempos modernos: revista electrónica de Historia Moderna [ISSN 1699-7778], v. 8 (30)",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17128",
-      "clasificacion": [],
-      "revista": "Tiempos modernos: revista electrónica de Historia Moderna [ISSN 1699-7778], v. 8 (30)"
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Uniformidad fiscal versus territorios privilegiados en la España del siglo XVIII: los casos de Navarra y Canarias",
-      "año": 2014,
-      "source": "Espacio, tiempo y forma. Serie IV, Historia moderna -- 1131-768X. -- 2014, 27, p. 135-160",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/17131",
-      "clasificacion": [],
-      "revista": "Espacio, tiempo y forma. Serie IV, Historia moderna -- 1131-768X. -- 2014, 27, p. 135-160"
-    },
-    {
-      "autores": "Solbes Ferri, Sergio ; Dubet, Anne; Torres Sánchez, Rafael; Bertrand, Michel",
-      "titulo": "Presentación: haciendas locales y haciendas estatales en las monarquías francesa y española: la construcción territorial del poder (siglo XVIII)",
-      "año": 2014,
-      "source": "Espacio, tiempo y forma. Serie IV, Historia moderna -- 1131-768X. -- 2014, 27; \"El objeto de este monográfico es contribuir al estudio de la construcción territorial del poder de las monarquías en el Antiguo Régimen por medio del prisma de la hacienda, de su actividad y funcionamiento. A través de las relaciones entre hacienda monárquica y haciendas territoriales y locales, podremos observar la dinámica de las relaciones de poder entre la monarquía y los actores locales; entre la monarquía, los poderes intermedios y los contribuyentes.\"",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/17130",
-      "clasificacion": [],
-      "revista": "Espacio, tiempo y forma. Serie IV, Historia moderna -- 1131-768X. -- 2014, 27; \"El objeto de este monográfico es contribuir al estudio de la construcción territorial del poder de las monarquías en el Antiguo Régimen por medio del prisma de la hacienda, de su actividad y funcionamiento. A través de las relaciones entre hacienda monárquica y haciendas territoriales y locales, podremos observar la dinámica de las relaciones de poder entre la monarquía y los actores locales; entre la monarquía, los poderes intermedios y los contribuyentes.\""
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/edcd2041-be48-4026-a319-e2726f273dd5/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia"
+      ],
+      "detailsLoaded": true,
+      "revista": "Tiempos modernos. Revista Electrónica de Historia Moderna",
+      "volumen": "30"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Trade and Trust in the Eighteenth-Century Atlantic World: Spanish Merchants and their Overseas Networks",
       "año": 2014,
-      "source": "International Journal of Maritime History [ISSN 0843-8714], v. 26 (4), p. 849-850",
       "handle": "https://accedacris.ulpgc.es/handle/10553/73874",
-      "clasificacion": [],
-      "revista": "International Journal of Maritime History [ISSN 0843-8714], v. 26 (4), p. 849-850"
+      "clasificacion": [
+        "Historia"
+      ],
+      "detailsLoaded": true,
+      "revista": "International Journal of Maritime History",
+      "volumen": "4",
+      "paginas": "849-850"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio; Dubet, Anne; Torres Sánchez, Rafael; Bertrand, Michel",
+      "titulo": "Presentación: haciendas locales y haciendas estatales en las monarquías francesa y española: la construcción territorial del poder (siglo XVIII)",
+      "año": 2014,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17130",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/3099142d-b8e0-47dc-ade5-92fbf3747dd8/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Espacio, tiempo y forma. Serie IV, Historia moderna",
+      "doi": "10.5944/etfiv.27.2014.13700"
     },
     {
       "autores": "Solbes Ferri, Sergio",
-      "titulo": "Campillo y Ensenada: el suministro de vestuarios para el ejército durante las campañas de Italia (1741-1748)",
-      "año": 2013,
-      "source": "Studia Historica, Historia Moderna [ISSN 0213-2079], n. 35, p. 201-234",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/17345",
-      "clasificacion": [],
-      "revista": "Studia Historica, Historia Moderna [ISSN 0213-2079], n. 35, p. 201-234"
+      "titulo": "Uniformidad fiscal versus territorios privilegiados en la España del siglo XVIII: los casos de Navarra y Canarias",
+      "año": 2014,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17131",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/7a987c13-cb2e-41f0-b9cd-6cc4f134f5b4/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Espacio, tiempo y forma. Serie IV, Historia moderna",
+      "doi": "10.5944/etfiv.27.2014.13704"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Torres Sánchez, Rafael; Solbes Ferri, S.",
+      "autores": "Solbes Ferri, Sergio; Torres Sánchez, Rafael; Solbes Ferri, S.",
       "titulo": "Eighteenth-century Spain as a Contractor State",
       "año": 2013,
-      "source": "International Journal of Maritime History[ISSN 0843-8714],v. 25, p. 253-257",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17129",
-      "clasificacion": [],
-      "revista": "International Journal of Maritime History[ISSN 0843-8714],v. 25, p. 253-257"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/520e42f8-a8be-4c0c-962d-9a8ae107f1dd/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "International Journal of Maritime History",
+      "paginas": "253-257"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Destilerías Arehucas: La industria alcoholera en Canarias, 1940-2010",
       "año": 2013,
-      "source": "Revista de la historia de la economía y de la empresa [ISSN 1887-2956] (7), p. 501-504",
       "handle": "https://accedacris.ulpgc.es/handle/10553/58624",
-      "clasificacion": [],
-      "revista": "Revista de la historia de la economía y de la empresa [ISSN 1887-2956] (7), p. 501-504"
+      "clasificacion": [
+        "Historia",
+        "Teoría, análisis y crítica literarias"
+      ],
+      "detailsLoaded": true,
+      "revista": "Revista de la historia de la economía y de la empresa",
+      "volumen": "7",
+      "paginas": "501-504"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Campillo y Ensenada: el suministro de vestuarios para el ejército durante las campañas de Italia (1741-1748)",
+      "año": 2013,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17345",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/0aefe8cd-3a5c-426f-9d8f-d9b9071abe8f/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia local"
+      ],
+      "detailsLoaded": true,
+      "revista": "Studia historica. Historia moderna",
+      "paginas": "201-233",
+      "doi": "10.14201/shhmo201335201235"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La organización del régimen impositivo de las Islas Canarias en el siglo XVIII",
       "año": 2010,
-      "source": "Hacienda Canaria [ISSN 1696-6945], n. 32, p. 7-40",
       "handle": "https://accedacris.ulpgc.es/handle/10553/5172",
-      "clasificacion": [],
-      "revista": "Hacienda Canaria [ISSN 1696-6945], n. 32, p. 7-40"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/c1b02fa7-3c7e-4ca6-a168-d523c63b24b8/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Hacienda canaria",
+      "volumen": "32",
+      "paginas": "7-40"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Army Treasuries: structures administrative-accountants for the management of the fiscal resources in Bourbon Spain. Galicia, 1765-1780",
       "año": 2007,
-      "source": "Obradoiro de historia moderna [ISSN 1133-0481], n. 16, p. 187-211",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2733",
-      "clasificacion": [],
-      "revista": "Obradoiro de historia moderna [ISSN 1133-0481], n. 16, p. 187-211"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/d9c0330b-b781-43d5-a160-f56b246cb785/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Obradoiro de Historia Moderna",
+      "volumen": "16",
+      "paginas": "187-211"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "El estanco del tabaco en el reino de Valencia (siglo XVIII)",
       "año": 2006,
-      "source": "Estudis. -- Valencia: [s.n.]. -- nº 32 (2006), pp. 291-319",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2673",
-      "clasificacion": [],
-      "revista": "Estudis. -- Valencia: [s.n.]. -- nº 32 (2006), pp. 291-319"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/89c14ed0-4df4-49a0-b76e-5276cf73cf72/content",
+      "clasificacion": [
+        "Historia moderna",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Estudis"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Teoría y práctica de administración y cobranza de rentas reales en Navarra (siglo XVIII)",
       "año": 2005,
-      "source": "Investigaciones de Historia Económica [ISSN 1698-6989], n. 3, p. 73-100",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2638",
-      "clasificacion": [],
-      "revista": "Investigaciones de Historia Económica [ISSN 1698-6989], n. 3, p. 73-100"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/21f39c2c-8ace-45b9-b7b8-bb4649f3b73f/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna",
+        "Historia regional"
+      ],
+      "detailsLoaded": true,
+      "revista": "Investigaciones de Historia Economica",
+      "paginas": "73-100",
+      "doi": "10.1016/S1698-6989(05)70020-5"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Luxán Meléndez, Santiago de ; Torres Sánchez, Rafael; González Enciso, Agustín",
+      "autores": "Solbes Ferri, Sergio; Luxán Meléndez, Santiago de; Torres Sánchez, Rafael; González Enciso, Agustín",
       "titulo": "El consumo de tabaco en España en el siglo XVIII",
       "año": 2002,
-      "source": "Seminario \"Cisneros\" de la Fundación Universitaria Española. Cuadernos de investigación histórica [ISSN 0210-6272], v. 19, p. 313-345, 2002",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17417",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/58007c66-3a1f-4a48-8648-68414898e9a9/content",
       "clasificacion": [],
-      "revista": "Seminario \"Cisneros\" de la Fundación Universitaria Española. Cuadernos de investigación histórica [ISSN 0210-6272], v. 19, p. 313-345, 2002"
+      "detailsLoaded": true,
+      "revista": "Cuadernos de investigación histórica",
+      "paginas": "313-345"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "El proceso de reforma administrativa de la renta del Tabaco en Navarra durante el siglo XVIII",
       "año": 2000,
-      "source": "Vegueta [ISSN 1133-598X], n.5, p. 193-205",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2395",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/d5fea865-ab8d-4749-9538-8beee1694e36/content",
       "clasificacion": [],
-      "revista": "Vegueta [ISSN 1133-598X], n.5, p. 193-205"
+      "detailsLoaded": true,
+      "revista": "Vegueta: Anuario de la Facultad de Geografía e Historia"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Luxán Meléndez, Santiago de",
-      "titulo": "Estado actual de los archivos de las empresas del Puerto de La Luz",
-      "año": 1998,
-      "source": "Parabiblos: cuadernos de biblioteconomía y documentación [ISSN 1133-9756] (10), p. 35-50",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/59455",
-      "clasificacion": [],
-      "revista": "Parabiblos: cuadernos de biblioteconomía y documentación [ISSN 1133-9756] (10), p. 35-50"
-    },
-    {
-      "autores": "Solbes Ferri, Sergio ; Luxán Meléndez, Santiago de",
+      "autores": "Solbes Ferri, Sergio; Luxán Meléndez, Santiago de",
       "titulo": "Empresas consinagtarias y estibadoras en el Puerto de La Luz y de Las Palmas: estrategias y organización",
       "año": 1998,
-      "source": "Parabiblos: cuadernos de biblioteconomía y documentación [ISSN 1133-9756] (10), p. 19-344",
       "handle": "https://accedacris.ulpgc.es/handle/10553/59456",
-      "clasificacion": [],
-      "revista": "Parabiblos: cuadernos de biblioteconomía y documentación [ISSN 1133-9756] (10), p. 19-344"
+      "clasificacion": [
+        "Documentación"
+      ],
+      "detailsLoaded": true,
+      "revista": "Parabiblos (Las Palmas de Gran Canaria)",
+      "volumen": "10",
+      "paginas": "19-344"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Luxán Meléndez, Santiago de",
+      "autores": "Solbes Ferri, Sergio; Luxán Meléndez, Santiago de",
       "titulo": "El factor histórico en la configuración de la empresa industrial en Canarias",
       "año": 1998,
-      "source": "Revista de Estudios Regionales [ISSN 0213-7585],  2ª época, n. 50, p. 187-220",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2635",
-      "clasificacion": [],
-      "revista": "Revista de Estudios Regionales [ISSN 0213-7585],  2ª época, n. 50, p. 187-220"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/b99dff55-bdd8-42fa-b73c-cef37926b653/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía",
+        "Historia moderna",
+        "Historia regional"
+      ],
+      "detailsLoaded": true,
+      "revista": "Revista de Estudios Regionales"
     },
     {
-      "autores": "Luxán Meléndez, Santiago de ; Martínez-Milán, Jesús M. ; Solbes Ferri, Sergio ; Suárez Bosa, Miguel",
+      "autores": "Solbes Ferri, Sergio; Luxán Meléndez, Santiago de",
+      "titulo": "Estado actual de los archivos de las empresas del Puerto de La Luz",
+      "año": 1998,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/59455",
+      "clasificacion": [
+        "Documentación"
+      ],
+      "detailsLoaded": true,
+      "revista": "Parabiblos (Las Palmas de Gran Canaria)",
+      "volumen": "10",
+      "paginas": "35-50"
+    },
+    {
+      "autores": "Luxán Meléndez, Santiago de; Martínez-Milán, Jesús M.; Solbes Ferri, Sergio; Suárez Bosa, Miguel",
       "titulo": "Auge y crisis de los productos de exportación en el primer tercio del siglo XX en Canarias",
       "año": 1995,
-      "source": "Boletín Millares Carlo ISSN 0211-2140], n. 14 (1995), p. 101-117",
       "handle": "https://accedacris.ulpgc.es/handle/10553/10608",
-      "clasificacion": [],
-      "revista": "Boletín Millares Carlo ISSN 0211-2140], n. 14 (1995), p. 101-117"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/05041e2a-498c-46c7-a5ce-ba85b09b4ed8/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Boletín Millares Carlo"
     }
   ],
   "libros": [
     {
-      "autores": "Editor/a: Solbes Ferri, Sergio ; Santana Pérez, Juan Manuel",
-      "titulo": "Fortificaciones. Un elemento clave para la defensa insular de las Monarquías Ibéricas en el largo siglo XVIII",
-      "año": 2025,
-      "source": "",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/157153",
-      "clasificacion": [],
-      "editorial": "",
-      "tipo": "Libro"
-    },
-    {
-      "autores": "Editor/a: Solbes Ferri, Sergio ; Santana Pérez, Juan Manuel",
-      "titulo": "Fortificaciones: un elemento clave para la defensa insular de las monarquías ibéricas en el largo siglo XVIII",
-      "año": 2025,
-      "source": "",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/163332",
-      "clasificacion": [],
-      "editorial": "",
-      "tipo": "Libro"
-    },
-    {
-      "autores": "Castillo Hidalgo, Daniel ; Quintana Navarro, Francisco ; Solbes Ferri, Sergio",
+      "autores": "Castillo Hidalgo, Daniel; Quintana Navarro, Francisco; Solbes Ferri, Sergio",
       "titulo": "La diferencia insular II. El modelo fiscal de Canarias en perspectiva histórica. Fiscalidad y gasto público en la etapa contemporánea: del sistema de franquicias comerciales al REF de 1972",
       "año": 2023,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/122511",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "978-84-1147-2203",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia regional"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Tirant lo Blanch (Grupo editorial Tirant lo Blanch)",
       "tipo": "Libro"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Castillo Hidalgo, Daniel",
+      "autores": "Solbes Ferri, Sergio; Castillo Hidalgo, Daniel",
       "titulo": "La diferencia insular. El modelo fiscal de Canarias en perspectiva histórica",
       "año": 2022,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/114085",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "9788413979793",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia regional"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Tirant lo Blanch (Grupo editorial Tirant lo Blanch)",
       "tipo": "Libro"
     },
     {
-      "autores": "Valdez Bubnov,Iván ; Solbes Ferri, Sergio ; Brandon, Pepijn",
+      "autores": "Valdez Bubnov,Iván; Solbes Ferri, Sergio; Brandon, Pepijn",
       "titulo": "Redes empresariales y administración estatal: la provisión de materiales estratégicos en el mundo hispánico durante el largo siglo XVIII",
       "año": 2020,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/130128",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "978-607-30-3585-9",
+      "clasificacion": [
+        "Ciencias económicas"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Universidad Nacional Autónoma de México (UNAM)",
       "tipo": "Libro"
     },
     {
       "autores": "Dubet, Anne; Solbes Ferri, Sergio",
       "titulo": "El Rey, el Ministro y el Tesorero. El gobierno de la Real Hacienda en el siglo XVIII español",
       "año": 2020,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/70617",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "978-84-16662-67-8",
+      "clasificacion": [
+        "Historia",
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Marcial Pons",
       "tipo": "Libro"
     },
     {
       "autores": "Dubet, Anne; Solbes Ferri, Sergio",
       "titulo": "La construcción de la Hacienda hispánica en el largo siglo XVIII",
       "año": 2016,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/58507",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "9788490960400",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Casa de Velázquez",
       "tipo": "Libro"
     },
     {
       "autores": "Harding, Richard; Solbes Ferri, Sergio",
       "titulo": "The Contractor State and Its Implications, 1659-1815",
       "año": 2012,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/114401",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "978-84-15424-44-4",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Universidad de Las Palmas de Gran Canaria (ULPGC)",
       "tipo": "Libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Rentas reales y navíos de la permisión a Indias: las reformas borbónicas en Canarias durante el siglo XVIII",
       "año": 2009,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/114402",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "978-84-92777-50-1",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia regional"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Universidad de Las Palmas de Gran Canaria (ULPGC)",
       "tipo": "Libro"
     },
     {
-      "autores": "Suárez Bosa, Miguel ; Solbes Ferri, Sergio ; Luxán Meléndez, Santiago de ; Martínez-Milán, Jesús M.",
+      "autores": "Suárez Bosa, Miguel; Solbes Ferri, Sergio; Luxán Meléndez, Santiago de; Martínez-Milán, Jesús M.",
       "titulo": "Historia económica mundial y de España : materiales de estudio",
       "año": 2005,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/1180",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/68ef539e-d00c-404d-97bd-ce6ee56ecd3b/content",
+      "isbn": "9788496577008",
       "clasificacion": [],
+      "detailsLoaded": true,
       "editorial": "",
       "tipo": "Libro"
     },
     {
-      "autores": "De Luxán Meléndez, Santiago ; Solbes Ferri, Sergio ; Laforet Hernández, Juan José",
+      "autores": "De Luxán Meléndez, Santiago; Solbes Ferri, Sergio; Laforet Hernández, Juan José",
       "titulo": "El mercado del tabaco en España durante el siglo XVIII : fiscalidad y consumo",
       "año": 2000,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/121116",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "8495286726",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Universidad de Las Palmas de Gran Canaria (ULPGC)",
       "tipo": "Libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Rentas reales de Navarra: proyectos reformistas y evolución económica (1701-1765)",
       "año": 1999,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/59418",
-      "clasificacion": [],
-      "editorial": "",
+      "clasificacion": [
+        "Economía general"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Gobierno de Navarra",
       "tipo": "Libro"
     },
     {
-      "autores": "Vázquez de Prada, Valentín; Usunáriz Garayoa, Jesús María; Solbes Ferri, Sergio ; Martínez de Arce, María Dolores; García Bourrellier, Rocío",
+      "autores": "Vázquez de Prada, Valentín; Usunáriz Garayoa, Jesús María; Solbes Ferri, Sergio; Martínez de Arce, María Dolores; García Bourrellier, Rocío",
       "titulo": "Las Cortes de Navarra desde su incorporación a la Corona de Castilla : tres siglos de actividad legislativa (1513-1829)",
       "año": 1993,
-      "source": "",
       "handle": "https://accedacris.ulpgc.es/handle/10553/121149",
-      "clasificacion": [],
-      "editorial": "",
+      "isbn": "84-313-1264-5",
+      "clasificacion": [
+        "Historia moderna",
+        "Legislación y leyes nacionales"
+      ],
+      "detailsLoaded": true,
+      "editorial": "Universidad de Navarra (EUNSA)",
       "tipo": "Libro"
     }
   ],
@@ -525,398 +729,804 @@
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La Real Tesorería de Manila y el financiamiento de los galeones filipinos",
       "año": 2025,
-      "source": "Iván Valdez-Bubnov, Alberto Angulo Morales y Kristyl Obispado (coords.). Los fundamentos industriales del galeón de Manila-Acapulco",
       "handle": "https://accedacris.ulpgc.es/handle/10553/157156",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/18b1ad85-1cf7-47a8-a822-970d46e0af1a/content",
+      "isbn": "978-607-642-345-5",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Iván Valdez-Bubnov, Alberto Angulo Morales y Kristyl Obispado (coords.). Los fundamentos industriales del galeón de Manila-Acapulco",
-      "editorial": ""
+      "editorial": "Universidad Nacional Autónoma de México (UNAM)",
+      "tipo": "Capítulo de libro"
     },
     {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "The man and his circumstances: the historical context of writing the Theórica",
+      "autores": "Solbes Ferri, Sergio; Santana Pérez, Juan Manuel",
+      "titulo": "Fortificaciones: introducción",
       "año": 2025,
-      "source": "Astigarraga, J., Guasti, N. (eds) Gerónimo de Uztáriz and his Economic Work. Palgrave Studies in the History of Economic Thought. Palgrave Macmillan, Cham.",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/142832",
-      "clasificacion": [],
-      "libro": "Astigarraga, J., Guasti, N. (eds) Gerónimo de Uztáriz and his Economic Work. Palgrave Studies in the History of Economic Thought. Palgrave Macmillan, Cham.",
-      "editorial": ""
+      "handle": "https://accedacris.ulpgc.es/handle/10553/157157",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/d8bc8bbf-6264-4997-9aac-d9665e9ec901/content",
+      "isbn": "979-13-87694-52-4",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "libro": "Fortificaciones. Un elemento clave para la defensa insular de las Monarquías Ibéricas en el largo siglo XVIII Sergio Solbes Ferri Juan Manuel Santana Pérez (eds.), p. 9-20",
+      "editorial": "Sílex Ediciones",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Muros con distintos dueños. Conflicto jurisdiccional y dificultades financieras en las fortificaciones canarias",
       "año": 2025,
-      "source": "Fortificaciones: un elemento clave para la defensa insular de las monarquías ibéricas en el largo siglo XVIII / Sergio Solbes Ferri, Juan Manuel Santana Pérez (eds.), p. 163-192",
       "handle": "https://accedacris.ulpgc.es/handle/10553/157155",
-      "clasificacion": [],
+      "isbn": "979-13-87694-52-4",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Fortificaciones: un elemento clave para la defensa insular de las monarquías ibéricas en el largo siglo XVIII / Sergio Solbes Ferri, Juan Manuel Santana Pérez (eds.), p. 163-192",
-      "editorial": ""
+      "editorial": "Sílex Ediciones",
+      "paginas": "163-192",
+      "tipo": "Capítulo de libro"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Santana Pérez, Juan Manuel",
-      "titulo": "Fortificaciones: introducción",
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "The man and his circumstances: the historical context of writing the Theórica",
       "año": 2025,
-      "source": "Fortificaciones. Un elemento clave para la defensa insular de las Monarquías Ibéricas en el largo siglo XVIII Sergio Solbes Ferri Juan Manuel Santana Pérez (eds.), p. 9-20",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/157157",
-      "clasificacion": [],
-      "libro": "Fortificaciones. Un elemento clave para la defensa insular de las Monarquías Ibéricas en el largo siglo XVIII Sergio Solbes Ferri Juan Manuel Santana Pérez (eds.), p. 9-20",
-      "editorial": ""
+      "handle": "https://accedacris.ulpgc.es/handle/10553/142832",
+      "isbn": "978-3-031-75856-0",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "libro": "Astigarraga, J., Guasti, N. (eds) Gerónimo de Uztáriz and his Economic Work. Palgrave Studies in the History of Economic Thought. Palgrave Macmillan, Cham.",
+      "editorial": "Springer",
+      "tipo": "Capítulo de libro"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Félix, Joël; González Enciso, Agustín",
-      "titulo": "Crédito y deuda de los erarios regios",
+      "autores": "Sánchez Santiró, Ernest; Solbes Ferri, Sergio; Legay, Marie-Laure",
+      "titulo": "La fiscalidad regia",
       "año": 2022,
-      "source": "Erarios regios : el gobierno de las reales haciendas de la monarquía española y la monarquía francesa en el siglo XVIII : una visión comparada / Anne Dubet y Ernest Sánchez Santiró (coordinadores)",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/121129",
-      "clasificacion": [],
-      "libro": "Erarios regios : el gobierno de las reales haciendas de la monarquía española y la monarquía francesa en el siglo XVIII : una visión comparada / Anne Dubet y Ernest Sánchez Santiró (coordinadores)",
-      "editorial": ""
+      "handle": "https://accedacris.ulpgc.es/handle/10553/121130",
+      "isbn": "978-607-8793-67-9",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "libro": "Erarios regios : el gobierno de las reales haciendas de la monarquía española y la monarquía francesa en el siglo XVIII : una visión comparada / Anne Dubet y Ernest Sánchez Santiró (coordinadores), p.123-178",
+      "editorial": "Instituto  Mora",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La dificultosa preservación del privilegio territorial durante el siglo XVIII: el caso de Canarias",
       "año": 2022,
-      "source": "Galán Sánchez, Ángel, Ramón Lanza García y Pablo Ortego Rico (coords.) (2022): Contribuyentes y cultura fiscal (siglos XIII-XVIII). Sevilla: Editorial Universidad de Sevilla (Colección Historia, n.º 396)., p.311-333",
       "handle": "https://accedacris.ulpgc.es/handle/10553/130280",
-      "clasificacion": [],
+      "isbn": "978-84-472-2306-0",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Galán Sánchez, Ángel, Ramón Lanza García y Pablo Ortego Rico (coords.) (2022): Contribuyentes y cultura fiscal (siglos XIII-XVIII). Sevilla: Editorial Universidad de Sevilla (Colección Historia, n.º 396)., p.311-333",
-      "editorial": ""
+      "editorial": "Editorial Universidad de Sevilla",
+      "tipo": "Capítulo de libro"
     },
     {
-      "autores": "Solbes Ferri, Sergio ; Campos Méndez, Israel ; Castillo Hidalgo, Daniel",
+      "autores": "Solbes Ferri, Sergio; Félix, Joël; González Enciso, Agustín",
+      "titulo": "Crédito y deuda de los erarios regios",
+      "año": 2022,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/121129",
+      "isbn": "978-607-8793-67-9",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "libro": "Erarios regios : el gobierno de las reales haciendas de la monarquía española y la monarquía francesa en el siglo XVIII : una visión comparada / Anne Dubet y Ernest Sánchez Santiró (coordinadores)",
+      "editorial": "El Colegio de Michoacán",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio; Campos Méndez, Israel; Castillo Hidalgo, Daniel",
       "titulo": "Desarrollo de la competencia comunicativa en los Trabajos de Fin de Grado",
       "año": 2022,
-      "source": "Innovación en la docencia de las Ciencias Económicas y Empresariales: el microlearning y otras estrategias innovadoras / María Dolores Oliver, Alfonso Gema Albort Morant (coords.), p.  706-724",
       "handle": "https://accedacris.ulpgc.es/handle/10553/122700",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/27e03f51-8b8d-4e55-8bd9-e708f9f8a907/content",
+      "isbn": "9788419187772",
+      "clasificacion": [
+        "Lenguajes documentales",
+        "Lingüística aplicada",
+        "Evaluación de alumnos"
+      ],
+      "detailsLoaded": true,
       "libro": "Innovación en la docencia de las Ciencias Económicas y Empresariales: el microlearning y otras estrategias innovadoras / María Dolores Oliver, Alfonso Gema Albort Morant (coords.), p.  706-724",
-      "editorial": ""
+      "editorial": "McGraw Hill",
+      "paginas": "706-724",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La idea de Europa en tiempos convulsos: comentarios al libro de Stefan Sweig, El mundo de ayer (1942)",
       "año": 2022,
-      "source": "Caruana De Las Cagigas, Leonardo y Carlos Larrinaga Rodríguez (eds.). Superando el Covid-19 en las Aulas de Historia Económica. Granada, Editorial Universidad de Granada, pp. 415-428.",
       "handle": "https://accedacris.ulpgc.es/handle/10553/130281",
-      "clasificacion": [],
+      "isbn": "978-84-338-6984-5",
+      "clasificacion": [
+        "Organización y planificación de la educación",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Caruana De Las Cagigas, Leonardo y Carlos Larrinaga Rodríguez (eds.). Superando el Covid-19 en las Aulas de Historia Económica. Granada, Editorial Universidad de Granada, pp. 415-428.",
-      "editorial": ""
-    },
-    {
-      "autores": "Sánchez Santiró, Ernest; Solbes Ferri, Sergio ; Legay, Marie-Laure",
-      "titulo": "La fiscalidad regia",
-      "año": 2022,
-      "source": "Erarios regios : el gobierno de las reales haciendas de la monarquía española y la monarquía francesa en el siglo XVIII : una visión comparada / Anne Dubet y Ernest Sánchez Santiró (coordinadores), p.123-178",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/121130",
-      "clasificacion": [],
-      "libro": "Erarios regios : el gobierno de las reales haciendas de la monarquía española y la monarquía francesa en el siglo XVIII : una visión comparada / Anne Dubet y Ernest Sánchez Santiró (coordinadores), p.123-178",
-      "editorial": ""
+      "editorial": "Editorial Universidad de Granada",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Balance de la tercera parte. Impacto económico de la política exterior",
       "año": 2021,
-      "source": "Albareda i Salvadó, J. (2021). La reconstrucción de la política internacional española: el reinado de Felipe V. La reconstrucción de la política internacional española, p. 309-317",
       "handle": "https://accedacris.ulpgc.es/handle/10553/122098",
-      "clasificacion": [],
+      "isbn": "978-84-9096-347-0",
+      "clasificacion": [
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
       "libro": "Albareda i Salvadó, J. (2021). La reconstrucción de la política internacional española: el reinado de Felipe V. La reconstrucción de la política internacional española, p. 309-317",
-      "editorial": ""
+      "editorial": "Casa de Velázquez",
+      "tipo": "Capítulo de libro"
     },
     {
-      "autores": "Valdez-Bubnov, Iván; Solbes Ferri, Sergio ; Brandon, Pepijn",
+      "autores": "Valdez-Bubnov, Iván; Solbes Ferri, Sergio; Brandon, Pepijn",
       "titulo": "Introducción. Redes empresariales y administración estatal: La provisión de materiales estratégicos en el mundo hispánico durante el largo siglo XVIII",
       "año": 2020,
-      "source": "Redes empresariales y administración estatal. La provisión de materiales estratégicos en el mundo hispánico durante el largo siglo XVIII / Valdez-Bubnov, Iván, Solbes Ferri, Sergio, Brandon, Pepijn (coords.), p. 7-22",
       "handle": "https://accedacris.ulpgc.es/handle/10553/114437",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/d98f4945-9b1e-4b19-bebe-100cbaee61ab/content",
+      "isbn": "978-607-30-3585-9",
+      "clasificacion": [
+        "Historia de la guerra",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Redes empresariales y administración estatal. La provisión de materiales estratégicos en el mundo hispánico durante el largo siglo XVIII / Valdez-Bubnov, Iván, Solbes Ferri, Sergio, Brandon, Pepijn (coords.), p. 7-22",
-      "editorial": ""
+      "editorial": "Universidad Nacional Autónoma de México (UNAM)",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "El asiento general en la provisión del vestuario militar. La gestión de la Compañía de Bacardí, Mestres y Sierra entre 1763 y 1784",
       "año": 2020,
-      "source": "Redes empresariales y administración estatal. La provisión de materiales estratégicos en el mundo hispánico durante el largo siglo XVIII / Valdez-Bubnov, Iván, Solbes Ferri, Sergio, Brandon, Pepijn (coords.), p. 163-192",
       "handle": "https://accedacris.ulpgc.es/handle/10553/77912",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/bc696c87-99ea-4ab1-844b-84a3f4d3e41f/content",
+      "isbn": "978-607-30-3585-9",
+      "clasificacion": [
+        "Historia de la guerra",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Redes empresariales y administración estatal. La provisión de materiales estratégicos en el mundo hispánico durante el largo siglo XVIII / Valdez-Bubnov, Iván, Solbes Ferri, Sergio, Brandon, Pepijn (coords.), p. 163-192",
-      "editorial": ""
+      "editorial": "Universidad Nacional Autónoma de México (UNAM)",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La Factoría de tabacos de Alicante, 1726-1780",
       "año": 2019,
-      "source": "Torres Sánchez, R. Studium, magisterium et amicitia, Pamplona: EUNSA, pp. 495-508",
       "handle": "https://accedacris.ulpgc.es/handle/10553/130282",
-      "clasificacion": [],
+      "isbn": "978-84-7768-350-6",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Torres Sánchez, R. Studium, magisterium et amicitia, Pamplona: EUNSA, pp. 495-508",
-      "editorial": ""
+      "editorial": "EUNSA. Ediciones Universidad de Navarra",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, S.",
       "titulo": "Secretarías, asentistas y militares. Política y negocio en la provisión del ejército español del siglo XVIII",
       "año": 2017,
-      "source": "Comercio, guerra y finanzas en una época en transición (siglos XVII-XVIII) / Rodríguez Hernández, A.; Arroyo Vozmediano, J. y Sánchez Belén, J. (eds.), p. 159-193.",
       "handle": "https://accedacris.ulpgc.es/handle/10553/41655",
-      "clasificacion": [],
+      "isbn": "9788494465772",
+      "clasificacion": [
+        "Historia por épocas"
+      ],
+      "detailsLoaded": true,
       "libro": "Comercio, guerra y finanzas en una época en transición (siglos XVII-XVIII) / Rodríguez Hernández, A.; Arroyo Vozmediano, J. y Sánchez Belén, J. (eds.), p. 159-193.",
-      "editorial": ""
+      "editorial": "Castilla Ediciones",
+      "paginas": "159-193",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Algunas reflexiones dobre la aplicación de las reformas fiscales del siglo XVIII en Canarias",
       "año": 2014,
-      "source": "Economía y marco institucional (siglos XVI-XX) / Santiago Luxán Meléndez (dir.). --, Las Palmas de Gran Canaria: Fundación Mapfre Guanarteme, 2014. -- pp. 139-158",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17132",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/d41aa595-dad4-45bb-b506-81c2cb7261f1/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
       "libro": "Economía y marco institucional (siglos XVI-XX) / Santiago Luxán Meléndez (dir.). --, Las Palmas de Gran Canaria: Fundación Mapfre Guanarteme, 2014. -- pp. 139-158",
-      "editorial": ""
+      "editorial": "",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "EL control de gasto de la Marina en las Secretarías de Estado y del Despacho: los pagos de la Tesorería General en la primera mitad del siglo XVIII",
       "año": 2014,
-      "source": "El Estado en guerra: expediciones navales españolas en el siglo XVIII / coord. por María Baudot Monroy, Madrid: Polifemo, 2014. -- ISBN 78-84-96813-95-3, págs. 147-194",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17348",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/c6373a0b-511b-4708-9fc4-1a929bbafc04/content",
+      "isbn": "78-84-96813-95-3",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
       "libro": "El Estado en guerra: expediciones navales españolas en el siglo XVIII / coord. por María Baudot Monroy, Madrid: Polifemo, 2014. -- ISBN 78-84-96813-95-3, págs. 147-194",
-      "editorial": ""
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Contracting and accounting: spanish army expenditure in wardrobe and the General Treasury accounts in eighteenth century",
-      "año": 2012,
-      "source": "The Contractor State and it''s implications, 1659-1815 / Harding, R., & Solbes Ferri, S.(eds.), p. 273-293",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/17346",
-      "clasificacion": [],
-      "libro": "The Contractor State and it''s implications, 1659-1815 / Harding, R., & Solbes Ferri, S.(eds.), p. 273-293",
-      "editorial": ""
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "La defensa de las Islas Canarias en el siglo XVIII: modificaciones presupuestarias para su financiación",
-      "año": 2012,
-      "source": "Un Estado militar: España, 1650-1820 / coord. por Agustín González Enciso, Madrid: Actas, 2012. -- ISBN 978-84-9739-125-2, págs. 90-123",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/17967",
-      "clasificacion": [],
-      "libro": "Un Estado militar: España, 1650-1820 / coord. por Agustín González Enciso, Madrid: Actas, 2012. -- ISBN 978-84-9739-125-2, págs. 90-123",
-      "editorial": ""
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Introduction The Contractor State and Its Implications, 1659-1815",
-      "año": 2012,
-      "source": "The Contractor State and its implications, 1659-1815 / Harding, R., & Solbes Ferri, S. (eds.), p. 9-19",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/17347",
-      "clasificacion": [],
-      "libro": "The Contractor State and its implications, 1659-1815 / Harding, R., & Solbes Ferri, S. (eds.), p. 9-19",
-      "editorial": ""
+      "editorial": "Polifemo",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "La Real Hacienda y el control del gasto. La Tesorería General en la España del siglo XVIII",
       "año": 2012,
-      "source": "Política, empresa e historia en Canarias / Luxán Meléndez, Santiago (dir.), p. 143-179",
       "handle": "https://accedacris.ulpgc.es/handle/10553/10460",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/684c7c57-e61f-4235-a9d5-7ce35d12c492/content",
+      "isbn": "978-84-15654-06-3",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Política, empresa e historia en Canarias / Luxán Meléndez, Santiago (dir.), p. 143-179",
-      "editorial": ""
+      "editorial": "Fundación Mapfre Guanarteme",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Contracting and accounting: spanish army expenditure in wardrobe and the General Treasury accounts in eighteenth century",
+      "año": 2012,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17346",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/39da9261-4d8f-4b3b-a032-e72702880f8d/content",
+      "isbn": "978-84-15424-44-4",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "libro": "The Contractor State and it''s implications, 1659-1815 / Harding, R., & Solbes Ferri, S.(eds.), p. 273-293",
+      "editorial": "Universidad de Las Palmas de Gran Canaria (ULPGC)",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "La defensa de las Islas Canarias en el siglo XVIII: modificaciones presupuestarias para su financiación",
+      "año": 2012,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17967",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/351bbde7-aa58-419a-96f9-23124bc2ea08/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "libro": "Un Estado militar: España, 1650-1820 / coord. por Agustín González Enciso, Madrid: Actas, 2012. -- ISBN 978-84-9739-125-2, págs. 90-123",
+      "editorial": "Editorial Actas",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Introduction The Contractor State and Its Implications, 1659-1815",
+      "año": 2012,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17347",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/eb3d88fb-d463-49cc-842a-af4a285b562d/content",
+      "isbn": "978-84-15424-44-4",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "libro": "The Contractor State and its implications, 1659-1815 / Harding, R., & Solbes Ferri, S. (eds.), p. 9-19",
+      "editorial": "Universidad de Las Palmas de Gran Canaria (ULPGC)",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "L'organization comptable de la Trésorerie Générale des îles Canaries (1718-1780)",
       "año": 2011,
-      "source": "La comptabilité publique en Europe (1500-1850) / sous la direction de Anne Dubet et Marie-Laure Legay. Rennes: Presses Universitaires de Rennes, 2011 [ISBN 978-2-7535-1337-2], p. 165-178",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17349",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/0348a51d-9f0a-4982-b10b-bc35428acfc0/content",
+      "isbn": "978-2-7535-1337-2",
+      "clasificacion": [
+        "Contabilidad económica"
+      ],
+      "detailsLoaded": true,
       "libro": "La comptabilité publique en Europe (1500-1850) / sous la direction de Anne Dubet et Marie-Laure Legay. Rennes: Presses Universitaires de Rennes, 2011 [ISBN 978-2-7535-1337-2], p. 165-178",
-      "editorial": ""
+      "editorial": "Presses Universitaires de Rennes",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "More keys for understanding the ordinary budgets of the Spanish Monarchy from a territorial perspective",
       "año": 2011,
-      "source": "The spending of states: military expenditure during the long eighteenth century: patterns, organisation, and consequences, 1650-1815 / coord. por Stephen Conway, Rafael Torres Sánchez, p. 129-153",
       "handle": "https://accedacris.ulpgc.es/handle/10553/17350",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/046126d9-222d-463a-87bc-010515a2c886/content",
+      "isbn": "978-3-639-36623-5",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
       "libro": "The spending of states: military expenditure during the long eighteenth century: patterns, organisation, and consequences, 1650-1815 / coord. por Stephen Conway, Rafael Torres Sánchez, p. 129-153",
-      "editorial": ""
+      "editorial": "Vdm Verlag",
+      "paginas": "129-153",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Una cita con la historia del monopolio del tabaco en España",
       "año": 2010,
-      "source": "Drogues, dolços y tabac. Barcelona 1700, Barcelona: Ayuntamiento de Barcelona [ISBN  978-84-9850-254-1], p. 136-181",
       "handle": "https://accedacris.ulpgc.es/handle/10553/10240",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/26a7b2e3-2303-41e4-8dd5-6e94a2d08204/content",
+      "isbn": "978-84-9850-254-1",
+      "clasificacion": [
+        "Historia"
+      ],
+      "detailsLoaded": true,
       "libro": "Drogues, dolços y tabac. Barcelona 1700, Barcelona: Ayuntamiento de Barcelona [ISBN  978-84-9850-254-1], p. 136-181",
-      "editorial": ""
+      "editorial": "",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Estrategias de gestión de la renta del tabaco, 1726-1736 : el gobierno de Patiño y la introducción de la administración directa",
       "año": 2009,
-      "source": "Política económica y gestión de la renta del tabaco en el siglo XVIII / editor, Agustín González Enciso; [textos] Óscar Bergasa Perdomo ... [et al.]. -- Madrid : Dirección de Comunicación de Altadis, D.L. 2008. -- ISBN 9788493293598, pp. 122-173",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2678",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/236bac74-d839-4e22-b51f-278132696cd8/content",
+      "clasificacion": [
+        "Historia moderna",
+        "Historia de la economía",
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
       "libro": "Política económica y gestión de la renta del tabaco en el siglo XVIII / editor, Agustín González Enciso; [textos] Óscar Bergasa Perdomo ... [et al.]. -- Madrid : Dirección de Comunicación de Altadis, D.L. 2008. -- ISBN 9788493293598, pp. 122-173",
-      "editorial": ""
+      "editorial": "",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Los navíos de permisión canaria a Indias (1720-1779)  : ensayo de cuantificación del tráfico resgistrado",
       "año": 2008,
-      "source": "El mar en los siglos modernos = O mar nos séculos modernos Tomo I. Actas de la X Reunión Científica de la Fundación Española de Historia Moderna, Santiago-Ferrol: 11-13 de junio de 2009. -- Santiago de Compostela: Xunta de Galicia, Consellería de Innovación e Industria, Dirección Xeral de Turismo. -- ISBN 978-84-613-0646-6, pp. 359-374",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2734",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/263a47ae-4427-422e-9263-e5246f7aa41a/content",
+      "isbn": "978-84-613-0646-6,",
+      "clasificacion": [
+        "Comercio",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "El mar en los siglos modernos = O mar nos séculos modernos Tomo I. Actas de la X Reunión Científica de la Fundación Española de Historia Moderna, Santiago-Ferrol: 11-13 de junio de 2009. -- Santiago de Compostela: Xunta de Galicia, Consellería de Innovación e Industria, Dirección Xeral de Turismo. -- ISBN 978-84-613-0646-6, pp. 359-374",
-      "editorial": ""
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Abastecimiento y distribución de tabacos en el marco del estanco general español (siglos XVII y XVIII)",
-      "año": 2007,
-      "source": "Tabaco e historia económica: estudios sobre fiscalidad, consumo y empresa (siglos XVII-XX) / editores Luis Alonso Alvarez, Lina Gálvez Muñoz, Santiago de Luxán. -- Madrid : Dirección de Comunicación de Altadis, 2007. -- ISBN 84-932935-6-3, pp. 121-148",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/2656",
-      "clasificacion": [],
-      "libro": "Tabaco e historia económica: estudios sobre fiscalidad, consumo y empresa (siglos XVII-XX) / editores Luis Alonso Alvarez, Lina Gálvez Muñoz, Santiago de Luxán. -- Madrid : Dirección de Comunicación de Altadis, 2007. -- ISBN 84-932935-6-3, pp. 121-148",
-      "editorial": ""
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Consumos y valores de la renta del tabaco en la admistración provincial del Reino de Navarra, 1731-1799",
-      "año": 2007,
-      "source": "José M. Rodríguez Gordillo, M. Montserrat Gárate Ojanguren (eds.) El monopolio español de tabacos en el siglo XVIII :consumos y valores , una perspectiva regional. Madrid : Dirección de Comunicación de Altadis, D.L. 2007. ISBN 9788493293574, pp. 437-458",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/2657",
-      "clasificacion": [],
-      "libro": "José M. Rodríguez Gordillo, M. Montserrat Gárate Ojanguren (eds.) El monopolio español de tabacos en el siglo XVIII :consumos y valores , una perspectiva regional. Madrid : Dirección de Comunicación de Altadis, D.L. 2007. ISBN 9788493293574, pp. 437-458",
-      "editorial": ""
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Consumos y valores de la renta del tabaco en la admistración provincial del Reino de Valencia, 1731-1798",
-      "año": 2007,
-      "source": "José M. Rodríguez Gordillo, M Montserrat Gárate Ojanguren (dirs.). El monopolio español de tabacos en el siglo XVIII: consumos y valores , una perspectiva regional. Madrid: Dirección de Comunicación de Altadis, D.L. 2007. ISBN 9788493293574, pp. 269-288",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/2654",
-      "clasificacion": [],
-      "libro": "José M. Rodríguez Gordillo, M Montserrat Gárate Ojanguren (dirs.). El monopolio español de tabacos en el siglo XVIII: consumos y valores , una perspectiva regional. Madrid: Dirección de Comunicación de Altadis, D.L. 2007. ISBN 9788493293574, pp. 269-288",
-      "editorial": ""
-    },
-    {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Administrative and accounting system of the army treasuries: the treasuries of the kingdoms of the Crown of Aragon from 1755 to 1765",
-      "año": 2007,
-      "source": "Torres Sánchez, R. (ed.), War, State and Development: fiscal-military States in the Eighteenth Century Pamplona: Ediciones Universidad de Navarra. EUNSA, p. 357-384",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/121121",
-      "clasificacion": [],
-      "libro": "Torres Sánchez, R. (ed.), War, State and Development: fiscal-military States in the Eighteenth Century Pamplona: Ediciones Universidad de Navarra. EUNSA, p. 357-384",
-      "editorial": ""
+      "editorial": "",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Ordenación administrativo-contable de las tesorerías de ejército:  las tesorerías de los reinos de la Corona de Aragón entre 1755-1765",
       "año": 2007,
-      "source": "War, State and Development: fiscal-military states in the eigtheenth century / edited by Rafael Torres Sánchez, p. 357-384",
       "handle": "https://accedacris.ulpgc.es/handle/10553/6854",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/85a9dc8e-2898-4049-a369-dcd5bf8a6380/content",
+      "isbn": "978-84-313-2511-4",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
       "libro": "War, State and Development: fiscal-military states in the eigtheenth century / edited by Rafael Torres Sánchez, p. 357-384",
-      "editorial": ""
+      "editorial": "Universidad de Navarra (EUNSA)",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Consumos y valores de la renta del tabaco en la admistración provincial del Reino de Valencia, 1731-1798",
+      "año": 2007,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2654",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/5af29614-33e5-4a16-82ea-a861ac320ea7/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
+      "libro": "José M. Rodríguez Gordillo, M Montserrat Gárate Ojanguren (dirs.). El monopolio español de tabacos en el siglo XVIII: consumos y valores , una perspectiva regional. Madrid: Dirección de Comunicación de Altadis, D.L. 2007. ISBN 9788493293574, pp. 269-288",
+      "editorial": "",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Administrative and accounting system of the army treasuries: the treasuries of the kingdoms of the Crown of Aragon from 1755 to 1765",
+      "año": 2007,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/121121",
+      "isbn": "978-84-313-2511-4.",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "libro": "Torres Sánchez, R. (ed.), War, State and Development: fiscal-military States in the Eighteenth Century Pamplona: Ediciones Universidad de Navarra. EUNSA, p. 357-384",
+      "editorial": "Universidad de Navarra (EUNSA)",
+      "paginas": "357-384",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Consumos y valores de la renta del tabaco en la admistración provincial del Reino de Navarra, 1731-1799",
+      "año": 2007,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2657",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/36573164-e267-4193-9075-d7eb16300d1c/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia moderna",
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "libro": "José M. Rodríguez Gordillo, M. Montserrat Gárate Ojanguren (eds.) El monopolio español de tabacos en el siglo XVIII :consumos y valores , una perspectiva regional. Madrid : Dirección de Comunicación de Altadis, D.L. 2007. ISBN 9788493293574, pp. 437-458",
+      "editorial": "",
+      "tipo": "Capítulo de libro"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Abastecimiento y distribución de tabacos en el marco del estanco general español (siglos XVII y XVIII)",
+      "año": 2007,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2656",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/6e5b3570-1cf6-49cb-809e-6cb30d12e3cd/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia moderna",
+        "Política fiscal y hacienda pública nacionales",
+        "Economía sectorial"
+      ],
+      "detailsLoaded": true,
+      "libro": "Tabaco e historia económica: estudios sobre fiscalidad, consumo y empresa (siglos XVII-XX) / editores Luis Alonso Alvarez, Lina Gálvez Muñoz, Santiago de Luxán. -- Madrid : Dirección de Comunicación de Altadis, 2007. -- ISBN 84-932935-6-3, pp. 121-148",
+      "editorial": "",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "El proceso de introducción del tabaco en España (1636-1717) : territorios y actividades económicas afectadas",
       "año": 2006,
-      "source": "Juan Sebastián López García, A. Sebastián Hernández Gutiérrez (coords.).  Miscelánea : homenaje al doctor Ramón López Caneda. Las Palmas de Gran Canaria: Universidad de Las Palmas de Gran Canaria, 2006.ISBN 84-608-0494-1, pp. 188-205",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2674",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/9209a4b8-b1f5-460a-9fe8-098d8df5ec3f/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Juan Sebastián López García, A. Sebastián Hernández Gutiérrez (coords.).  Miscelánea : homenaje al doctor Ramón López Caneda. Las Palmas de Gran Canaria: Universidad de Las Palmas de Gran Canaria, 2006.ISBN 84-608-0494-1, pp. 188-205",
-      "editorial": ""
+      "editorial": "Universidad de Las Palmas de Gran Canaria (ULPGC)",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "El debate en torno a la cuestión portuaria en el seno de la Real Sociedad Económica de Amigos del País (1864-1883)",
       "año": 2003,
-      "source": "Santiago de Luxán Meléndez, Juan José Laforet, (eds.) La economía canaria en la segunda mitad del siglo XIX : la Real Sociedad Económica de Amigos del País de Gran Canaria. [Las Palmas de Gran Canaria] : Real Sociedad Económica de Amigos del País de Gran Canaria, 2003. ISBN 8492167394 , pp. 191-222",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2643",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/83d69072-82c1-43f5-981e-0e2004a52319/content",
+      "clasificacion": [
+        "Historia regional",
+        "Puertos",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Santiago de Luxán Meléndez, Juan José Laforet, (eds.) La economía canaria en la segunda mitad del siglo XIX : la Real Sociedad Económica de Amigos del País de Gran Canaria. [Las Palmas de Gran Canaria] : Real Sociedad Económica de Amigos del País de Gran Canaria, 2003. ISBN 8492167394 , pp. 191-222",
-      "editorial": ""
+      "editorial": "",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Distribución y consumo legal de tabacos en Navarra (1731-1779)",
       "año": 2000,
-      "source": "Santiago de Luxán Meléndez, Sergio Solbes Ferri, Juan José Laforet (eds.). El mercado del tabaco en España durante el siglo XVIII : fiscalidad y consumo. Las Palmas de G.C.: Universidad de Las Palmas de Gran Canaria, 2000., pp. 252-291",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2636",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/4894ad16-a5ba-496f-a62d-fbec193674f4/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia regional",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
       "libro": "Santiago de Luxán Meléndez, Sergio Solbes Ferri, Juan José Laforet (eds.). El mercado del tabaco en España durante el siglo XVIII : fiscalidad y consumo. Las Palmas de G.C.: Universidad de Las Palmas de Gran Canaria, 2000., pp. 252-291",
-      "editorial": ""
+      "editorial": "Universidad de Las Palmas de Gran Canaria (ULPGC)",
+      "tipo": "Capítulo de libro"
     },
     {
-      "autores": "Luxán Meléndez, Santiago de ; Solbes Ferri, Sergio",
+      "autores": "Luxán Meléndez, Santiago de; Solbes Ferri, Sergio",
       "titulo": "La empresa industrial canaria en perspectiva histórica",
       "año": 2000,
-      "source": "Santiago de Luxán, Jesús Martínez Milán, Sergio Solbes y Miguel Suárez (eds.).Iniciación al estudio de la empresa en España y Canarias : sus archivos y su historia. Las Palmas de Gran Canaria: Fundación Canaria Maphre Guanarteme, 2000, pp. 117-155",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2633",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/f664d835-566e-4fd0-aa31-e25614f87782/content",
+      "clasificacion": [
+        "Organización y dirección de empresas",
+        "Historia regional",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
       "libro": "Santiago de Luxán, Jesús Martínez Milán, Sergio Solbes y Miguel Suárez (eds.).Iniciación al estudio de la empresa en España y Canarias : sus archivos y su historia. Las Palmas de Gran Canaria: Fundación Canaria Maphre Guanarteme, 2000, pp. 117-155",
-      "editorial": ""
+      "editorial": "",
+      "tipo": "Capítulo de libro"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "El arriendo de la renta del tabaco a través de la Real Hacienda: una eficaz fórmula de intervencionismo regio en Navarra (1717-1749)",
       "año": 1999,
-      "source": "Agustín González Enciso, Rafael Torres Sánchez (eds.. )Tabaco y economía en el siglo XVIII. Pamplona : EUNSA, D.L. 1999. -- ISBN 84-313-1730-2, pp. 319-356",
       "handle": "https://accedacris.ulpgc.es/handle/10553/2637",
-      "clasificacion": [],
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/1226938b-067a-41fe-b130-72b100e4f7b5/content",
+      "clasificacion": [
+        "Historia regional",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía",
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
       "libro": "Agustín González Enciso, Rafael Torres Sánchez (eds.. )Tabaco y economía en el siglo XVIII. Pamplona : EUNSA, D.L. 1999. -- ISBN 84-313-1730-2, pp. 319-356",
-      "editorial": ""
+      "editorial": "EUNSA. Ediciones Universidad de Navarra",
+      "tipo": "Capítulo de libro"
     }
   ],
   "resenas": [
     {
-      "autores": "Solbes Ferri, Sergio",
-      "titulo": "Álvaro Aragón Ruano y Alberto Angulo Morales (coords.), Una década prodigiosa. Beligerancia y negociación en la Corona y las provincias vascas (1717-1728), Universidad del País Vasco / Euskal Erriko Universitatea, Bilbao, 2019, 224 págs., ISBN: 978-84-9082-908-0",
-      "año": 2021,
-      "source": "Vegueta: Anuario de la Facultad de Geografía e Historia [ISSN 1133-598X], v. 21 (1), p. 694-698",
-      "handle": "https://accedacris.ulpgc.es/handle/10553/77685",
-      "clasificacion": [],
-      "revista": "Vegueta: Anuario de la Facultad de Geografía e Historia [ISSN 1133-598X], v. 21 (1), p. 694-698"
-    },
-    {
       "autores": "Solbes Ferri, S.",
       "titulo": "Cebreiro Ares, F. (2020). El Banco de San Carlos en Galicia (1783-1808). Periferia financiera, plata hispánica y final del Antiguo Régimen monetario. Paris: Éditions Hispaniques. Collection «Histoire et Civilisation», 262 pp., ISBN: 978-2-85355-107-6.",
       "año": 2021,
-      "source": "Studia historica. Historia moderna [ISSN 0213-2079], v. 43(2), p. 425-429",
       "handle": "https://accedacris.ulpgc.es/handle/10553/113572",
-      "clasificacion": [],
-      "revista": "Studia historica. Historia moderna [ISSN 0213-2079], v. 43(2), p. 425-429"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/f8241a84-2fc9-4f32-8dd4-0b475b455c35/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia regional",
+        "Crítica de textos"
+      ],
+      "detailsLoaded": true,
+      "revista": "Studia historica. Historia moderna"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Álvaro Aragón Ruano y Alberto Angulo Morales (coords.), Una década prodigiosa. Beligerancia y negociación en la Corona y las provincias vascas (1717-1728), Universidad del País Vasco / Euskal Erriko Universitatea, Bilbao, 2019, 224 págs., ISBN: 978-84-9082-908-0",
+      "año": 2021,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/77685",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/58b25f2e-6111-412c-8d92-b5ded058dddd/content",
+      "clasificacion": [
+        "Historia",
+        "Crítica de textos"
+      ],
+      "detailsLoaded": true,
+      "revista": "Vegueta: Anuario de la Facultad de Geografía e Historia",
+      "paginas": "694-698",
+      "doi": "10.51349/veg.2021.1.25"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Miguel Suárez Bosa. Le Port de Casablanca au xxe siècle. Une source de développement pour le Maroc. Paris, Editions L’Harmattan, 2019, 240 pp. ISBN: 978-2343178028",
       "año": 2020,
-      "source": "Investigaciones de Historia Economica [ISSN 1698-6989], v. 17(1), p. 64-65",
       "handle": "https://accedacris.ulpgc.es/handle/10553/113570",
-      "clasificacion": [],
-      "revista": "Investigaciones de Historia Economica [ISSN 1698-6989], v. 17(1), p. 64-65"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/96387b4b-4f7c-441b-a1a4-998fa2d94286/content",
+      "clasificacion": [
+        "Historia contemporánea",
+        "Historia de la economía",
+        "Crítica de textos"
+      ],
+      "detailsLoaded": true,
+      "revista": "Investigaciones de Historia Economica",
+      "doi": "10.33231/j.ihe.2020.03.015"
     },
     {
       "autores": "Solbes Ferri",
       "titulo": "Agustín González Enciso (2016), War, Power and the Economy. Mercantilism and State Formation in 18th-century Europe, Routledge Explorations in Economic History, Taylor & Francis Group, Londres y Nueva York",
       "año": 2017,
-      "source": "Revista Empresa y Humanismo [ISSN 1139-7608], v. 20 (2), p.  201-212",
       "handle": "https://accedacris.ulpgc.es/handle/10553/41305",
-      "clasificacion": [],
-      "revista": "Revista Empresa y Humanismo [ISSN 1139-7608], v. 20 (2), p.  201-212"
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/316b4e54-8613-4e30-bb6b-7b4e3123261c/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Revista Empresa Y Humanismo",
+      "volumen": "2",
+      "paginas": "201-212"
     },
     {
       "autores": "Solbes Ferri, Sergio",
       "titulo": "Torres Sánchez, Rafael: El precio de la guerra. El Estado fiscal-militar de Carlos III (1779-1783), Marcial Pons HIstoria, Madrid, 2013, 459 páginas. ISBN: 978-84-92820-92-4",
       "año": 2015,
-      "source": "Revista de la historia de la economía y de la empresa [ISSN 1887-2956] (9), p. 355-358",
       "handle": "https://accedacris.ulpgc.es/handle/10553/58546",
-      "clasificacion": [],
-      "revista": "Revista de la historia de la economía y de la empresa [ISSN 1887-2956] (9), p. 355-358"
+      "clasificacion": [
+        "Crítica de textos"
+      ],
+      "detailsLoaded": true,
+      "revista": "Revista de la historia de la economía y de la empresa",
+      "volumen": "9",
+      "paginas": "355-358"
+    }
+  ],
+  "actas": [
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Mecanismos financieros para el control de la provisión del vestuario de guardias de corps y alabarderos (1716-1785)",
+      "año": 2015,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17127",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/942ef1c7-84b7-4565-89a1-556be6d25037/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Rodríguez, J. J. I., García, R. M. P., & Chaves, M. F. F. (2015). Comercio y cultura en la Edad Moderna: actas de la XIII reunión científica de la fundación de Historia Moderna, p. 447-460"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "La demanda de vestuario para el Ejército español en el siglo XVIII",
+      "año": 2012,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/10505",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/18ce4223-5262-4fbd-b3d8-446a96fbc45a/content",
+      "clasificacion": [
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "XII Congreso de FEHM. Sección B-2. León, 20-22 de junio de 2012"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Ordenación contable de la Tesorería General de las islas Canarias (1718-1780)",
+      "año": 2010,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/6853",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/1debd728-0306-4b0c-a6c0-c9e8479d9616/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Coloquio Internacional: Las cuentas públicas. Implicaciones políticas, prácticas, modelos (hacia 1500-hacia 1850), Universidad París X-Nanterre (10-12 de junio de 2010)"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Nuevas claves para interpretar los presupuestos ordinarios de la Monarquía española desde una perspectiva territorial: las cuentas de la Tesorería General en la década de 1760",
+      "año": 2009,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/6852",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/34409c0e-8735-4a08-9452-d0d071bff9d7/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "XV International Economic History Congress (IEHC 2009), Utrech, Holland, 3 to 7 August 2009"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Los navíos de permisión canaria a Indias (1720-1779) (II): derechos fiscales de exportación",
+      "año": 2008,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/17407",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/190bc18c-6735-45ae-a152-5fc98a2b887e/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "Coloquio de Historia Canario Americana [ISSN  2386-6837], v.  XVIII  (2008) p. 657-671"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Las rentas generales de aduanas y agregados en Canarias, 1765-1780",
+      "año": 2008,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2655",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/82fbbd84-63a3-4ac2-9ac9-4d1dce0f6935/content",
+      "clasificacion": [
+        "Historia regional",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "XVII Coloquio de Historia Canario Americana [ISSN  2386-6837], v.  17, p. 956-974, (2008)",
+      "paginas": "956-974"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Disponibilidad territorial de los recursos financieros de la Real Hacienda española: las tesorerías del ejército de los reinos de la Corona de Aragón (1755-1765)",
+      "año": 2006,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/6848",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/1d4b80e3-e1ba-46b4-924a-8ee4976bc237/content",
+      "clasificacion": [
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía",
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
+      "revista": "XIV International Economic History Congress (IEHC 2006), Helsinki, Finlandia, 21 to 25 August 2006"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "La necesaria construcción de un puerto marítimo para Las Palmas de Gran Canaria como complemento a los decretos de puertos francos (1852-1883)",
+      "año": 2004,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2642",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/2aeec3fa-dc17-479f-add9-05bc7d67b71b/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Historia regional",
+        "Puertos"
+      ],
+      "detailsLoaded": true,
+      "revista": "XV Coloquio de Historia Canario Americana [ISSN  2386-6837], v. 15, p. 1823-1847, (2002)",
+      "paginas": "1823-1847"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Los comerciantes extanjeros y el negocio del tabaco en la España del siglo XVIII",
+      "año": 2003,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2640",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/2e3e4b1d-8637-440c-a631-8988271b1f11/content",
+      "clasificacion": [
+        "Comercio interior",
+        "Historia de la economía",
+        "Historia moderna"
+      ],
+      "detailsLoaded": true,
+      "revista": "M.B. Villar García, y P. Pezzi Cristobal (eds.). Los extranjeros en la España Moderna : actas del I Coloquio Internacional, celebrado en Málaga del 28 al 30 de noviembre de 2002. Málaga : Los autores, 2003. ISBN 8468826332, pp. 643-655"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio; Suárez Bosa, Miguel; Alcaraz Abellán, José",
+      "titulo": "Los mapas conceptuales en la enseñanza de la historia económica",
+      "año": 2001,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2641",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/1122b28c-0ac6-45e6-a923-c8e0af48c271/content",
+      "clasificacion": [
+        "Historia de la economía",
+        "Asesoramiento y orientación educacional"
+      ],
+      "detailsLoaded": true,
+      "revista": "Historia económica y experiencia didáctica: un encuentro en Jaén : (actas del VI encuentro sobre didáctica de la historia económica, 3-4 de junio de 1999) / Instituto de estudios jiennenses, Luis Garrido González. Jaén : Instituto de Estudios Giennenses, 2001. ISBN 8487115837, pp. 93-101"
+    },
+    {
+      "autores": "Luxán Meléndez, Santiago de; Solbes Ferri, Sergio",
+      "titulo": "El funcionamiento del estanco del tabaco en Canarias y en Navarra (1730-1780) : un ejercicio de historia comparada",
+      "año": 2000,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2634",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/6aa8921a-1dc9-4f0e-b20c-b66f019da6d4/content",
+      "clasificacion": [
+        "Historia regional",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia moderna",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "Francisco Morales Padrón (coord.). XIII Coloquio de Historia y Canario-Americana: VIII Congreso Internacional de Historia de América (AEA). Las Palmas de Gran Canaria : Cabildo de Gran Canaria, 2000 . -- ISBN 84-8103-242-5, pp. 2003-2020"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "El intento borbónico de creación de un mercado interior unificado : el caso de Navarra (1718-1722)",
+      "año": 1995,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/1716",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/04d3c292-41de-417a-934d-ac7f66b5a419/content",
+      "clasificacion": [
+        "Historia"
+      ],
+      "detailsLoaded": true,
+      "revista": "El comercio en el Antiguo régimen : III Reunión Científica, Asociación Española de Historia Moderna, pp. 277-289"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "La gestión de las tablas de Navarra heredada por los Borbones en los inicios del siglo XVIII: arrendamiento o administración directa",
+      "año": 1994,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2619",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/250b54d6-e9b0-4d6b-9e61-de95f94fadd4/content",
+      "clasificacion": [
+        "Historia moderna",
+        "Historia regional",
+        "Política fiscal y hacienda pública nacionales",
+        "Historia de la economía"
+      ],
+      "detailsLoaded": true,
+      "revista": "III Congreso General de Historia de Navarra = Nafarroa.ko Kondairaren III. Batzarre Orokorra : 20 al 23 de septiembre de 1994. Navarra y Europa. Area I:  La configuración histórica del territorio, ponencia IV"
+    },
+    {
+      "autores": "Solbes Ferri, Sergio",
+      "titulo": "Los Servicios de las Cortes de Navarra en el siglo XVIII",
+      "año": 1993,
+      "handle": "https://accedacris.ulpgc.es/handle/10553/2614",
+      "pdfUrl": "https://accedacris.ulpgc.es/server/api/core/bitstreams/6ce7ef3b-9dd2-46b1-81c7-83c6f452a699/content",
+      "isbn": "84-7684-407-7",
+      "clasificacion": [
+        "Historia moderna",
+        "Historia de la economía",
+        "Política fiscal y hacienda pública nacionales"
+      ],
+      "detailsLoaded": true,
+      "revista": "José Ignacio Fortea López [sic], Carmen Ma. Cremades Griñán (eds.). Política y hacienda en el Antiguo Régimen : II Reunión Científica Asociación Española de Historia Moderna 1992"
     }
   ]
 }

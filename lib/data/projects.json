@@ -1,11 +1,47 @@
 [
   {
+    "titulo": "Estudio histórico del modelo de financiación de las Islas Canarias, en el período comprendido entre los siglos XV y XX",
+    "investigadorPrincipal": "Solbes Ferri, Sergio",
+    "entidadFinanciadora": "Gobierno de Canarias",
+    "participacion": "Investigador principal",
+    "periodo": "2018 - 2021",
+    "referencia": "Cgerencia18012018",
+    "cuantia": "27.600 €",
+    "handle": "https://accedacris.ulpgc.es/handle/10553/177527",
+    "relevante": true
+  },
+  {
+    "titulo": "The Spending Of State. Resources For War And The Fiscal-military State, 1650-1815",
+    "investigadorPrincipal": "Solbes Ferri, Sergio",
+    "entidadFinanciadora": "Ministerio De Cultura Y Deportes",
+    "participacion": "Investigador principal",
+    "periodo": "2008",
+    "referencia": "HUM2007-29204-E",
+    "cuantia": "9000 €",
+    "handle": "https://accedacris.ulpgc.es/handle/10553/179109",
+    "relevante": true
+  },
+  {
+    "titulo": "Congreso Internacional, U. Las Palmas G.C., 16-18 noviembre 2011: The contrator states and its implications",
+    "investigadorPrincipal": "Solbes Ferri, Sergio",
+    "entidadFinanciadora": "Ministerio De Ciencia E Innovacion",
+    "participacion": "Investigador principal",
+    "periodo": "2011 - 2012",
+    "referencia": "HAR2010-11978-E",
+    "cuantia": "18.000 €",
+    "handle": "https://accedacris.ulpgc.es/handle/10553/179555",
+    "relevante": true
+  },
+  {
     "titulo": "Defensa y fortificaciones en las Islas del Atlántico Medio durante el largo siglo XVIII",
     "investigadorPrincipal": "Sergio Solbes Ferri y Juan Manuel Santana Pérez",
     "entidadFinanciadora": "Gobierno de España - Ministerio de Ciencia e Innovación",
     "participacion": "Investigador principal",
     "relevante": true,
-    "periodo": "2023 - 2026"
+    "periodo": "2023 - 2026",
+    "handle": "https://accedacris.ulpgc.es/handle/10553/179981",
+    "referencia": "PID2020-115792GB-I00",
+    "cuantia": "41.140 €"
   },
   {
     "titulo": "Red Sucesión 3.0: Relaciones internacionales, cultura política y dinámicas imperiales entre Europa y América (1648-1748)",
@@ -19,7 +55,10 @@
     "entidadFinanciadora": "Agencia Canaria de Investigación, Innovación y Sociedad de la Información (ACIISI)",
     "participacion": "Investigador principal",
     "relevante": true,
-    "periodo": "2023 - 2024"
+    "periodo": "2023 - 2024",
+    "handle": "https://accedacris.ulpgc.es/handle/10553/180079",
+    "referencia": "PROID2020010010",
+    "cuantia": "45.700 €"
   },
   {
     "titulo": "Redes empresariales y administración estatal: movilización de recursos y producción de materiales estratégicos en el mundo hispánico como escenario de la globalización temprana (siglos XVI-XIX)",
@@ -39,7 +78,10 @@
     "entidadFinanciadora": "Secretaría de Estado de Universidades, Investigación, Desarrollo e Innovación y la Universidad de Las Palmas de Gran Canaria",
     "participacion": "Investigador principal",
     "relevante": true,
-    "periodo": "2017 - 2019"
+    "periodo": "2017 - 2019",
+    "handle": "https://accedacris.ulpgc.es/handle/10553/178753",
+    "referencia": "GOB-ESP2019-16",
+    "cuantia": "5700 €"
   },
   {
     "titulo": "La construcción de la Hacienda hispánica (siglos XVIII-XIX)",
@@ -53,7 +95,11 @@
     "titulo": "Patrimonio Cultural Tangible e Intangible: Fortificaciones, Milicias y Ejército en la Historia de Canarias",
     "entidadFinanciadora": "Agencia Canaria de Investigación, Innovación y Sociedad de la Información (ACIISI) - Gobierno de Canarias",
     "participacion": "Investigador principal",
-    "relevante": true
+    "relevante": true,
+    "handle": "https://accedacris.ulpgc.es/handle/10553/179204",
+    "referencia": "CEI2018-5",
+    "cuantia": "5037 €",
+    "periodo": "2019"
   },
   {
     "titulo": "Movilización de recursos para la guerra y la construcción del Estado en el siglo XVIII: España y su contexto europeo",

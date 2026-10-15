@@ -73,6 +73,8 @@ export interface ProyectoInvestigacion extends BaseItem {
   participacion?: string;
   periodo?: string;
   referencia?: string;
+  handle?: string;
+  cuantia?: string;
 }
 
 export interface Acreditacion {
@@ -184,6 +186,7 @@ export interface Publicaciones {
   libros: PublicacionLibro[];
   capitulos: PublicacionCapitulo[];
   resenas: PublicacionArticulo[];
+  actas?: PublicacionArticulo[];
 }
 
 export interface Stats {
